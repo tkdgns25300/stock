@@ -4,3 +4,6 @@
 # environment
 .env.development
 .env.production
+
+# distribution
+/dist
