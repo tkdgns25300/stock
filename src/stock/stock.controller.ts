@@ -6,8 +6,8 @@ export class StockController {
 	constructor(private stockService: StockService) {}
 
 	// 시가총액 Top 10 기업 조회
-	@Get("top-market-cap")
-	getTopMarketCap() {
-		return this.stockService.getTopMarketCap();
+	@Get("top10")
+	getTop10() {
+		return this.stockService.getTop10();
 	}
 }
