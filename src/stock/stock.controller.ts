@@ -5,9 +5,9 @@ import { StockService } from "./stock.service";
 export class StockController {
 	constructor(private stockService: StockService) {}
 
-	// 시가총액 Top 10 기업 조회
-	@Get("top10")
+	// 유가증권 일별매매정보
+	@Get("stk_bydd_trd")
 	getTop10() {
-		return this.stockService.getTop10();
+		return this.stockService.stk_bydd_trd();
 	}
 }
