@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import csvtojson = require("csvtojson");
+import csvtojson from "csvtojson";
 
 // RowData 인터페이스 정의
 interface RowData {
@@ -19,7 +19,7 @@ interface RowData {
  * @param {string} market - 시장 이름
  * @param {(error: Error | null) => void} callback - 콜백 함수
  */
-async function convertCsvToJson(
+export async function convertCsvToJson(
 	csvFilePath: string,
 	outputPath: string,
 	market: string,
@@ -38,6 +38,8 @@ async function convertCsvToJson(
 			상장주식수: row["상장주식수"],
 		}));
 
+		console.log(filteredData);
+
 		const jsonFilePath = `${outputPath}/${market}.json`;
 		fs.writeFile(jsonFilePath, JSON.stringify(filteredData, null, 2), (err) => {
 			if (err) {
@@ -51,14 +53,3 @@ async function convertCsvToJson(
 		throw error; // 에러를 던져서 상위 호출 스택으로 전파
 	}
 }
-
-// CSV 파일 경로와 출력 디렉토리 경로
-const csvFilePath = "../../data_2420_20240512.csv";
-const outputPath = "../company";
-
-// KOSPI시장
-convertCsvToJson(csvFilePath, outputPath, "KOSPI", (error) => {
-	if (error) {
-		console.error("Error:", error);
-	}
-});
