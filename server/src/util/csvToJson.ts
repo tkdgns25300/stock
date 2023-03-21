@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import csvtojson from "csvtojson";
+import * as iconv from "iconv-lite";
 
 // RowData 인터페이스 정의
 interface RowData {
@@ -26,7 +27,10 @@ export async function convertCsvToJson(
 	callback: (error: Error | null) => void,
 ) {
 	try {
-		const jsonArray = await csvtojson().fromFile(csvFilePath);
+		const csvData = fs.readFileSync(csvFilePath);
+		const decodedData = iconv.decode(csvData, "EUC-KR"); // CSV 파일의 실제 인코딩에 맞게 설정
+
+		const jsonArray = await csvtojson().fromString(decodedData);
 
 		const filteredData = jsonArray.map((row: RowData) => ({
 			단축코드: row["단축코드"],
@@ -38,18 +42,16 @@ export async function convertCsvToJson(
 			상장주식수: row["상장주식수"],
 		}));
 
-		console.log(filteredData);
-
 		const jsonFilePath = `${outputPath}/${market}.json`;
 		fs.writeFile(jsonFilePath, JSON.stringify(filteredData, null, 2), (err) => {
 			if (err) {
-				throw err; // 에러를 던져서 상위 호출 스택으로 전파
+				throw err;
 			} else {
 				console.log(`JSON file for ${market} has been saved.`);
 				callback(null);
 			}
 		});
 	} catch (error) {
-		throw error; // 에러를 던져서 상위 호출 스택으로 전파
+		throw error;
 	}
 }
