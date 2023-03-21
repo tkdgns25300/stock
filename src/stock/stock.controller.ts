@@ -7,7 +7,7 @@ export class StockController {
 
 	// 유가증권 일별매매정보
 	@Get("stk_bydd_trd")
-	getTop10() {
-		return this.stockService.stk_bydd_trd();
+	getStkByddTrd() {
+		return this.stockService.stkByddTrd();
 	}
 }

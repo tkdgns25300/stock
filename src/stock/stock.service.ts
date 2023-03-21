@@ -4,7 +4,7 @@ import axios from "axios";
 
 @Injectable()
 export class StockService {
-	async stk_bydd_trd() {
+	async stkByddTrd() {
 		try {
 			const url = "http://data-dbg.krx.co.kr/svc/sample/apis/sto/stk_bydd_trd.json";
 			const response = await axios.get(url, {
