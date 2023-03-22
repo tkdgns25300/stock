@@ -34,10 +34,10 @@ export async function convertCsvToJson(
 
 		const filteredData = jsonArray.map((row: RowData) => ({
 			단축코드: row["단축코드"],
-			한글종목명: row["한글종목명"],
-			영문종목명: row["영문종목명"],
+			한글종목명: row["한글 종목명"],
+			영문종목명: row["영문 종목명"],
 			상장일: row["상장일"],
-			시장: row["시장"],
+			시장: row["시장구분"],
 			액면가: row["액면가"],
 			상장주식수: row["상장주식수"],
 		}));
