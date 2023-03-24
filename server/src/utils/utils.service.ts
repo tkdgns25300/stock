@@ -10,7 +10,7 @@ export class UtilsService {
 		// CSV 파일 경로 설정
 		let csvFilePath: string;
 		if (market === "KOSPI") {
-			csvFilePath = path.resolve(__dirname, "../../resources/input/kospi_data_2420_20240512.csv");
+			csvFilePath = path.resolve(__dirname, "../../resources/input/kospi_data_4615_20240518.csv");
 		} else if (market === "KOSDAQ") {
 			csvFilePath = path.resolve(__dirname, "../../resources/input/kosdaq_data_5304_20240517.csv");
 		} else if (market === "KONEX") {
@@ -30,10 +30,10 @@ export class UtilsService {
 
 	async saveCompanyDescription(market: string): Promise<string> {
 		const jsonFilePath = path.resolve(__dirname, `../../resources/output/${market}.json`);
-		const stockDataList = require(jsonFilePath).slice(0, 10);
+		const stockDataList = require(jsonFilePath).slice(0, 30);
 
 		for (const stockData of stockDataList) {
-			const url = `https://finance.naver.com/item/main.naver?code=${stockData["단축코드"]}`;
+			const url = `https://finance.naver.com/item/main.naver?code=${stockData["종목코드"]}`;
 
 			try {
 				const browser = await puppeteer.launch();

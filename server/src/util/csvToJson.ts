@@ -4,11 +4,16 @@ import * as iconv from "iconv-lite";
 
 // RowData 인터페이스 정의
 interface RowData {
-	단축코드: string;
+	표준코드: string;
+	종목코드: string;
 	한글종목명: string;
+	한글종목약명: string;
 	영문종목명: string;
 	상장일: string;
 	시장: string;
+	증권: string;
+	소속부: string;
+	주식종류: string;
 	액면가: string;
 	상장주식수: string;
 }
@@ -33,11 +38,16 @@ export async function convertCsvToJson(
 		const jsonArray = await csvtojson().fromString(decodedData);
 
 		const filteredData = jsonArray.map((row: RowData) => ({
-			단축코드: row["단축코드"],
+			표준코드: row["표준코드"],
+			종목코드: row["단축코드"],
 			한글종목명: row["한글 종목명"],
+			한글종목약명: row["한글 종목약명"],
 			영문종목명: row["영문 종목명"],
 			상장일: row["상장일"],
 			시장: row["시장구분"],
+			증권: row["증권구분"],
+			소속부: row["소속부"],
+			주식종류: row["주식종류"],
 			액면가: row["액면가"],
 			상장주식수: row["상장주식수"],
 		}));
