@@ -11,9 +11,9 @@ export class UtilsController {
 		return await this.utilsService.csvToJson(market);
 	}
 
-	// Save Company Description
-	@Get("/save-description/:market")
-	async saveCompanyDescription(@Param("market") market: string): Promise<string> {
-		return await this.utilsService.saveCompanyDescription(market);
+	// Scraping And Save Company Description
+	@Get("/scraping-description/:market")
+	async scrapingCompanyDescription(@Param("market") market: string): Promise<string> {
+		return await this.utilsService.scrapingCompanyDescription(market);
 	}
 }

@@ -28,9 +28,9 @@ export class UtilsService {
 		});
 	}
 
-	async saveCompanyDescription(market: string): Promise<string> {
+	async scrapingCompanyDescription(market: string): Promise<string> {
 		const jsonFilePath = path.resolve(__dirname, `../../resources/output/${market}.json`);
-		const stockDataList = require(jsonFilePath).slice(0, 30);
+		const stockDataList = require(jsonFilePath).slice(0, 50);
 
 		for (const stockData of stockDataList) {
 			const url = `https://finance.naver.com/item/main.naver?code=${stockData["종목코드"]}`;
