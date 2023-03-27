@@ -10,4 +10,10 @@ export class StockController {
 	getStkByddTrd() {
 		return this.stockService.stkByddTrd();
 	}
+
+	// 코스닥 일별매매정보
+	@Get("ksq_bydd_trd")
+	getKsqByddTrd() {
+		return this.stockService.ksqByddTrd();
+	}
 }
