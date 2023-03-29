@@ -1,11 +1,18 @@
 import React from "react";
-import SearchComponent from "./components/SearchComponent";
+import LeftComponent from "./components/LeftComponent";
+import RightComponent from "./components/RightComponent";
 
 const App: React.FC = () => {
 	return (
-		<div>
-			<h1>My App</h1>
-			<SearchComponent />
+		<div className="flex">
+			<LeftComponent>
+				<h2>Left Component Title</h2>
+				<p>Left Component Content</p>
+			</LeftComponent>
+			<RightComponent>
+				<h2>Right Component Title</h2>
+				<p>Right Component Content</p>
+			</RightComponent>
 		</div>
 	);
 };

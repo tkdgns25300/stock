@@ -1,10 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import SearchComponent from "./SearchComponent";
 
-const LeftComponent: React.FC = () => {
+interface LeftComponentProps {
+	children?: ReactNode;
+}
+
+const LeftComponent: React.FC<LeftComponentProps> = ({ children }: LeftComponentProps) => {
 	return (
-		<div className="bg-black text-white">
+		<div className="bg-black text-white w-1/2 h-screen flex flex-col">
 			<SearchComponent />
+			<div className="flex-grow">{children}</div>
 		</div>
 	);
 };

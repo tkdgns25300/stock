@@ -1,11 +1,15 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-const RightComponent: React.FC = () => {
+interface RightComponentProps {
+	children?: ReactNode;
+}
+
+const RightComponent: React.FC<RightComponentProps> = ({ children }: RightComponentProps) => {
 	return (
-		<div className="bg-white">
-			<h1>Welcome to my site!</h1>
-			<p>This is a site about...</p>
+		<div className="bg-white text-black w-1/2 h-screen flex flex-col">
+			<div className="flex-grow">{children}</div>
 		</div>
 	);
 };
+
 export default RightComponent;
