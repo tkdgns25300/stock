@@ -30,6 +30,7 @@ export class StockService {
 			},
 		});
 
+		return new PageResObj(response.data, "코스닥 일별매매정보 조회에 성공하였습니다.");
 		try {
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
