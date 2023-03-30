@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react";
+import InfoMessage from "./InfoMessage";
 
 interface RightComponentProps {
 	children?: ReactNode;
@@ -6,8 +7,11 @@ interface RightComponentProps {
 
 const RightComponent: React.FC<RightComponentProps> = ({ children }: RightComponentProps) => {
 	return (
-		<div className="bg-white text-black w-1/2 h-screen flex flex-col">
-			<div className="flex-grow">{children}</div>
+		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
+			<InfoMessage
+				title="기업 정보를 손쉽게 조회하기 위한 웹사이트입니다."
+				description="기업명 혹은 종목코드로 검색해보세요."
+			/>
 		</div>
 	);
 };
