@@ -1,11 +1,11 @@
 import React, { ReactNode } from "react";
 import InfoMessage from "./InfoMessage";
 
-interface RightComponentProps {
+interface RightProps {
 	children?: ReactNode;
 }
 
-const RightComponent: React.FC<RightComponentProps> = ({ children }: RightComponentProps) => {
+const Right: React.FC<RightProps> = ({ children }: RightProps) => {
 	return (
 		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<InfoMessage
@@ -16,4 +16,4 @@ const RightComponent: React.FC<RightComponentProps> = ({ children }: RightCompon
 	);
 };
 
-export default RightComponent;
+export default Right;

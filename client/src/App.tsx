@@ -1,18 +1,18 @@
 import React from "react";
-import LeftComponent from "./components/LeftComponent";
-import RightComponent from "./components/RightComponent";
+import Left from "./components/Left";
+import Right from "./components/Right";
 
 const App: React.FC = () => {
 	return (
 		<div className="flex">
-			<LeftComponent>
+			<Left>
 				<h2>Left Component Title</h2>
 				<p>Left Component Content</p>
-			</LeftComponent>
-			<RightComponent>
+			</Left>
+			<Right>
 				<h2>Right Component Title</h2>
 				<p>Right Component Content</p>
-			</RightComponent>
+			</Right>
 		</div>
 	);
 };
