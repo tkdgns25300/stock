@@ -22,16 +22,16 @@ export class StockService {
 	}
 
 	async ksqByddTrd() {
-		const url = "http://data-dbg.krx.co.kr/svc/apis/sto/ksq_bydd_trd?basDd=20230414";
-		const response = await axios.get(url, {
-			responseType: "json",
-			headers: {
-				AUTH_KEY: process.env.API_KEY,
-			},
-		});
-
-		return new PageResObj(response.data, "코스닥 일별매매정보 조회에 성공하였습니다.");
 		try {
+			const url = "http://data-dbg.krx.co.kr/svc/apis/sto/ksq_bydd_trd?basDd=20230414";
+			const response = await axios.get(url, {
+				responseType: "json", // json 형식으로 반환
+				headers: {
+					AUTH_KEY: process.env.API_KEY,
+				},
+			});
+
+			return new PageResObj(response.data, "코스닥 일별매매정보 조회에 성공하였습니다.");
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
