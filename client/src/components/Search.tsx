@@ -20,15 +20,21 @@ const Search: React.FC = () => {
 
 	return (
 		<div>
-			<input
-				type="text"
-				placeholder="회사명/종목 코드를 입력해주세요"
-				value={searchTerm}
-				onChange={(e) => setSearchTerm(e.target.value)}
-			/>
-			<button onClick={handleSearch}>
-				<img src="search-icon.png" alt="Search" />
-			</button>
+			<div className="bg-gray-500 p-4 rounded-lg flex items-center">
+				<input
+					type="text"
+					placeholder="회사명/종목 코드를 입력해주세요"
+					value={searchTerm}
+					onChange={(e) => setSearchTerm(e.target.value)}
+					className="w-64 py-2 px-4 rounded-l-lg border-t border-b border-l text-gray-800 border-gray-200 bg-white focus:outline-none"
+				/>
+				<button
+					onClick={handleSearch}
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r-lg border-t border-b border-r border-gray-200"
+				>
+					<img src="search-icon.png" alt="Search" />
+				</button>
+			</div>
 		</div>
 	);
 };
