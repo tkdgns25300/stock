@@ -5,7 +5,7 @@ interface LeftProps {
 	children?: ReactNode;
 }
 
-const Left: React.FC<LeftProps> = ({ children }: LeftProps) => {
+const HomeLeft: React.FC<LeftProps> = ({ children }: LeftProps) => {
 	return (
 		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<Search />
@@ -13,4 +13,4 @@ const Left: React.FC<LeftProps> = ({ children }: LeftProps) => {
 	);
 };
 
-export default Left;
+export default HomeLeft;

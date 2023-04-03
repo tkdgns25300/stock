@@ -1,12 +1,10 @@
 import React from "react";
-import Left from "./components/Left";
-import Right from "./components/Right";
+import HomePage from "./pages/HomePage";
 
 const App: React.FC = () => {
 	return (
-		<div className="flex">
-			<Left />
-			<Right />
+		<div>
+			<HomePage />
 		</div>
 	);
 };

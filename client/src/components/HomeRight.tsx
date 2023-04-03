@@ -5,7 +5,7 @@ interface RightProps {
 	children?: ReactNode;
 }
 
-const Right: React.FC<RightProps> = ({ children }: RightProps) => {
+const HomeRight: React.FC<RightProps> = ({ children }: RightProps) => {
 	return (
 		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<InfoMessage
@@ -16,4 +16,4 @@ const Right: React.FC<RightProps> = ({ children }: RightProps) => {
 	);
 };
 
-export default Right;
+export default HomeRight;
