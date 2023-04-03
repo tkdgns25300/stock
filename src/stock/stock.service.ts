@@ -36,5 +36,11 @@ export class StockService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async knxByddTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
-//
