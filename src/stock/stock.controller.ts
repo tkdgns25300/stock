@@ -16,4 +16,10 @@ export class StockController {
 	getKsqByddTrd() {
 		return this.stockService.ksqByddTrd();
 	}
+
+	// 코스넥 일별매매정보
+	@Get("knx_bydd_trd")
+	getKnxByddTrd() {
+		return this.stockService.knxByddTrd();
+	}
 }
