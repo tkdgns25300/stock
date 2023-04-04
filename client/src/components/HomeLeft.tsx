@@ -1,5 +1,6 @@
 import React, { ReactNode } from "react";
 import Search from "./Search";
+import Logo from "./Logo";
 
 interface LeftProps {
 	children?: ReactNode;
@@ -7,8 +8,11 @@ interface LeftProps {
 
 const HomeLeft: React.FC<LeftProps> = ({ children }: LeftProps) => {
 	return (
-		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
-			<Search />
+		<div>
+			<Logo />
+			<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
+				<Search />
+			</div>
 		</div>
 	);
 };
