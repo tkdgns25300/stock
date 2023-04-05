@@ -38,14 +38,32 @@ export class StockService {
 	}
 
 	async knxByddTrd() {
-		const url = "http://data-dbg.krx.co.kr/svc/apis/sto/ksq_bydd_trd?basDd=20230414";
-		const response = await axios.get(url, {
-			responseType: "json", // json 형식으로 반환
-			headers: {
-				AUTH_KEY: process.env.API_KEY,
-			},
-		});
 		try {
+			const url = "http://data-dbg.krx.co.kr/svc/apis/sto/knx_bydd_trd?basDd=20230414";
+			const response = await axios.get(url, {
+				responseType: "json", // json 형식으로 반환
+				headers: {
+					AUTH_KEY: process.env.API_KEY,
+				},
+			});
+
+			return new PageResObj(response.data, "코스텍 일별매매정보 조회에 성공하였습니다.");
+			// const space = await this.spaceRepository.findOne({
+			// 	where: {
+			// 		id: spaceId,
+			// 	},
+			// });
+			// if (!space) {
+			// 	return new PageResObj({}, "Invalid Space Id", true);
+			// }
+
+			// // 해당 space의 전체 게시글 조회
+			// const allPost = await this.postRepository.find({
+			// 	where: {
+			// 		space: { id: spaceId },
+			// 		isDeleted: false,
+			// 	},
+			// });
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
