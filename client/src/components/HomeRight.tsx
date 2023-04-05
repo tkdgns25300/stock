@@ -1,11 +1,7 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import InfoMessage from "./InfoMessage";
 
-interface RightProps {
-	children?: ReactNode;
-}
-
-const HomeRight: React.FC<RightProps> = ({ children }: RightProps) => {
+const HomeRight: React.FC = () => {
 	return (
 		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<InfoMessage

@@ -1,18 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import Search from "./Search";
-import Logo from "./Logo";
 
-interface LeftProps {
-	children?: ReactNode;
-}
-
-const HomeLeft: React.FC<LeftProps> = ({ children }: LeftProps) => {
+const HomeLeft: React.FC = () => {
 	return (
-		<div>
-			<Logo />
-			<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
-				<Search />
-			</div>
+		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
+			<Search />
 		</div>
 	);
 };

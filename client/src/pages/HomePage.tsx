@@ -2,7 +2,7 @@ import React from "react";
 import HomeLeft from "../components/HomeLeft";
 import HomeRight from "../components/HomeRight";
 
-const LandingPage: React.FC = () => {
+const HomePage: React.FC = () => {
 	return (
 		<div className="flex">
 			<HomeLeft />
@@ -11,4 +11,4 @@ const LandingPage: React.FC = () => {
 	);
 };
 
-export default LandingPage;
+export default HomePage;
