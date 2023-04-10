@@ -22,4 +22,10 @@ export class StockController {
 	getKnxByddTrd() {
 		return this.stockService.knxByddTrd();
 	}
+
+	// 신주인수권증권 일별매매정보
+	@Get("sw_bydd_trd")
+	getSwByddTrd() {
+		return this.stockService.SwByddTrd();
+	}
 }

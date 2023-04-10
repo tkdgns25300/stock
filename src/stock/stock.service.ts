@@ -52,4 +52,11 @@ export class StockService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async SwByddTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
