@@ -17,7 +17,7 @@ export class CompanyInfo {
 	@Column({
 		type: "varchar",
 		length: 100,
-		comment: "한글명_상세",
+		comment: "한글명 상세",
 	})
 	detailed_name: string;
 
@@ -27,6 +27,12 @@ export class CompanyInfo {
 		comment: "영문명",
 	})
 	english_name: string;
+
+	@Column({
+		type: "text",
+		comment: "기업 설명",
+	})
+	description: string;
 
 	@Column({
 		type: "varchar",
