@@ -65,7 +65,7 @@ export class CompanyInfo {
 		type: "int",
 		comment: "결산월",
 	})
-	fiscal_month: string;
+	fiscal_month: number;
 
 	@Column({
 		type: "varchar",
