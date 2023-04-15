@@ -4,29 +4,58 @@ import { Injectable } from "@nestjs/common";
 import { convertCsvToJson } from "src/util/csvToJson";
 import { writeFile } from "fs/promises";
 
+interface CompanyInfo {
+	name: string;
+	detailed_name: string;
+	english_name: string;
+	description: string;
+	industry_name: string;
+	industry_code: string;
+	capital: number;
+	currency: string;
+	fiscal_month: number;
+	ceo: string;
+	main_phone: string;
+	address: string;
+	website: string;
+	founded_date: Date;
+}
+
+interface StockInfo {
+	standard_code: string;
+	stock_code: string;
+	listing_date: Date;
+	face_value: number | null;
+	listed_shares: number;
+	market_type: string;
+	stock_type: string;
+	affiliation: string | null;
+	security_type: string;
+}
+
 @Injectable()
 export class UtilsService {
-	async csvToJson(market: string): Promise<void> {
-		// CSV 파일 경로 설정
-		let csvFilePath: string;
-		if (market === "KOSPI") {
-			csvFilePath = path.resolve(__dirname, "../../resources/input/kospi_data_4615_20240518.csv");
-		} else if (market === "KOSDAQ") {
-			csvFilePath = path.resolve(__dirname, "../../resources/input/kosdaq_data_5304_20240517.csv");
-		} else if (market === "KONEX") {
-			csvFilePath = path.resolve(__dirname, "../../resources/input/konex_data_5336_20240517.csv");
-		}
+	// async csvToJson(market: string): Promise<void> {
+	// 	// CSV 파일 경로 설정
+	// 	let csvFilePath: string;
+	// 	if (market === "KOSPI") {
+	// 		csvFilePath = path.resolve(__dirname, "../../resources/input/kospi_data_4615_20240518.csv");
+	// 	} else if (market === "KOSDAQ") {
+	// 		csvFilePath = path.resolve(__dirname, "../../resources/input/kosdaq_data_5304_20240517.csv");
+	// 	} else if (market === "KONEX") {
+	// 		csvFilePath = path.resolve(__dirname, "../../resources/input/konex_data_5336_20240517.csv");
+	// 	}
 
-		// 출력 디렉토리 경로 설정
-		const outputPath = path.resolve(__dirname, "../../resources/output");
+	// 	// 출력 디렉토리 경로 설정
+	// 	const outputPath = path.resolve(__dirname, "../../resources/output");
 
-		// CSV 파일을 JSON으로 변환
-		await convertCsvToJson(csvFilePath, outputPath, market, (error) => {
-			if (error) {
-				console.error("Error:", error);
-			}
-		});
-	}
+	// 	// CSV 파일을 JSON으로 변환
+	// 	await convertCsvToJson(csvFilePath, outputPath, market, (error) => {
+	// 		if (error) {
+	// 			console.error("Error:", error);
+	// 		}
+	// 	});
+	// }
 
 	async scrapingCompanyDescription(market: string): Promise<string> {
 		const jsonFilePath = path.resolve(__dirname, `../../resources/output/${market}.json`);
@@ -68,5 +97,13 @@ export class UtilsService {
 
 		console.log("Company description saved successfully");
 		return "Company description scraped and saved successfully";
+	}
+
+	async csvToJsonFirst(market: string, date: string): Promise<void> {
+		/**
+		 * 1. 파일 확인
+		 * 2. 파일 순회하며 회사 및 종목 정보 저장
+		 * 3. 저장한 파일 json화 후 파일 생성
+		 */
 	}
 }
