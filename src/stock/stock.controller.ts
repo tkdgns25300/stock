@@ -26,6 +26,12 @@ export class StockController {
 	// 신주인수권증권 일별매매정보
 	@Get("sw_bydd_trd")
 	getSwByddTrd() {
-		return this.stockService.SwByddTrd();
+		return this.stockService.swByddTrd();
+	}
+
+	//신주인수권증서 일별매매정보
+	@Get("sr_bydd_trd")
+	getSrByddTrd() {
+		return this.stockService.srByddTrd();
 	}
 }

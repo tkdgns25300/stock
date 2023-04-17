@@ -53,7 +53,7 @@ export class StockService {
 		}
 	}
 
-	async SwByddTrd() {
+	async swByddTrd() {
 		try {
 			const url = "http://data-dbg.krx.co.kr/svc/apis/sto/sw_bydd_trd?basDd=20230414";
 			const response = await axios.get(url, {
@@ -65,6 +65,13 @@ export class StockService {
 
 			return new PageResObj(response.data, "신주인수권증권 일별매매정보 조회에 성공하였습니다.");
 			// reference : http://openapi.krx.co.kr/contents/OPP/USES/service/OPPUSES002_S2.cmd?BO_ID=erXKnEAzTqcGnkcoSdGA
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
+
+	async srByddTrd() {
+		try {
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
