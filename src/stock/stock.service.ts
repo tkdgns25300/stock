@@ -71,6 +71,13 @@ export class StockService {
 	}
 
 	async srByddTrd() {
+		const url = "http://data-dbg.krx.co.kr/svc/apis/sto/sr_bydd_trd?basDd=20230414";
+		const response = await axios.get(url, {
+			responseType: "json", // json 형식으로 반환
+			headers: {
+				AUTH_KEY: process.env.API_KEY,
+			},
+		});
 		try {
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
