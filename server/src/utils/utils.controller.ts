@@ -18,8 +18,8 @@ export class UtilsController {
 	}
 
 	// CSV to JSON : First Step
-	@Get("/csvtojson/:market/:date")
-	async csvToJson(@Param("market") market: string, @Param("date") date: string): Promise<void> {
-		return await this.utilsService.csvToJsonFirst(market);
+	@Get("/csv-to-json-first/:market/:date")
+	async csvToJsonFirst(@Param("market") market: string, @Param("date") date: string): Promise<string> {
+		return await this.utilsService.csvToJsonFirst(market, date);
 	}
 }
