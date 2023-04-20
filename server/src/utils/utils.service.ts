@@ -152,83 +152,152 @@ export class UtilsService {
 		}
 	}
 
-	async csvToJsonSecond(market: string, date: string) {
-		const csvFilePath = path.resolve(__dirname, `../../resources/input/${date}/${market}/stock_info_${date}.csv`);
-		const firstJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/first.json`);
-		const secondJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/second.json`);
+	async csvToJsonSecond(market: string, date: string): Promise<string> {
+		try {
+			const csvFilePath = path.resolve(__dirname, `../../resources/input/${date}/${market}/stock_info_${date}.csv`);
+			const firstJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/first.json`);
+			const secondJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/second.json`);
 
-		const csvData = fs.readFileSync(csvFilePath);
-		const decodedData = iconv.decode(csvData, "EUC-KR");
-		const jsonArray = await csvtojson().fromString(decodedData);
+			const csvData = fs.readFileSync(csvFilePath);
+			const decodedData = iconv.decode(csvData, "EUC-KR");
+			const jsonArray = await csvtojson().fromString(decodedData);
 
-		const filteredData = jsonArray.map((row: StockInfoCSVRowData) => ({
-			표준코드: row["표준코드"],
-			단축코드: row["단축코드"],
-			"한글 종목명": row["한글 종목명"],
-			"한글 종목약명": row["한글 종목약명"],
-			"영문 종목명": row["영문 종목명"],
-			상장일: row["상장일"],
-			시장구분: row["시장구분"],
-			증권구분: row["증권구분"],
-			소속부: row["소속부"],
-			주식종류: row["주식종류"],
-			액면가: row["액면가"],
-			상장주식수: row["상장주식수"],
-		}));
+			const filteredData = jsonArray.map((row: StockInfoCSVRowData) => ({
+				표준코드: row["표준코드"],
+				단축코드: row["단축코드"],
+				"한글 종목명": row["한글 종목명"],
+				"한글 종목약명": row["한글 종목약명"],
+				"영문 종목명": row["영문 종목명"],
+				상장일: row["상장일"],
+				시장구분: row["시장구분"],
+				증권구분: row["증권구분"],
+				소속부: row["소속부"],
+				주식종류: row["주식종류"],
+				액면가: row["액면가"],
+				상장주식수: row["상장주식수"],
+			}));
 
-		// 파일 불러오기
-		const jsonData = fs.readFileSync(firstJsonFilePath, "utf-8");
-		const firstJsonData = JSON.parse(jsonData);
+			// 파일 불러오기
+			const jsonData = fs.readFileSync(firstJsonFilePath, "utf-8");
+			const firstJsonData = JSON.parse(jsonData);
 
-		// 필요한 형식에 맞게 데이터 변환
-		const convertedCompanyStockInfo = [];
+			// 필요한 형식에 맞게 데이터 변환
+			const convertedCompanyStockInfo = [];
 
-		for (const companyData of firstJsonData) {
-			// 뼈대에 먼저 정보 기입
-			let stockData = filteredData.find((e) => {
-				return e["단축코드"] === companyData["stock_info"][0]["stock_code"];
-			});
-			if (stockData) {
-				companyData["detailed_name"] = stockData["한글 종목명"];
-				companyData["english_name"] = stockData["영문 종목명"];
-				companyData["stock_info"][0]["standard_code"] = stockData["표준코드"];
-				companyData["stock_info"][0]["listing_date"] = stockData["상장일"];
-				companyData["stock_info"][0]["stock_type"] = stockData["주식종류"];
-				companyData["stock_info"][0]["security_type"] = stockData["증권구분"];
-			}
-
-			// 우선주 등 있는지 확인 후 기입
-			let otherStockData = filteredData.filter((e) => {
-				return (
-					e["단축코드"].slice(0, -1) === companyData["stock_info"][0]["stock_code"].slice(0, -1) &&
-					e["단축코드"] !== companyData["stock_info"][0]["stock_code"]
-				);
-			});
-			if (otherStockData.length !== 0) {
-				for (const anotherStockData of otherStockData) {
-					companyData["stock_info"].push({
-						standard_code: anotherStockData["표준코드"],
-						stock_code: anotherStockData["단축코드"],
-						listing_date: anotherStockData["상장일"],
-						face_value: anotherStockData["액면가"],
-						listed_shares: anotherStockData["상장주식수"],
-						market_type: anotherStockData["시장구분"],
-						stock_type: anotherStockData["주식종류"],
-						affiliation: anotherStockData["소속부"],
-						security_type: anotherStockData["증권구분"],
-					});
+			for (const companyData of firstJsonData) {
+				// 뼈대에 먼저 정보 기입
+				let stockData = filteredData.find((e) => {
+					return e["단축코드"] === companyData["stock_info"][0]["stock_code"];
+				});
+				if (stockData) {
+					companyData["detailed_name"] = stockData["한글 종목명"];
+					companyData["english_name"] = stockData["영문 종목명"];
+					companyData["stock_info"][0]["standard_code"] = stockData["표준코드"];
+					companyData["stock_info"][0]["listing_date"] = stockData["상장일"];
+					companyData["stock_info"][0]["stock_type"] = stockData["주식종류"];
+					companyData["stock_info"][0]["security_type"] = stockData["증권구분"];
 				}
+
+				// 우선주 등 있는지 확인 후 기입
+				let otherStockData = filteredData.filter((e) => {
+					return (
+						e["단축코드"].slice(0, -1) === companyData["stock_info"][0]["stock_code"].slice(0, -1) &&
+						e["단축코드"] !== companyData["stock_info"][0]["stock_code"]
+					);
+				});
+				if (otherStockData.length !== 0) {
+					for (const anotherStockData of otherStockData) {
+						companyData["stock_info"].push({
+							standard_code: anotherStockData["표준코드"],
+							stock_code: anotherStockData["단축코드"],
+							listing_date: anotherStockData["상장일"],
+							face_value: anotherStockData["액면가"],
+							listed_shares: anotherStockData["상장주식수"],
+							market_type: anotherStockData["시장구분"],
+							stock_type: anotherStockData["주식종류"],
+							affiliation: anotherStockData["소속부"],
+							security_type: anotherStockData["증권구분"],
+						});
+					}
+				}
+
+				convertedCompanyStockInfo.push(companyData);
 			}
 
-			convertedCompanyStockInfo.push(companyData);
+			// json 파일 생성
+			fs.writeFile(secondJsonFilePath, JSON.stringify(convertedCompanyStockInfo), (err) => {
+				if (err) throw err;
+				console.log("JSON 파일이 생성되었습니다.");
+			});
+
+			return "JSON 파일이 생성되었습니다.";
+		} catch (error) {
+			throw error;
 		}
+	}
 
-		// json 파일 생성
-		fs.writeFile(secondJsonFilePath, JSON.stringify(convertedCompanyStockInfo), (err) => {
-			if (err) throw err;
-			console.log("JSON 파일이 생성되었습니다.");
-		});
+	async csvToJsonThird(market: string, date: string): Promise<string> {
+		try {
+			const secondJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/second.json`);
+			const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
 
-		return "JSON 파일이 생성되었습니다.";
+			const jsonData = fs.readFileSync(secondJsonFilePath, "utf-8");
+			const secondJsonData = JSON.parse(jsonData);
+
+			const thirdJsonData = [];
+
+			for (let i = 0; i < secondJsonData.length; i++) {
+				// for (let i = 0; i <= 10; i++) {
+				const urlForWebsiteFoundedDate = `https://comp.fnguide.com/SVO2/ASP/SVD_Corp.asp?pGB=1&gicode=A${secondJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=102&stkGb=701`;
+				const urlForDescription = `https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A${secondJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701`;
+
+				const browser = await puppeteer.launch();
+				const page1 = await browser.newPage();
+				const page2 = await browser.newPage();
+
+				await page1.goto(urlForWebsiteFoundedDate);
+				await page2.goto(urlForDescription);
+
+				// const website = await page1.$eval(
+				// 	"#corpGeneralInfo > table > tbody > tr:nth-child(2) > td:nth-child(2) > a",
+				// 	(el) => el.innerText,
+				// );
+				const websiteElement = await page1.$(
+					"#corpGeneralInfo > table > tbody > tr:nth-child(2) > td:nth-child(2) > a",
+				);
+				const website = websiteElement ? await page1.evaluate((el) => el.innerText, websiteElement) : "";
+
+				// const founded_date = await page1.$eval(
+				// 	"#corpGeneralInfo > table > tbody > tr:nth-child(5) > td:nth-child(2)",
+				// 	(el) => el.textContent.trim(),
+				// );
+				const foundedDateElement = await page1.$(
+					"#corpGeneralInfo > table > tbody > tr:nth-child(5) > td:nth-child(2)",
+				);
+				const founded_date = foundedDateElement
+					? await page1.evaluate((el) => el.textContent.trim(), foundedDateElement)
+					: "";
+
+				// const description = await page2.$eval("#bizSummaryContent > li:nth-child(1)", (el) => el.textContent.trim());
+				const descriptionElement = await page2.$("#bizSummaryContent > li:nth-child(1)");
+				const description = descriptionElement
+					? await page2.evaluate((el) => el.textContent.trim(), descriptionElement)
+					: "";
+
+				await browser.close();
+
+				secondJsonData[i].website = website;
+				secondJsonData[i].founded_date = founded_date;
+				secondJsonData[i].description = description;
+
+				thirdJsonData.push(secondJsonData[i]);
+			}
+
+			fs.appendFileSync(thirdJsonFilePath, JSON.stringify(thirdJsonData));
+
+			return "JSON 파일이 생성되었습니다.";
+		} catch (error) {
+			throw error;
+		}
 	}
 }
