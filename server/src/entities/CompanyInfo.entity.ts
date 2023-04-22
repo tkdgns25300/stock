@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { StockInfo } from "./StockInfo.entity";
 
 @Entity("company_info")
 export class CompanyInfo {
@@ -100,4 +101,7 @@ export class CompanyInfo {
 		comment: "설립일",
 	})
 	founded_date: Date;
+
+	@OneToMany(() => StockInfo, (stockInfo) => stockInfo.company_info)
+	stock_infos: StockInfo[];
 }

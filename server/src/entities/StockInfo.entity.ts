@@ -1,4 +1,5 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
+import { CompanyInfo } from "./CompanyInfo.entity";
 
 @Entity("stock_info")
 export class StockInfo {
@@ -63,4 +64,7 @@ export class StockInfo {
 		comment: "증권구분",
 	})
 	security_type: string;
+
+	@ManyToOne(() => CompanyInfo, (companyInfo) => companyInfo.stock_infos)
+	company_info: CompanyInfo;
 }
