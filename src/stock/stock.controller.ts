@@ -34,4 +34,10 @@ export class StockController {
 	getSrByddTrd() {
 		return this.stockService.srByddTrd();
 	}
+
+	// 유가증권 종목기본정보
+	@Get("stk_isu_base_info")
+	getStkIsuBaseInfo() {
+		return this.stockService.stkIsuBaseInfo();
+	}
 }
