@@ -6,9 +6,19 @@ import * as iconv from "iconv-lite";
 import { Injectable } from "@nestjs/common";
 import { convertCsvToJson } from "src/util/csvToJson";
 import { writeFile } from "fs/promises";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CompanyInfo } from "src/company/entities/CompanyInfo.entity";
+import { Repository } from "typeorm";
+import { StockInfo } from "src/company/entities/StockInfo.entity";
 
 @Injectable()
 export class UtilsService {
+	constructor(
+		@InjectRepository(CompanyInfo)
+		private companyInfoRepository: Repository<CompanyInfo>,
+		@InjectRepository(StockInfo)
+		private stockInfoRepository: Repository<StockInfo>,
+	) {}
 	// async csvToJson(market: string): Promise<void> {
 	// 	// CSV 파일 경로 설정
 	// 	let csvFilePath: string;
@@ -299,5 +309,13 @@ export class UtilsService {
 		} catch (error) {
 			throw error;
 		}
+	}
+
+	async jsonToDatabase(market: string, date: string): Promise<string> {
+		const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
+		const jsonData = fs.readFileSync(thirdJsonFilePath, "utf-8");
+		const ThirdJsonData = JSON.parse(jsonData);
+
+		return ThirdJsonData;
 	}
 }

@@ -34,4 +34,10 @@ export class UtilsController {
 	async csvToJsonThird(@Param("market") market: string, @Param("date") date: string): Promise<string> {
 		return await this.utilsService.csvToJsonThird(market, date);
 	}
+
+	// JSON to DB : Final Step
+	@Get("/json-to-database/:market/:date")
+	async jsonToDatabase(@Param("market") market: string, @Param("date") date: string): Promise<string> {
+		return await this.utilsService.jsonToDatabase(market, date);
+	}
 }
