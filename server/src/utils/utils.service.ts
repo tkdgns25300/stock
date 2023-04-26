@@ -10,14 +10,14 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CompanyInfo } from "src/company/entities/CompanyInfo.entity";
 import { Repository } from "typeorm";
 import { StockInfo } from "src/company/entities/StockInfo.entity";
+import { CompanyInfoRepository } from "src/company/repository/CompanyInfo.repository";
+import { StockInfoRepository } from "src/company/repository/StockInfo.repository";
 
 @Injectable()
 export class UtilsService {
 	constructor(
-		@InjectRepository(CompanyInfo)
-		private companyInfoRepository: Repository<CompanyInfo>,
-		@InjectRepository(StockInfo)
-		private stockInfoRepository: Repository<StockInfo>,
+		private readonly companyInfoRepository: CompanyInfoRepository,
+		private readonly stockInfoRepository: StockInfoRepository,
 	) {}
 	// async csvToJson(market: string): Promise<void> {
 	// 	// CSV 파일 경로 설정

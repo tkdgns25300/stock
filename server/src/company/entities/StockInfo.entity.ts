@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, ManyToOne } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn, CreateDateColumn } from "typeorm";
 import { CompanyInfo } from "./CompanyInfo.entity";
 
 @Entity("stock_info")
