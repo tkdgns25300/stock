@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryColumn, CreateDateColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryColumn, CreateDateColumn, JoinColumn } from "typeorm";
 import { CompanyInfo } from "./CompanyInfo.entity";
 
 @Entity("stock_info")
@@ -18,17 +18,17 @@ export class StockInfo {
 	stock_code: string;
 
 	@CreateDateColumn({
-		type: "date",
+		type: "datetime",
 		comment: "상장일",
 	})
 	listing_date: Date;
 
 	@Column({
-		type: "int",
-		nullable: true,
+		type: "varchar",
+		length: 20,
 		comment: "액면가",
 	})
-	face_value: number | null;
+	face_value: string;
 
 	@Column({
 		type: "bigint",
@@ -60,11 +60,12 @@ export class StockInfo {
 
 	@Column({
 		type: "varchar",
-		length: 10,
+		length: 100,
 		comment: "증권구분",
 	})
 	security_type: string;
 
 	@ManyToOne(() => CompanyInfo, (companyInfo) => companyInfo.stock_infos)
+	@JoinColumn({ name: "company_info" })
 	company_info: CompanyInfo;
 }

@@ -4,20 +4,19 @@ import * as fs from "fs";
 import csvtojson from "csvtojson";
 import * as iconv from "iconv-lite";
 import { Injectable } from "@nestjs/common";
-import { convertCsvToJson } from "src/util/csvToJson";
 import { writeFile } from "fs/promises";
-import { InjectRepository } from "@nestjs/typeorm";
 import { CompanyInfo } from "src/company/entities/CompanyInfo.entity";
-import { Repository } from "typeorm";
 import { StockInfo } from "src/company/entities/StockInfo.entity";
-import { CompanyInfoRepository } from "src/company/repository/CompanyInfo.repository";
-import { StockInfoRepository } from "src/company/repository/StockInfo.repository";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
 
 @Injectable()
 export class UtilsService {
 	constructor(
-		private readonly companyInfoRepository: CompanyInfoRepository,
-		private readonly stockInfoRepository: StockInfoRepository,
+		@InjectRepository(CompanyInfo)
+		private companyInfoRepository: Repository<CompanyInfo>,
+		@InjectRepository(StockInfo)
+		private stockInfoRepository: Repository<StockInfo>,
 	) {}
 	// async csvToJson(market: string): Promise<void> {
 	// 	// CSV 파일 경로 설정
@@ -316,6 +315,48 @@ export class UtilsService {
 		const jsonData = fs.readFileSync(thirdJsonFilePath, "utf-8");
 		const ThirdJsonData = JSON.parse(jsonData);
 
-		return ThirdJsonData;
+		for (const companyInfoData of ThirdJsonData) {
+			// Company Info 작성
+			const companyInfo: CompanyInfo = new CompanyInfo();
+			companyInfo.name = companyInfoData.name;
+			companyInfo.detailed_name = companyInfoData.detailed_name;
+			companyInfo.english_name = companyInfoData.english_name;
+			companyInfo.description = companyInfoData.description || null;
+			companyInfo.industry_name = companyInfoData.industry_name;
+			companyInfo.industry_code = companyInfoData.industry_code;
+			companyInfo.capital = Number(companyInfoData.capital);
+			companyInfo.currency = companyInfoData.currency;
+			companyInfo.fiscal_month = Number(companyInfoData.fiscal_month);
+			companyInfo.ceo = companyInfoData.ceo;
+			companyInfo.main_phone = companyInfoData.main_phone;
+			companyInfo.address = companyInfoData.address;
+			companyInfo.website = companyInfoData.website || null;
+			companyInfo.founded_date = new Date(companyInfoData.founded_date) || null;
+			companyInfo.stock_infos = companyInfoData.stock_info;
+
+			// Stock Info 작성
+			const stockInfoDataArr = [];
+			for (const stockInfoData of companyInfoData.stock_info) {
+				const stockInfo: StockInfo = new StockInfo();
+				stockInfo.standard_code = stockInfoData.standard_code;
+				stockInfo.stock_code = stockInfoData.stock_code;
+				stockInfo.listing_date = new Date(stockInfoData.listing_date);
+				stockInfo.face_value = stockInfoData.face_value;
+				stockInfo.listed_shares = Number(stockInfoData.listed_shares);
+				stockInfo.market_type = stockInfoData.market_type;
+				stockInfo.stock_type = stockInfoData.stock_type;
+				stockInfo.affiliation = stockInfoData.affiliation || null;
+				stockInfo.security_type = stockInfoData.security_type;
+				stockInfo.company_info = companyInfo;
+
+				await this.stockInfoRepository.save(stockInfo);
+				stockInfoDataArr.push(stockInfo);
+			}
+
+			companyInfo.stock_infos = stockInfoDataArr;
+			await this.companyInfoRepository.save(companyInfo);
+		}
+
+		return "DB 데이터가 생성되었습니다.";
 	}
 }

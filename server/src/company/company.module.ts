@@ -1,14 +1,13 @@
 import { Module } from "@nestjs/common";
 import { CompanyController } from "./company.controller";
 import { CompanyService } from "./company.service";
-import { TypeOrmExModule } from "src/database/typeorm-ex.module";
-import { CompanyInfoRepository } from "./repository/CompanyInfo.repository";
-import { StockInfoRepository } from "./repository/StockInfo.repository";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { CompanyInfo } from "./entities/CompanyInfo.entity";
+import { StockInfo } from "./entities/StockInfo.entity";
 
 @Module({
-	imports: [TypeOrmExModule.forCustomRepository([CompanyInfoRepository, StockInfoRepository])],
+	imports: [TypeOrmModule.forFeature([CompanyInfo, StockInfo])],
 	controllers: [CompanyController],
-	providers: [CompanyService, CompanyInfoRepository, StockInfoRepository],
-	exports: [CompanyInfoRepository, StockInfoRepository],
+	providers: [CompanyService],
 })
 export class CompanyModule {}

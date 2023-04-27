@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { StockInfo } from "./StockInfo.entity";
 
 @Entity("company_info")
@@ -31,9 +31,10 @@ export class CompanyInfo {
 
 	@Column({
 		type: "text",
+		nullable: true,
 		comment: "기업 설명",
 	})
-	description: string;
+	description: string | null;
 
 	@Column({
 		type: "varchar",
@@ -50,7 +51,7 @@ export class CompanyInfo {
 	industry_code: string;
 
 	@Column({
-		type: "int",
+		type: "bigint",
 		comment: "자본금",
 	})
 	capital: number;
@@ -92,16 +93,19 @@ export class CompanyInfo {
 	@Column({
 		type: "varchar",
 		length: 100,
+		nullable: true,
 		comment: "홈페이지",
 	})
-	website: string;
+	website: string | null;
 
 	@CreateDateColumn({
-		type: "date",
+		type: "datetime",
+		nullable: true,
 		comment: "설립일",
 	})
-	founded_date: Date;
+	founded_date: Date | null;
 
-	@OneToMany(() => StockInfo, (stockInfo) => stockInfo.company_info)
+	@OneToMany(() => StockInfo, (stockInfo) => stockInfo.company_info, { cascade: true })
+	@JoinColumn({ name: "stock_infos" })
 	stock_infos: StockInfo[];
 }

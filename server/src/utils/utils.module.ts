@@ -1,12 +1,13 @@
 import { Module } from "@nestjs/common";
 import { UtilsController } from "./utils.controller";
 import { UtilsService } from "./utils.service";
-import { CompanyInfoRepository } from "../company/repository/CompanyInfo.repository";
-import { StockInfoRepository } from "../company/repository/StockInfo.repository";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { StockInfo } from "src/company/entities/StockInfo.entity";
+import { CompanyInfo } from "src/company/entities/CompanyInfo.entity";
 
 @Module({
+	imports: [TypeOrmModule.forFeature([CompanyInfo, StockInfo])],
 	controllers: [UtilsController],
-	providers: [UtilsService, CompanyInfoRepository, StockInfoRepository],
-	exports: [CompanyInfoRepository, StockInfoRepository],
+	providers: [UtilsService],
 })
 export class UtilsModule {}
