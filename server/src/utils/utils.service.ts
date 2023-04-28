@@ -91,7 +91,20 @@ export class UtilsService {
 			// CSV 파일 JSON화
 			const csvData = fs.readFileSync(csvFilePath);
 			const decodedData = iconv.decode(csvData, "EUC-KR");
-			const jsonArray = await csvtojson().fromString(decodedData);
+			// const jsonArray = await csvtojson().fromString(decodedData);
+
+			// CSV 파서 옵션 설정
+			const jsonArray = await csvtojson({
+				colParser: {
+					소속부: (item, head, resultRow, row, colIdx) => {
+						// 첫 번째 소속부 컬럼 값만 사용
+						if (resultRow["소속부"] === undefined) {
+							return item;
+						}
+						return undefined; // 두 번째 소속부 컬럼 값 무시
+					},
+				},
+			}).fromString(decodedData);
 
 			// JSON에서 필요 정보 가져오기
 			const filteredData = jsonArray.map((row: CompanyInfoCSVRowData) => ({
