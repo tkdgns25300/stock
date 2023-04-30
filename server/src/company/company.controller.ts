@@ -10,10 +10,4 @@ export class CompanyController {
 	async getCompanyDescription(@Param("stockCode") stockCode: string): Promise<string> {
 		return await this.companyService.getCompanyDescription(stockCode);
 	}
-
-	// 기업 홈페이지 주소 조회
-	@Get("/website/:stockCode")
-	async getCompanyWebsite(@Param("stockCode") stockCode: string): Promise<string> {
-		return await this.companyService.getCompanyWebsite(stockCode);
-	}
 }
