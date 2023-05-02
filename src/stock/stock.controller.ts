@@ -40,4 +40,10 @@ export class StockController {
 	getStkIsuBaseInfo() {
 		return this.stockService.stkIsuBaseInfo();
 	}
+
+	// 코스닥 종목기본정보
+	@Get("ksq_isu_base_info")
+	getKsqIsuBaseInfo() {
+		return this.stockService.ksqIsuBaseInfo();
+	}
 }

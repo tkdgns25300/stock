@@ -101,4 +101,11 @@ export class StockService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async ksqIsuBaseInfo() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
