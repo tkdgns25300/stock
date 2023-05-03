@@ -5,8 +5,8 @@ import csvtojson from "csvtojson";
 import * as iconv from "iconv-lite";
 import { Injectable } from "@nestjs/common";
 import { writeFile } from "fs/promises";
-import { CompanyInfo } from "src/company/entities/CompanyInfo.entity";
-import { StockInfo } from "src/company/entities/StockInfo.entity";
+import { CompanyInfo } from "src/entities/CompanyInfo.entity";
+import { StockInfo } from "src/entities/StockInfo.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 

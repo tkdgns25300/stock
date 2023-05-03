@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { CompanyModule } from "./company/company.module";
+import { CompanyModule } from "./modules/company/company.module";
 import { UtilsModule } from "./utils/utils.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmModuleOptions } from "./db/configs/typeorm.config";
