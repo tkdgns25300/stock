@@ -18,3 +18,8 @@ async function bootstrap() {
 	logger.log(`Application listening on port ${port}`);
 }
 bootstrap();
+
+/**
+ * call order
+ * guard -> interceptor (before) -> pipe -> controller -> service -> controller -> interceptor (after) -> filter (if applicable) -> client
+ */
