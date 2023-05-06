@@ -1,6 +1,9 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CompanyService } from "./company.service";
-import { ApiResponse } from "src/dtos/apiResponse.dto";
+import { ApiResponse } from "src/dtos/ApiResponse.dto";
+import { StockInfo } from "src/entities/StockInfo.entity";
+import { CompanySearchDto } from "src/dtos/CompanySearch.dto";
+import { CompanyInfo } from "src/entities/CompanyInfo.entity";
 
 @Controller("company")
 export class CompanyController {
@@ -8,7 +11,14 @@ export class CompanyController {
 
 	// get all stock code & Stock's company name
 	@Get("/stock-list")
-	async getStockList(): Promise<any> {
+	async getStockList(): Promise<ApiResponse<StockInfo[]>> {
 		return await this.companyService.getStockList();
+	}
+
+	// get company info by stock code or company name
+	@Get("/search")
+	@UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
+	async getCompanyInfo(@Query() companySearchDto: CompanySearchDto): Promise<ApiResponse<CompanyInfo>> {
+		return await this.companyService.getCompanyInfoBySearch(companySearchDto);
 	}
 }
