@@ -40,48 +40,6 @@ export class UtilsService {
 	// 	});
 	// }
 
-	async scrapingCompanyDescription(market: string): Promise<string> {
-		const jsonFilePath = path.resolve(__dirname, `../../resources/output/${market}.json`);
-		const stockDataList = require(jsonFilePath).slice(0, 50);
-
-		for (const stockData of stockDataList) {
-			const url = `https://finance.naver.com/item/main.naver?code=${stockData["종목코드"]}`;
-
-			try {
-				const browser = await puppeteer.launch();
-				const page = await browser.newPage();
-				await page.goto(url);
-
-				const description = await page.evaluate(() => {
-					let rawDescription = document.querySelector("#summary_info").textContent.trim();
-					// Remove leading whitespaces and newlines
-					rawDescription = rawDescription.replace(/^\s+/gm, "");
-					// Remove "기업개요" and "출처 : 에프앤가이드"
-					rawDescription = rawDescription.replace("기업개요", "").replace("출처 : 에프앤가이드", "");
-					// Remove leading and trailing whitespaces
-					rawDescription = rawDescription.trim();
-					// Replace multiple newlines with a single newline
-					rawDescription = rawDescription.replace(/\n+/g, "\n");
-					// Add an extra newline after each paragraph
-					rawDescription = rawDescription.replace(/\n/g, "\n\n");
-					return rawDescription;
-				});
-
-				stockData["기업정보"] = description;
-
-				await browser.close();
-			} catch (error) {
-				console.error("Error scraping data and saving:", error);
-			}
-		}
-
-		// Save updated stockDataList back to the JSON file
-		await writeFile(jsonFilePath, JSON.stringify(stockDataList, null, 2));
-
-		console.log("Company description saved successfully");
-		return "Company description scraped and saved successfully";
-	}
-
 	async csvToJsonFirst(market: string, date: string): Promise<string> {
 		try {
 			// 파일 경로 확인
