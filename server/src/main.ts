@@ -13,7 +13,7 @@ async function bootstrap() {
 	// Interceptors
 	app.useGlobalInterceptors(new ApiResponseInterceptor());
 
-	const port = 3000;
+	const port = 8000;
 	await app.listen(port);
 	logger.log(`Application listening on port ${port}`);
 }
