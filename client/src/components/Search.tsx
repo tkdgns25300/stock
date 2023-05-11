@@ -12,9 +12,7 @@ const Search: React.FC = () => {
 	useEffect(() => {
 		const fetchStockList = async () => {
 			try {
-				console.log("Fetching data...");
 				const response = await fetch("http://localhost:8000/api/v1/company/stock-list");
-				console.log("Response status:", response.status);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
@@ -82,12 +80,14 @@ const Search: React.FC = () => {
 		}
 	};
 
-	useEffect(showDropDownList, [inputValue, wholeStockArray]);
+	useEffect(showDropDownList, [inputValue]);
 
 	return (
 		<div className="relative w-1/2 mx-auto" ref={dropDownRef}>
 			<div
-				className={`bg-white bg-opacity-10 p-3 flex items-center ${isHaveInputValue ? "rounded-t-3xl" : "rounded-3xl"}`}
+				className={`bg-white bg-opacity-10 p-3 flex items-center justify-between ${
+					isHaveInputValue ? "rounded-t-3xl" : "rounded-3xl"
+				}`}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -109,14 +109,28 @@ const Search: React.FC = () => {
 					value={inputValue}
 					onChange={changeInputValue}
 					onKeyDown={handleDropDownKey}
-					className="flex-1 py-2 px-4 rounded-full bg-transparent border-none text-gray-200 placeholder-gray-400 focus:outline-none"
+					className="flex-1 py-2 px-4 rounded-full bg-transparent border-none text-gray-200 placeholder-gray-400 focus:outline-none mx-2"
 				/>
 				{isHaveInputValue && (
-					<div className="cursor-pointer" onClick={() => setInputValue("")}>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 20 20"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+						className="cursor-pointer mx-5 mb-1 p-0 w-5 h-5 text-white"
+					>
+						<path d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				)}
+				{/* <div className="cursor-pointer text-white text-3xl -m-0 -p-0" onClick={() => setInputValue("")}>
 						&times;
 					</div>
-				)}
+				)} */}
 			</div>
+
 			{isHaveInputValue && (
 				<div className="absolute w-full bg-white bg-opacity-10 rounded-b-3xl shadow-lg">
 					<div className="pt-3 border-b-2 border-white border-opacity-25 w-11/12 mx-auto"></div>
