@@ -46,4 +46,10 @@ export class StockController {
 	getKsqIsuBaseInfo() {
 		return this.stockService.ksqIsuBaseInfo();
 	}
+
+	// 코넥스 종목기본정보
+	@Get("knx_isu_base_info")
+	getKnxIsuBaseInfo() {
+		return this.stockService.knxIsuBaseInfo();
+	}
 }
