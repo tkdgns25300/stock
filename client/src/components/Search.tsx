@@ -47,7 +47,11 @@ const Search: React.FC = () => {
 			setDropDownList([]);
 		} else {
 			const choosenTextList = wholeStockArray
-				.filter((textItem) => textItem.company_name.includes(inputValue) || textItem.stock_code.includes(inputValue))
+				.filter(
+					(textItem) =>
+						textItem.company_name.toLowerCase().includes(inputValue.toLowerCase()) ||
+						textItem.stock_code.includes(inputValue),
+				)
 				.slice(0, 10);
 			setDropDownList(choosenTextList);
 		}
@@ -85,7 +89,7 @@ const Search: React.FC = () => {
 	return (
 		<div className="relative w-1/2 mx-auto" ref={dropDownRef}>
 			<div
-				className={`bg-white bg-opacity-10 p-3 flex items-center justify-between ${
+				className={`bg-white bg-opacity-10 px-3 py-2 flex items-center justify-between ${
 					isHaveInputValue ? "rounded-t-3xl" : "rounded-3xl"
 				}`}
 			>
@@ -109,7 +113,7 @@ const Search: React.FC = () => {
 					value={inputValue}
 					onChange={changeInputValue}
 					onKeyDown={handleDropDownKey}
-					className="flex-1 py-2 px-4 rounded-full bg-transparent border-none text-gray-200 placeholder-gray-400 focus:outline-none mx-2"
+					className="flex-1 py-2 px-4 rounded-full bg-transparent border-none text-gray-200 placeholder-gray-400 focus:outline-none mx-2 text-lg"
 				/>
 				{isHaveInputValue && (
 					<svg
@@ -133,8 +137,8 @@ const Search: React.FC = () => {
 
 			{isHaveInputValue && (
 				<div className="absolute w-full bg-white bg-opacity-10 rounded-b-3xl shadow-lg">
-					<div className="pt-3 border-b-2 border-white border-opacity-25 w-11/12 mx-auto"></div>
-					<ul className="w-full mx-auto pt-4 pb-6">
+					<div className="border-b-2 border-white border-opacity-25 w-11/12 mx-auto m-0"></div>
+					<ul className="w-full mx-auto pt-4">
 						{dropDownList.length === 0 && <li className="py-2 px-4 text-gray-200">해당하는 단어가 없습니다</li>}
 						{dropDownList.map((dropDownItem, dropDownIndex) => {
 							return (
@@ -142,7 +146,7 @@ const Search: React.FC = () => {
 									key={dropDownIndex}
 									onClick={() => clickDropDownItem(dropDownItem)}
 									onMouseOver={() => setDropDownItemIndex(dropDownIndex)}
-									className={`py-2 px-4 ${dropDownItemIndex === dropDownIndex ? "bg-gray-500" : ""}`}
+									className={`py-2 px-4 ${dropDownItemIndex === dropDownIndex ? "bg-gray-700" : ""}`}
 								>
 									<StockItem
 										companyName={dropDownItem.company_name}
@@ -153,7 +157,16 @@ const Search: React.FC = () => {
 							);
 						})}
 					</ul>
-					{/* <div>{dropDownList.length !== 0 && <span>현재 상장 종목 수 : {wholeStockArray.length}</span>}</div> */}
+					{dropDownList.length !== 0 && (
+						<div>
+							<div className="border-b-2 border-neutral-600 border-opacity-25 w- mx-auto m-0"></div>
+							<div className="py-2 px-4 flex justify-end rounded-b-3xl bg-neutral-950">
+								<span className="cursor-pointer text-gray-400 px-3" onClick={() => setDropDownList([])}>
+									닫기
+								</span>
+							</div>
+						</div>
+					)}
 				</div>
 			)}
 		</div>
