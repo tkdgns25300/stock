@@ -1,16 +1,20 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/HomePage";
+import ResultPage from "./pages/ResultPage";
 import Logo from "./components/Logo";
 
 const App: React.FC = () => {
 	return (
-		<BrowserRouter>
+		<Router>
 			<div>
 				<Logo />
-				<HomePage />
+				<Routes>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/result" element={<ResultPage />} />
+				</Routes>
 			</div>
-		</BrowserRouter>
+		</Router>
 	);
 };
 
