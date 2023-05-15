@@ -1,6 +1,6 @@
 import React from "react";
 
-interface StockItemType {
+export interface StockItemType {
 	companyName: string;
 	stockCode: string;
 	stockType: string;

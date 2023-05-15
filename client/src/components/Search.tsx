@@ -8,7 +8,7 @@ const Search: React.FC = () => {
 	const [wholeStockList, setWholeStockList] = useState<any[]>([]);
 	const [dropDownList, setDropDownList] = useState<any[]>([]);
 	const [dropDownItemIndex, setDropDownItemIndex] = useState<number>(-1);
-	const [selectedStock, setSelectedStock] = useState<typeof StockItem | null>(null);
+	const [selectedStock, setSelectedStock] = useState<any>(null);
 	const dropDownRef = useRef<HTMLDivElement>(null);
 	const navigate = useNavigate();
 
@@ -89,11 +89,13 @@ const Search: React.FC = () => {
 	};
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
 		if (selectedStock) {
-			navigate("/result", { state: { selectedStock } });
+			const queryString = `?companyName=${selectedStock.company_name}&stockCode=${selectedStock.stock_code}`;
+			console.log(queryString);
+			navigate(`/result${queryString}`);
 		}
 	};
-
 	return (
 		<div className="relative w-1/2 mx-auto" ref={dropDownRef}>
 			<form onSubmit={handleSubmit}>
