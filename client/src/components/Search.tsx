@@ -92,7 +92,6 @@ const Search: React.FC = () => {
 		event.preventDefault();
 		if (selectedStock) {
 			const queryString = `?companyName=${selectedStock.company_name}&stockCode=${selectedStock.stock_code}`;
-			console.log(queryString);
 			navigate(`/result${queryString}`);
 		}
 	};

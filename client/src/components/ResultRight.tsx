@@ -1,11 +1,17 @@
 import React from "react";
 
-const SearchRight: React.FC = () => {
+interface ResultRightProps {
+	companyName: string | null;
+	stockCode: string | null;
+}
+
+const ResultRight: React.FC<ResultRightProps> = ({ companyName, stockCode }) => {
 	return (
 		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
-			<h1>SearchRight</h1>
+			<h1>{companyName}</h1>
+			<h2>{stockCode}</h2>
 		</div>
 	);
 };
 
-export default SearchRight;
+export default ResultRight;
