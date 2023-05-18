@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CompanyInfo from "./CompanyInfo";
+import Search from "./Search";
 
 interface ResultLeftProps {
 	companyName: string | null;
@@ -30,7 +31,10 @@ const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode }) => {
 
 	return (
 		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
-			<CompanyInfo companyData={companyData} />
+			<Search />
+			<div className="flex-grow flex flex-col justify-center items-center">
+				<CompanyInfo companyData={companyData} />
+			</div>
 		</div>
 	);
 };
