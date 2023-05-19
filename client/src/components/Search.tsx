@@ -91,7 +91,7 @@ const Search: React.FC = () => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (selectedStock) {
-			const queryString = `?companyName=${selectedStock.company_name}&stockCode=${selectedStock.stock_code}`;
+			const queryString = `?companyName=${selectedStock.company_name}&stockCode=${selectedStock.stock_code}&stockType=${selectedStock.stock_type}`;
 			navigate(`/result${queryString}`);
 		}
 	};

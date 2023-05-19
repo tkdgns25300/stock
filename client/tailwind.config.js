@@ -1,8 +1,18 @@
-/** @type {import('tailwindcss').Config} */
-
 module.exports = {
-	content: ["./src/**/*.{js,jsx,ts,tsx}"],
+	purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+	darkMode: false, // or 'media' or 'class'
 	theme: {
+		extend: {
+			fontFamily: {
+				sans: ["Helvetica", "Arial", "sans-serif"],
+				serif: ["Georgia", "serif"],
+				mono: ["Menlo", "monospace"],
+				doHyeon: ["Do Hyeon", "sans-serif"],
+				gothic_a1: ["Gothic A1", "sans-serif"],
+			},
+		},
+	},
+	variants: {
 		extend: {},
 	},
 	plugins: [],

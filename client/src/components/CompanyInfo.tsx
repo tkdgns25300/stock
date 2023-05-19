@@ -1,4 +1,5 @@
 import React from "react";
+import Title from "./Title";
 
 interface CompanyData {
 	address: string;
@@ -20,9 +21,11 @@ interface CompanyData {
 
 interface CompanyInfoProps {
 	companyData: CompanyData | null;
+	stockCode: string | null;
+	stockType: string | null;
 }
 
-const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData }) => {
+const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stockType }) => {
 	if (!companyData) {
 		return null;
 	}
@@ -34,11 +37,11 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData }) => {
 	};
 
 	const descriptionSentences = splitSentence(companyData.description);
-	console.log(descriptionSentences);
 
 	return (
-		<div className="text-white">
-			<h1 className="text-6xl">{companyData.name}</h1>
+		<div className="text-white font-doHyeon">
+			<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
+
 			<p>
 				{companyData.english_name} / {new Date(companyData.founded_date).toLocaleDateString()}
 			</p>

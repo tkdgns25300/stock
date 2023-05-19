@@ -5,9 +5,10 @@ import Search from "./Search";
 interface ResultLeftProps {
 	companyName: string | null;
 	stockCode: string | null;
+	stockType: string | null;
 }
 
-const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode }) => {
+const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode, stockType }) => {
 	const [companyData, setCompanyData] = useState<any>(null);
 
 	useEffect(() => {
@@ -33,7 +34,7 @@ const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode }) => {
 		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<Search />
 			<div className="flex-grow flex flex-col justify-center items-center">
-				<CompanyInfo companyData={companyData} />
+				<CompanyInfo companyData={companyData} stockCode={stockCode} stockType={stockType} />
 			</div>
 		</div>
 	);
