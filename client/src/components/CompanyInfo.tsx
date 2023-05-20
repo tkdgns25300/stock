@@ -1,5 +1,6 @@
 import React from "react";
 import Title from "./Title";
+import SubTitle from "./SubTitle";
 
 interface CompanyData {
 	address: string;
@@ -42,9 +43,10 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 		<div className="text-white font-doHyeon">
 			<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
 
-			<p>
-				{companyData.english_name} / {new Date(companyData.founded_date).toLocaleDateString()}
-			</p>
+			<SubTitle
+				englishName={companyData.english_name}
+				foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
+			></SubTitle>
 
 			{descriptionSentences.map((sentence, index) => (
 				<p key={index}>
