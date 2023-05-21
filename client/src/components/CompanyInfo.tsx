@@ -1,6 +1,7 @@
 import React from "react";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
+import Description from "./Description";
 
 interface CompanyData {
 	address: string;
@@ -31,14 +32,6 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 		return null;
 	}
 
-	const splitSentence = (str: string) => {
-		const normalizedStr = str.replace(/\u00A0/g, " ");
-		const sentences = normalizedStr.split(". ");
-		return sentences;
-	};
-
-	const descriptionSentences = splitSentence(companyData.description);
-
 	return (
 		<div className="text-white font-doHyeon">
 			<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
@@ -48,22 +41,14 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 				foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
 			></SubTitle>
 
-			{descriptionSentences.map((sentence, index) => (
-				<p key={index}>
-					{sentence.trim() + "."}
-					<br />
-					<br />
-				</p>
-			))}
+			<Description description={companyData.description}></Description>
 
-			<p>{companyData.detailed_name}</p>
+			<p>Detailed Name: {companyData.detailed_name}</p>
 			<p>Address: {companyData.address}</p>
 			<p>Capital: {companyData.capital}</p>
 			<p>CEO: {companyData.ceo}</p>
 			<p>Currency: {companyData.currency}</p>
 			<p>Fiscal Month: {companyData.fiscal_month}</p>
-
-			<p>ID: {companyData.id}</p>
 			<p>Industry Code: {companyData.industry_code}</p>
 			<p>Industry Name: {companyData.industry_name}</p>
 			<p>Main Phone: {companyData.main_phone}</p>

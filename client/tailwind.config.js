@@ -8,7 +8,7 @@ module.exports = {
 				serif: ["Georgia", "serif"],
 				mono: ["Menlo", "monospace"],
 				doHyeon: ["Do Hyeon", "sans-serif"],
-				gothic_a1: ["Gothic A1", "sans-serif"],
+				"gothic-a1": ["Gothic A1", "sans-serif"],
 				"font-awesome": ["FontAwesome", "sans-serif"],
 			},
 		},
