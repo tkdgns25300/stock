@@ -2,6 +2,7 @@ import React from "react";
 import Title from "./Title";
 import SubTitle from "./SubTitle";
 import Description from "./Description";
+import CompanyDetailTable from "./CompanyDetailTable";
 
 interface CompanyData {
 	address: string;
@@ -35,24 +36,13 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 	return (
 		<div className="text-white font-doHyeon">
 			<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
-
 			<SubTitle
 				englishName={companyData.english_name}
 				foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
-			></SubTitle>
-
-			<Description description={companyData.description}></Description>
-
-			<p>Detailed Name: {companyData.detailed_name}</p>
-			<p>Address: {companyData.address}</p>
-			<p>Capital: {companyData.capital}</p>
-			<p>CEO: {companyData.ceo}</p>
-			<p>Currency: {companyData.currency}</p>
-			<p>Fiscal Month: {companyData.fiscal_month}</p>
-			<p>Industry Code: {companyData.industry_code}</p>
-			<p>Industry Name: {companyData.industry_name}</p>
-			<p>Main Phone: {companyData.main_phone}</p>
-			<p>Website: {companyData.website}</p>
+			/>
+			<Description description={companyData.description} />
+			<div className="border-b-2 border-white border-opacity-25 w-full mx-auto my-10"></div>
+			<CompanyDetailTable companyData={companyData} />
 		</div>
 	);
 };
