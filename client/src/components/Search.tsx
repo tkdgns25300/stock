@@ -96,10 +96,10 @@ const Search: React.FC = () => {
 		}
 	};
 	return (
-		<div className="relative w-1/2 mx-auto" ref={dropDownRef}>
+		<div className="relative w-1/2 mx-auto z-10" ref={dropDownRef}>
 			<form onSubmit={handleSubmit}>
 				<div
-					className={`bg-white bg-opacity-10 px-3 py-2 flex items-center justify-between ${
+					className={`bg-neutral-900 px-3 py-2 flex items-center justify-between ${
 						isHaveInputValue ? "rounded-t-3xl" : "rounded-3xl"
 					}`}
 				>
@@ -143,7 +143,7 @@ const Search: React.FC = () => {
 				</div>
 
 				{isHaveInputValue && (
-					<div className="absolute w-full overflow-hidden bg-white bg-opacity-10 rounded-b-3xl shadow-lg">
+					<div className="absolute w-full overflow-hidden bg-neutral-900 rounded-b-3xl shadow-lg z-10">
 						<div className="border-b-2 border-white border-opacity-25 w-11/12 mx-auto m-0"></div>
 						<ul className="w-full mx-auto pt-4">
 							{dropDownList.length === 0 && <li className="p-4 text-gray-200">해당하는 단어가 없습니다</li>}

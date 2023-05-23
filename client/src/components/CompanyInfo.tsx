@@ -34,15 +34,17 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 	}
 
 	return (
-		<div className="text-white font-doHyeon">
-			<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
-			<SubTitle
-				englishName={companyData.english_name}
-				foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
-			/>
-			<Description description={companyData.description} />
-			<div className="border-b-2 border-white border-opacity-25 w-full mx-auto my-10"></div>
-			<CompanyDetailTable companyData={companyData} />
+		<div className="text-white font-doHyeon px-28">
+			<div className="w-full">
+				<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
+				<SubTitle
+					englishName={companyData.english_name}
+					foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
+				/>
+				<Description description={companyData.description} />
+				<div className="border-b-2 border-white border-opacity-25 w-full mx-auto my-10"></div>
+				<CompanyDetailTable companyData={companyData} />
+			</div>
 		</div>
 	);
 };

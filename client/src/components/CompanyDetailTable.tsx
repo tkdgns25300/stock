@@ -31,7 +31,10 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 			<p className="my-2 text-xl">업종명: {companyData.industry_name}</p>
 			<p className="my-2 text-xl">대표번호: {companyData.main_phone}</p>
 			<p className="my-2 text-xl">
-				웹사이트: <a href={companyData.website}>{companyData.website}</a>{" "}
+				웹사이트:{" "}
+				<a href={companyData.website} target="_blank" rel="noopener noreferrer">
+					{companyData.website}
+				</a>{" "}
 			</p>
 		</div>
 	);
