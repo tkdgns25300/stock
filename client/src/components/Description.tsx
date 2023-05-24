@@ -14,9 +14,9 @@ const Description: React.FC<DescriptionProps> = ({ description }) => {
 	const descriptionSentences = splitSentence(description);
 
 	return (
-		<div className="mt-16 mb-20 font-doHyeon font-medium">
+		<div className="mt-12 mb-20 font-doHyeon font-medium">
 			{descriptionSentences.map((sentence: string) => (
-				<span className="text-2xl">
+				<span className="text-xl">
 					{sentence.trim() + "."}
 					<br />
 					<br />
