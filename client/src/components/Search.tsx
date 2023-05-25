@@ -15,7 +15,7 @@ const Search: React.FC = () => {
 	useEffect(() => {
 		const fetchStockList = async () => {
 			try {
-				const response = await fetch("http://localhost:8000/api/v1/company/stock-list");
+				const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/company/stock-list`);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
