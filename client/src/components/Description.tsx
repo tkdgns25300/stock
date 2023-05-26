@@ -15,8 +15,8 @@ const Description: React.FC<DescriptionProps> = ({ description }) => {
 
 	return (
 		<div className="mt-12 mb-20 font-doHyeon font-medium">
-			{descriptionSentences.map((sentence: string) => (
-				<span className="text-xl">
+			{descriptionSentences.map((sentence: string, index: number) => (
+				<span key={index} className="text-xl">
 					{sentence.trim() + "."}
 					<br />
 					<br />
