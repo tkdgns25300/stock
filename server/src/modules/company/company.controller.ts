@@ -21,4 +21,10 @@ export class CompanyController {
 	async getCompanyInfo(@Query() companySearchDto: CompanySearchDto): Promise<ApiResponse<CompanyInfo>> {
 		return await this.companyService.getCompanyInfoBySearch(companySearchDto);
 	}
+
+	// get company chart by stock code
+	@Get("/chart-data")
+	async getChartData(): Promise<ApiResponse<any>> {
+		return await this.companyService.getChartData();
+	}
 }
