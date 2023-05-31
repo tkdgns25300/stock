@@ -4,6 +4,7 @@ import { ApiResponse } from "src/dtos/ApiResponse.dto";
 import { StockInfo } from "src/entities/StockInfo.entity";
 import { CompanySearchDto } from "src/dtos/CompanySearch.dto";
 import { CompanyInfo } from "src/entities/CompanyInfo.entity";
+import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
 
 @Controller("company")
 export class CompanyController {
@@ -24,7 +25,7 @@ export class CompanyController {
 
 	// get company chart by stock code
 	@Get("/chart-data")
-	async getChartData(): Promise<ApiResponse<any>> {
-		return await this.companyService.getChartData();
+	async getChartData(@Query() query: ChartDataQueryDto): Promise<ApiResponse<any>> {
+		return await this.companyService.getChartData(query);
 	}
 }
