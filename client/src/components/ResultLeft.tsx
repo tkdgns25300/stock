@@ -3,9 +3,9 @@ import CompanyInfo from "./CompanyInfo";
 import Search from "./Search";
 
 interface ResultLeftProps {
-	companyName: string | null;
-	stockCode: string | null;
-	stockType: string | null;
+	companyName: string;
+	stockCode: string;
+	stockType: string;
 }
 
 const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode, stockType }) => {
