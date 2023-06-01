@@ -20,4 +20,11 @@ export class IndexService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async kospiDdTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

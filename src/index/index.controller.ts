@@ -10,4 +10,10 @@ export class IndexController {
 	getKrxDdTrd() {
 		return this.indexService.krxDdTrd();
 	}
+
+	// KOSPI 시리즈 일별시세정보
+	@Get("kospi_dd_trd")
+	getKospiDdTrd() {
+		return this.indexService.kospiDdTrd();
+	}
 }
