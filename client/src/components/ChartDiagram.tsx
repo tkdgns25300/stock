@@ -141,10 +141,18 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ stockCode }) => {
 	return (
 		<div className="w-full">
 			<div>
-				<button onClick={() => handlePeriodDivChange(PeriodDiv.DAILY)}>일봉</button>
-				<button onClick={() => handlePeriodDivChange(PeriodDiv.WEEKLY)}>주봉</button>
-				<button onClick={() => handlePeriodDivChange(PeriodDiv.MONTHLY)}>월봉</button>
-				<button onClick={() => handlePeriodDivChange(PeriodDiv.YEARLY)}>최대</button>
+				<button className="bg-gray-200 p-2 rounded-md mx-2" onClick={() => handlePeriodDivChange(PeriodDiv.DAILY)}>
+					Day
+				</button>
+				<button className="bg-gray-200 p-2 rounded-md mx-2" onClick={() => handlePeriodDivChange(PeriodDiv.WEEKLY)}>
+					Week
+				</button>
+				<button className="bg-gray-200 p-2 rounded-md mx-2" onClick={() => handlePeriodDivChange(PeriodDiv.MONTHLY)}>
+					Month
+				</button>
+				<button className="bg-gray-200 p-2 rounded-md mx-2" onClick={() => handlePeriodDivChange(PeriodDiv.YEARLY)}>
+					Max
+				</button>
 			</div>
 			<ResponsiveContainer width="95%" height={window.innerHeight / 4}>
 				<AreaChart
@@ -152,10 +160,10 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ stockCode }) => {
 					height={400}
 					data={chartData}
 					margin={{
-						top: 40, // 상단 마진을 더 크게 설정합니다.
+						top: 40,
 						right: 30,
 						left: 0,
-						bottom: 40, // 하단 마진을 추가로 설정합니다.
+						bottom: 40,
 					}}
 				>
 					<defs>
