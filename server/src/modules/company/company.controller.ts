@@ -28,4 +28,10 @@ export class CompanyController {
 	async getChartData(@Query() query: ChartDataQueryDto): Promise<ApiResponse<any>> {
 		return await this.companyService.getChartData(query);
 	}
+
+	// get company current price by stock code
+	@Get("/current-price/:stockCode")
+	async getCurrentPrice(@Param("stockCode") stockCode: string): Promise<ApiResponse<any>> {
+		return await this.companyService.getCurrentPrice(stockCode);
+	}
 }

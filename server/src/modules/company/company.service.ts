@@ -101,4 +101,25 @@ export class CompanyService {
 			throw new HttpException(`Failed to fetch chart data: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	async getCurrentPrice(stockCode: string): Promise<ApiResponse<string>> {
+		try {
+			const token = await getToken();
+			const headers = {
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				tr_id: "FHKST01010100",
+				Authorization: `Bearer ${token}`,
+			};
+			const response = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-price?FID_COND_MRKT_DIV_CODE=J&FID_INPUT_ISCD=${stockCode}`,
+				{ headers },
+			);
+			const data = await response.json();
+
+			return new ApiResponse<any>(data.output.stck_prpr, "Successfully fetched current price");
+		} catch (error) {
+			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
