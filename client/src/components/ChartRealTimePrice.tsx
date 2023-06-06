@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 interface ChartRealTimePriceProps {
 	stockCode: string;
 }
 
 const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) => {
-	const [price, setPrice] = React.useState<string>("");
+	const [price, setPrice] = useState<string>("");
 
-	React.useEffect(() => {
+	// 현재 시세
+	useEffect(() => {
+		const fetchCurrentPrice = async () => {
+			try {
+				const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/company/current-price/${stockCode}`);
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				const data = await response.json();
+				setPrice(data.result);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		fetchCurrentPrice();
+	}, []);
+
+	// 실시간 시세
+	useEffect(() => {
 		const connectWebSocket = () => {
-			const webSocket = new WebSocket("ws://ops.koreainvestment.com:21000/tryitout/H0STCNT0");
+			const webSocket = new WebSocket("ws://ops.koreainvestment.com:31000/tryitout/H0STCNT0");
 
 			webSocket.onopen = () => {
 				const header = {
@@ -27,41 +46,10 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 				};
 
 				webSocket.send(JSON.stringify({ header, body }));
-				webSocket.send(
-					JSON.stringify({
-						header: {
-							approval_key: process.env.REACT_APP_WEB_SOCKET_APPROVAL_KEY,
-							custtype: "P",
-							tr_type: "1",
-							"content-type": "utf-8",
-						},
-						body: {
-							input: {
-								tr_id: "H0STCNT0",
-								tr_key: "000270",
-							},
-						},
-					}),
-				);
-				webSocket.send(
-					JSON.stringify({
-						header: {
-							approval_key: process.env.REACT_APP_WEB_SOCKET_APPROVAL_KEY,
-							custtype: "P",
-							tr_type: "1",
-							"content-type": "utf-8",
-						},
-						body: {
-							input: {
-								tr_id: "H0STCNT0",
-								tr_key: "000660",
-							},
-						},
-					}),
-				);
 			};
 
 			webSocket.onmessage = async (event) => {
+				console.log(event.data);
 				const response = await event.data.split("|");
 				if (response.length === 4 && response[3].split("^")[0] === stockCode) {
 					// console.log("stock code :", response[3].split("^")[0]);
@@ -76,13 +64,17 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 			// 	// Handle WebSocket close event
 			// };
 
-			// return () => {
-			// 	webSocket.close();
-			// };
+			return () => {
+				webSocket.close();
+			};
 		};
 
 		connectWebSocket();
-	}, []);
+	}, [stockCode]);
+
+	if (price === "") {
+		return <div>Loading...</div>;
+	}
 
 	return <div>{price}</div>;
 };
