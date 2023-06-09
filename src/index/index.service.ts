@@ -6,7 +6,7 @@ import axios from "axios";
 export class IndexService {
 	async krxDdTrd() {
 		try {
-			const url = "http://data-dbg.krx.co.kr/svc/apis/sto/krx_dd_trd?basDd=20230414";
+			const url = "http://data-dbg.krx.co.kr/svc/apis/idx/krx_dd_trd?basDd=20230414";
 
 			const response = await axios.get(url, {
 				responseType: "json",
@@ -23,7 +23,7 @@ export class IndexService {
 
 	async kospiDdTrd() {
 		try {
-			const url = "http://data-dbg.krx.co.kr/svc/apis/sto/kospi_dd_trd?basDd=20230414";
+			const url = "http://data-dbg.krx.co.kr/svc/apis/idx/kospi_dd_trd?basDd=20230414";
 
 			const response = await axios.get(url, {
 				responseType: "json",
