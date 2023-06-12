@@ -37,4 +37,11 @@ export class IndexService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async kosdaqDdTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

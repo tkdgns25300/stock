@@ -16,4 +16,10 @@ export class IndexController {
 	getKospiDdTrd() {
 		return this.indexService.kospiDdTrd();
 	}
+
+	// KOSDAQ 시리즈 일별시세정보
+	@Get("kosdaq_dd_trd")
+	getKosdaqDdTrd() {
+		return this.indexService.kosdaqDdTrd();
+	}
 }
