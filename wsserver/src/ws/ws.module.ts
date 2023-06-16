@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { WsController } from './ws.controller';
 
-@Module({})
+@Module({
+  controllers: [WsController]
+})
 export class WsModule {}
