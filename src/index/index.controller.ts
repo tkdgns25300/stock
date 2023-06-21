@@ -22,4 +22,10 @@ export class IndexController {
 	getKosdaqDdTrd() {
 		return this.indexService.kosdaqDdTrd();
 	}
+
+	// 채권지수 시세정보
+	@Get("bon_dd_trd")
+	getBonDdTrd() {
+		return this.indexService.bonDdTrd();
+	}
 }
