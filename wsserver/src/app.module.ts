@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { WsModule } from './ws/ws.module';
+import { WsModule } from './modules/ws/ws.module';
 
 @Module({
   imports: [WsModule],
