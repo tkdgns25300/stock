@@ -23,7 +23,7 @@ async function bootstrap() {
 
 	const port = 8000;
 	await app.listen(port);
-	logger.log(`Application listening on port ${port}`);
+	logger.log(`API Server listening on port ${port}`);
 }
 bootstrap();
 
