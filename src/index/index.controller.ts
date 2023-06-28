@@ -28,4 +28,10 @@ export class IndexController {
 	getBonDdTrd() {
 		return this.indexService.bonDdTrd();
 	}
+
+	// 파생상품지수 시세정보
+	@Get("drvprod_dd_trd")
+	getDrvprodDdTrd() {
+		return this.indexService.drvprodDdTrd();
+	}
 }

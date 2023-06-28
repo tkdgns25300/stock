@@ -71,4 +71,11 @@ export class IndexService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async drvprodDdTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
