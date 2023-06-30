@@ -1,9 +1,8 @@
-import { Module } from '@nestjs/common';
-import { WsController } from './ws.controller';
-import { WsService } from './ws.service';
+import { Module } from "@nestjs/common";
+import { ExternalWsService } from "./external-ws.service";
+import { WsGateway } from "./ws.gateway";
 
 @Module({
-  controllers: [WsController],
-  providers: [WsService],
+	providers: [WsGateway, ExternalWsService],
 })
 export class WsModule {}
