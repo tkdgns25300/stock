@@ -4,10 +4,9 @@ import { UtilsModule } from "./modules/utils/utils.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmModuleOptions } from "./db/configs/typeorm.config";
 import { DataSource } from "typeorm";
-import { WsModule } from "./modules/ws/ws.module";
 
 @Module({
-	imports: [TypeOrmModule.forRoot(typeOrmModuleOptions), CompanyModule, UtilsModule, WsModule],
+	imports: [TypeOrmModule.forRoot(typeOrmModuleOptions), CompanyModule, UtilsModule],
 	controllers: [],
 	providers: [],
 })
