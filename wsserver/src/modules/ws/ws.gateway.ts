@@ -1,4 +1,3 @@
-// ws.gateway.ts
 import {
 	WebSocketGateway,
 	WebSocketServer,
@@ -11,7 +10,14 @@ import { ExternalWsService } from "./external-ws.service";
 import { Injectable, Logger } from "@nestjs/common";
 
 @Injectable()
-@WebSocketGateway()
+@WebSocketGateway({
+	cors: {
+		origin: "http://localhost:3000", // 허용할 Origin
+		methods: ["GET", "POST"], // 허용할 HTTP 메서드
+		credentials: true, // 자격 증명 정보를 허용할지 여부
+	},
+	namespace: "ws/v1", // 네임스페이스 설정
+})
 export class WsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 	@WebSocketServer() server: Server;
 	private clients: Map<string, Socket> = new Map();

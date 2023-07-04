@@ -1,4 +1,3 @@
-// external-ws.service.ts
 import { Injectable, Logger } from "@nestjs/common";
 import WebSocket from "ws";
 import * as dotenv from "dotenv";

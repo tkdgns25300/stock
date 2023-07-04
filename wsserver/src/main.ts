@@ -9,14 +9,6 @@ async function bootstrap() {
 	// WebSocket Versioning
 	app.setGlobalPrefix("ws/v1");
 
-	// CORS
-	app.enableCors({
-		origin: "http://localhost:3000", // 허용할 Origin
-		methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // 허용할 HTTP 메서드
-		allowedHeaders: "Content-Type, Accept", // 허용할 헤더
-		credentials: true, // 자격 증명 정보를 허용할지 여부
-	});
-
 	const port = 8001;
 	await app.listen(port);
 	logger.log(`WebSocket Server listening on port ${port}`);
