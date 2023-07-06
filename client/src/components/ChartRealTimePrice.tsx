@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import io from "socket.io-client";
 
 interface ChartRealTimePriceProps {
 	stockCode: string;
@@ -28,30 +29,28 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 	// 실시간 시세
 	useEffect(() => {
 		const connectWebSocket = () => {
-			// Backend WebSocket 서버 URL
-			const webSocket = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_SERVER_URI}`);
+			const webSocket = io("http://localhost:8001/ws/v1", {
+				withCredentials: true,
+			});
 
-			webSocket.onopen = () => {
+			webSocket.on("connect", () => {
 				console.log("Connected to WebSocket server");
+			});
 
-				// 서버로 메시지 전송
-				webSocket.send(JSON.stringify({ event: "subscribe", data: stockCode }));
-			};
+			webSocket.on("disconnect", () => {
+				console.log("Disconnected from WebSocket server");
+			});
 
-			webSocket.onmessage = (event) => {
-				const message = JSON.parse(event.data);
+			webSocket.on("error", (error) => {
+				console.error("WebSocket error:", error);
+			});
+
+			webSocket.on("message", (message) => {
+				console.log("WebSocket message:", message);
 				if (message.event === "messageFromExternal" && message.data.stockCode === stockCode) {
 					setPrice(message.data.price);
 				}
-			};
-
-			webSocket.onclose = () => {
-				console.log("Disconnected from WebSocket server");
-			};
-
-			webSocket.onerror = (error) => {
-				console.error("WebSocket error:", error);
-			};
+			});
 
 			return () => {
 				webSocket.close();
