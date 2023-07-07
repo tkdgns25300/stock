@@ -12,7 +12,12 @@ import { Server, Socket } from "socket.io";
 
 @WebSocketGateway({
 	namespace: "ws/v1",
-	cors: { origin: "*" },
+	cors: {
+		origin: "http://localhost:3000",
+		methods: "GET,POST",
+		allowedHeaders: "Content-Type, Accept",
+		credentials: true,
+	},
 })
 export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 	@WebSocketServer() server: Server;
