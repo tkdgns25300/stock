@@ -8,7 +8,7 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 
 	// API Versioning
-	app.setGlobalPrefix("api/v1");
+	app.setGlobalPrefix("api-server/v1");
 
 	// CORS
 	app.enableCors({

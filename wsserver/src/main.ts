@@ -7,7 +7,15 @@ async function bootstrap() {
 	const app = await NestFactory.create(AppModule);
 
 	// WebSocket Versioning
-	app.setGlobalPrefix("ws/v1");
+	app.setGlobalPrefix("ws-server/v1");
+
+	// CORS 설정
+	app.enableCors({
+		origin: "http://localhost:3000",
+		methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+		allowedHeaders: "Content-Type, Accept",
+		credentials: true,
+	});
 
 	const port = 8001;
 	await app.listen(port);
