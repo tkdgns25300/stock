@@ -4,6 +4,7 @@ import {
 	SubscribeMessage,
 	OnGatewayConnection,
 	OnGatewayDisconnect,
+	OnGatewayInit,
 } from "@nestjs/websockets";
 import { Server, Socket } from "socket.io";
 import { ExternalWsService } from "./external-ws.service";
@@ -12,32 +13,25 @@ import { Injectable, Logger } from "@nestjs/common";
 @Injectable()
 @WebSocketGateway({
 	cors: {
-		origin: "http://localhost:3000", // 허용할 Origin
-		methods: ["GET", "POST"], // 허용할 HTTP 메서드
-		credentials: true, // 자격 증명 정보를 허용할지 여부
+		origin: "ws://localhost:3000",
+		methods: "GET,POST",
+		credentials: true,
 	},
-	namespace: "ws/v1", // 네임스페이스 설정
 })
-export class WsGateway implements OnGatewayConnection, OnGatewayDisconnect {
+export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 	@WebSocketServer() server: Server;
 	private clients: Map<string, Socket> = new Map();
 	private readonly logger = new Logger(WsGateway.name);
+
+	afterInit() {
+		this.logger.log("WebSocket Server Initialized ✅");
+	}
 
 	constructor(private externalWsService: ExternalWsService) {
 		// 외부 WebSocket 메시지를 클라이언트로 전달
 		this.externalWsService.onMessage((data) => {
 			this.broadcastToClients("messageFromExternal", data);
 		});
-	}
-
-	handleConnection(client: Socket) {
-		this.logger.log(`Client connected: ${client.id}`);
-		this.clients.set(client.id, client);
-	}
-
-	handleDisconnect(client: Socket) {
-		this.logger.log(`Client disconnected: ${client.id}`);
-		this.clients.delete(client.id);
 	}
 
 	@SubscribeMessage("messageToServer")
@@ -48,5 +42,15 @@ export class WsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
 	broadcastToClients(event: string, message: any) {
 		this.server.emit(event, message);
+	}
+
+	handleConnection(client: Socket) {
+		this.logger.log(`Client connected: ${client.id}`);
+		this.clients.set(client.id, client);
+	}
+
+	handleDisconnect(client: Socket) {
+		this.logger.log(`Client disconnected: ${client.id}`);
+		this.clients.delete(client.id);
 	}
 }

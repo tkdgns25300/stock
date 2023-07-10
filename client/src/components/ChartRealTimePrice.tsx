@@ -29,9 +29,12 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 	// 실시간 시세
 	useEffect(() => {
 		const connectWebSocket = () => {
-			const webSocket = io("http://localhost:8001/ws/v1", {
+			const webSocket = io(`${process.env.REACT_APP_WEBSOCKET_SERVER_WS_URI}`, {
 				withCredentials: true,
+				transports: ["websocket"],
 			});
+
+			console.log(webSocket);
 
 			webSocket.on("connect", () => {
 				console.log("Connected to WebSocket server");
@@ -39,6 +42,10 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 
 			webSocket.on("disconnect", () => {
 				console.log("Disconnected from WebSocket server");
+			});
+
+			webSocket.on("connect_error", (error) => {
+				console.error("WebSocket connect error:", error);
 			});
 
 			webSocket.on("error", (error) => {
@@ -53,7 +60,9 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 			});
 
 			return () => {
-				webSocket.close();
+				if (webSocket.connected) {
+					webSocket.close();
+				}
 			};
 		};
 
