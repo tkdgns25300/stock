@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 
 interface ChartRealTimePriceProps {
@@ -7,7 +7,7 @@ interface ChartRealTimePriceProps {
 
 const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) => {
 	const [price, setPrice] = useState<string>("");
-
+	const isFirstMount = useRef(true);
 	// 현재 시세
 	useEffect(() => {
 		const fetchCurrentPrice = async () => {
@@ -28,13 +28,11 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 
 	// 실시간 시세
 	useEffect(() => {
-		const connectWebSocket = () => {
+		if (isFirstMount.current) {
 			const webSocket = io(`${process.env.REACT_APP_WEBSOCKET_SERVER_WS_URI}`, {
 				withCredentials: true,
 				transports: ["websocket"],
 			});
-
-			console.log(webSocket);
 
 			webSocket.on("connect", () => {
 				console.log("Connected to WebSocket server");
@@ -59,16 +57,13 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 				}
 			});
 
+			isFirstMount.current = false; // 최초 마운트 후에는 false로 설정
 			return () => {
 				if (webSocket.connected) {
 					webSocket.close();
 				}
 			};
-		};
-
-		const cleanupWebSocket = connectWebSocket();
-
-		return cleanupWebSocket;
+		}
 	}, [stockCode]);
 
 	if (price === "") {
