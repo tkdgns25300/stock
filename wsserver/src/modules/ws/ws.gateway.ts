@@ -28,16 +28,25 @@ export class WsGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayD
 	}
 
 	constructor(private externalWsService: ExternalWsService) {
-		// 외부 WebSocket 메시지를 클라이언트로 전달
+		// KSI WebSocket Message to Clients
 		this.externalWsService.onMessage((data) => {
-			this.broadcastToClients("messageFromExternal", data);
+			try {
+				const parsedMessage = JSON.parse(data.toString());
+				this.logger.log(` message from KSI WebSocket: ${JSON.stringify(parsedMessage)}`);
+			} catch (error) {
+				this.logger.error(`Error parsing KSI message: ${error}`);
+			}
+
+			this.broadcastToClients("messageFromKSI", data);
 		});
 	}
 
 	@SubscribeMessage("messageToServer")
 	handleMessage(client: Socket, payload: any): void {
 		this.logger.log(`Received message from ${client.id}: ${payload}`);
-		this.externalWsService.sendMessage(payload); // 외부 WebSocket 서버로 메시지 전달
+
+		// Message to KSI Websocket Server
+		this.externalWsService.sendMessage(payload.stockCode);
 	}
 
 	broadcastToClients(event: string, message: any) {

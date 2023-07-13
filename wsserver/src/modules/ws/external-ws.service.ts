@@ -28,15 +28,10 @@ export class ExternalWsService {
 				this.connectedKSIWebSocket = true;
 			});
 
-			this.externalWebSocket.on("message", (data) => {
-				this.logger.log(`Received message from KSI WebSocket: ${data}`);
-				// 여기에 클라이언트에게 메시지를 전달하는 로직을 추가할 수 있습니다.
-			});
-
 			this.externalWebSocket.on("close", () => {
 				this.logger.log("Disconnected from KSI WebSocket server");
 				this.connectedKSIWebSocket = false;
-				setTimeout(() => this.connectKSIWebSocket(), 5000); // 재연결 시도
+				setTimeout(() => this.connectKSIWebSocket(), 5000);
 			});
 
 			this.externalWebSocket.on("error", (error) => {
@@ -49,7 +44,20 @@ export class ExternalWsService {
 
 	sendMessage(message: any) {
 		if (this.externalWebSocket && this.externalWebSocket.readyState === WebSocket.OPEN) {
-			this.externalWebSocket.send(JSON.stringify(message));
+			const header = {
+				approval_key: "fb73e061-2c57-48e7-96b5-80f65b7dd5a1",
+				custtype: "P",
+				tr_type: "1",
+				"content-type": "utf-8",
+			};
+			const body = {
+				input: {
+					tr_id: "H0IFCNT0",
+					tr_key: message,
+				},
+			};
+
+			this.externalWebSocket.send(JSON.stringify({ header, body }));
 		} else {
 			this.logger.warn("Cannot send message, WebSocket is not open");
 		}
