@@ -74,7 +74,7 @@ export class IndexService {
 
 	async drvprodDdTrd() {
 		try {
-			const url = "http://data-dbg.krx.co.kr/svc/apis/idx/bon_dd_trd?basDd=20230414";
+			const url = "http://data-dbg.krx.co.kr/svc/apis/idx/drvprod_dd_trd?basDd=20230414";
 
 			const response = await axios.get(url, {
 				responseType: "json",
