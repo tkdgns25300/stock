@@ -134,14 +134,9 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 		return <div>Loading...</div>;
 	}
 
-	const getMaxCloseValue = () => {
-		const maxClose = Math.max(...chartData.map((data) => data.close));
-		return Math.ceil(maxClose / 10000) * 10000;
-	};
-
 	return (
 		<div className="w-full">
-			<ChartDiagram stockCode={stockCode} />
+			<ChartDiagram chartData={chartData} handlePeriodDivChange={handlePeriodDivChange} />
 			<ChartRealTimePrice stockCode={stockCode} />
 		</div>
 	);
