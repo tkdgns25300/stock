@@ -1,27 +1,7 @@
 import React from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-
-interface ChartData {
-	name: string;
-	date: string;
-	open: number;
-	close: number;
-	high: number;
-	low: number;
-	volume: number;
-}
-
-interface ChartDiagramProps {
-	chartData: ChartData[];
-	handlePeriodDivChange: (newPeriodDiv: any) => void;
-}
-
-enum PeriodDiv {
-	DAILY = "D", // 3달치
-	WEEKLY = "W", // 2년치
-	MONTHLY = "M", // 5년치
-	YEARLY = "Y", // 100년치
-}
+import { ChartDiagramProps } from "./types/Chart/interface";
+import { PeriodDiv } from "./types/Chart/enum";
 
 const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartData, handlePeriodDivChange }) => {
 	const getMaxCloseValue = () => {

@@ -1,45 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ChartDiagram from "./ChartDiagram";
 import ChartRealTimePrice from "./ChartRealTimePrice";
-
-interface ChartProps {
-	stockCode: string;
-}
-
-interface ChartData {
-	name: string;
-	date: string;
-	open: number;
-	close: number;
-	high: number;
-	low: number;
-	volume: number;
-}
-
-interface Query {
-	fidCondMrktDivCode: string;
-	fidInputIscd: string;
-	fidInputDate1: string;
-	fidInputDate2: string;
-	fidPeriodDivCode: string;
-	fidOrgAdjPrc: string;
-}
-
-interface APIData {
-	stckBsopDate: string;
-	stckOprc: string;
-	stckClpr: string;
-	stckHgpr: string;
-	stckLwpr: string;
-	acmlVol: string;
-}
-
-enum PeriodDiv {
-	DAILY = "D", // 3달치
-	WEEKLY = "W", // 2년치
-	MONTHLY = "M", // 5년치
-	YEARLY = "Y", // 100년치
-}
+import { APIData, ChartData, ChartProps, Query } from "./types/Chart/interface";
+import { PeriodDiv } from "./types/Chart/enum";
 
 const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	const [chartData, setChartData] = useState<ChartData[]>([]);

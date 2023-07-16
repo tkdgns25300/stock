@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
-
-interface ChartRealTimePriceProps {
-	stockCode: string;
-}
+import { ChartRealTimePriceProps } from "./types/Chart/interface";
 
 const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) => {
 	const [price, setPrice] = useState<string>("");
