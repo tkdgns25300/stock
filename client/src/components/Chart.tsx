@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import ChartDiagram from "./ChartDiagram";
 import ChartRealTimePrice from "./ChartRealTimePrice";
-import { APIData, ChartData, ChartProps, Query } from "./types/Chart/interface";
+import { APIData, ChartDiagramData, ChartProps, Query } from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
 
 const Chart: React.FC<ChartProps> = ({ stockCode }) => {
-	const [chartData, setChartData] = useState<ChartData[]>([]);
+	const [chartDiagramData, setChartData] = useState<ChartDiagramData[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [periodDiv, setPeriodDiv] = useState<PeriodDiv>(PeriodDiv.DAILY);
 
@@ -99,7 +99,7 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 
 	return (
 		<div className="w-full">
-			<ChartDiagram chartData={chartData} handlePeriodDivChange={handlePeriodDivChange} />
+			<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
 			<ChartRealTimePrice stockCode={stockCode} />
 		</div>
 	);

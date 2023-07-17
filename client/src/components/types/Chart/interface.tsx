@@ -2,7 +2,7 @@ export interface ChartProps {
 	stockCode: string;
 }
 
-export interface ChartData {
+export interface ChartDiagramData {
 	name: string;
 	date: string;
 	open: number;
@@ -31,7 +31,7 @@ export interface APIData {
 }
 
 export interface ChartDiagramProps {
-	chartData: ChartData[];
+	chartDiagramData: ChartDiagramData[];
 	handlePeriodDivChange: (newPeriodDiv: any) => void;
 }
 

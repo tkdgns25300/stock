@@ -3,9 +3,9 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { ChartDiagramProps } from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
 
-const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartData, handlePeriodDivChange }) => {
+const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePeriodDivChange }) => {
 	const getMaxCloseValue = () => {
-		const maxClose = Math.max(...chartData.map((data: any) => data.close));
+		const maxClose = Math.max(...chartDiagramData.map((data: any) => data.close));
 		return Math.ceil(maxClose / 10000) * 10000;
 	};
 
@@ -29,7 +29,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartData, handlePeriodDivC
 				<AreaChart
 					width={1000}
 					height={400}
-					data={chartData}
+					data={chartDiagramData}
 					margin={{
 						top: 40,
 						right: 30,
