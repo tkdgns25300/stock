@@ -1,4 +1,4 @@
-export interface StockPriceSearchData {
+export interface StockPriceByPeriodData {
 	stckBsopDate: string;
 	stckClpr: number;
 	stckOprc: number;
