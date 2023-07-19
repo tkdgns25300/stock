@@ -5,6 +5,8 @@ import { StockInfo } from "src/entities/StockInfo.entity";
 import { CompanySearchDto } from "src/dtos/CompanySearch.dto";
 import { CompanyInfo } from "src/entities/CompanyInfo.entity";
 import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
+import { StockPriceInfoData } from "src/types/StockPriceInfoData";
+import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
 
 @Controller("company")
 export class CompanyController {
@@ -25,13 +27,13 @@ export class CompanyController {
 
 	// get company chart by stock code
 	@Get("/chart-data")
-	async getChartData(@Query() query: ChartDataQueryDto): Promise<ApiResponse<any>> {
+	async getChartData(@Query() query: ChartDataQueryDto): Promise<ApiResponse<StockPriceByPeriodData[]>> {
 		return await this.companyService.getChartData(query);
 	}
 
 	// get company current price by stock code
-	@Get("/current-price/:stockCode")
-	async getCurrentPrice(@Param("stockCode") stockCode: string): Promise<ApiResponse<any>> {
-		return await this.companyService.getCurrentPrice(stockCode);
+	@Get("/price-info/:stockCode")
+	async getCurrentPrice(@Param("stockCode") stockCode: string): Promise<ApiResponse<StockPriceInfoData>> {
+		return await this.companyService.getPriceInfo(stockCode);
 	}
 }

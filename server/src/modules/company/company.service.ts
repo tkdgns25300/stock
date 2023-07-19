@@ -6,8 +6,9 @@ import { Repository } from "typeorm";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
 import { CompanySearchDto } from "src/dtos/CompanySearch.dto";
 import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
-import { StockPriceSearchData } from "src/types/StockPriceSearchData";
+import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
 import { getToken } from "src/util/token/token";
+import { StockPriceInfoData } from "src/types/StockPriceInfoData";
 
 @Injectable()
 export class CompanyService {
@@ -71,7 +72,7 @@ export class CompanyService {
 		}
 	}
 
-	async getChartData(query: ChartDataQueryDto): Promise<ApiResponse<StockPriceSearchData[]>> {
+	async getChartData(query: ChartDataQueryDto): Promise<ApiResponse<StockPriceByPeriodData[]>> {
 		try {
 			const token = await getToken();
 			const headers = {
@@ -87,7 +88,7 @@ export class CompanyService {
 				{ headers },
 			);
 			const data = await response.json();
-			const returnData: StockPriceSearchData[] = data.output2.map((item) => ({
+			const returnData: StockPriceByPeriodData[] = data.output2.map((item) => ({
 				stckBsopDate: item.stck_bsop_date,
 				stckClpr: item.stck_clpr,
 				stckOprc: item.stck_oprc,
@@ -96,13 +97,13 @@ export class CompanyService {
 				acmlVol: item.acml_vol,
 			}));
 
-			return new ApiResponse<StockPriceSearchData[]>(returnData, "Successfully fetched chart data");
+			return new ApiResponse<StockPriceByPeriodData[]>(returnData, "Successfully fetched chart data");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch chart data: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
-	async getCurrentPrice(stockCode: string): Promise<ApiResponse<string>> {
+	async getPriceInfo(stockCode: string): Promise<ApiResponse<StockPriceInfoData>> {
 		try {
 			const token = await getToken();
 			const headers = {
@@ -116,8 +117,18 @@ export class CompanyService {
 				{ headers },
 			);
 			const data = await response.json();
+			console.log(data);
+			const returnData: StockPriceInfoData = {
+				stckPrpr: data.output.stck_prpr,
+				prdyVrss: data.output.prdy_vrss,
+				stckHgpr: data.output.stck_hgpr,
+				stckLwpr: data.output.stck_lwpr,
+				w52Hgpr: data.output.w52_hgpr,
+				w52Lwpr: data.output.w52_lwpr,
+				htsAvls: data.output.hts_avls,
+			};
 
-			return new ApiResponse<any>(data.output.stck_prpr, "Successfully fetched current price");
+			return new ApiResponse<any>(returnData, "Successfully fetched the stock's price information");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
