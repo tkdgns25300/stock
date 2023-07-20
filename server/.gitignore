@@ -7,3 +7,6 @@
 
 # distribution
 /dist
+
+# token
+/src/util/token/token.json
