@@ -7,7 +7,13 @@ export class EtfController {
 
 	// ETF 일별매매정보
 	@Get("etf_bydd_trd")
-	getKrxDdTrd() {
+	getEtfByddTrd() {
 		return this.etfService.etfByddTrd();
+	}
+
+	// ETN 일별매매정보
+	@Get("etn_bydd_trd")
+	getEtnByddTrd() {
+		return this.etfService.etnByddTrd();
 	}
 }
