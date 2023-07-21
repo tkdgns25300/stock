@@ -1,6 +1,6 @@
 export interface StockPriceInfoData {
 	stckPrpr: number;
-	prdyVrss: number;
+	stckYtd: number;
 	stckHgpr: number;
 	stckLwpr: number;
 	w52Hgpr: number;

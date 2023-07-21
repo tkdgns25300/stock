@@ -117,15 +117,18 @@ export class CompanyService {
 				{ headers },
 			);
 			const data = await response.json();
-			console.log(data);
+
 			const returnData: StockPriceInfoData = {
-				stckPrpr: data.output.stck_prpr,
-				prdyVrss: data.output.prdy_vrss,
-				stckHgpr: data.output.stck_hgpr,
-				stckLwpr: data.output.stck_lwpr,
-				w52Hgpr: data.output.w52_hgpr,
-				w52Lwpr: data.output.w52_lwpr,
-				htsAvls: data.output.hts_avls,
+				stckPrpr: Number(data.output.stck_prpr),
+				stckYtd:
+					Number(data.output.prdy_vrss_sign) <= 3
+						? Number(data.output.stck_prpr) + Number(data.output.prdy_vrss)
+						: Number(data.output.stck_prpr) - Number(data.output.prdy_vrss),
+				stckHgpr: Number(data.output.stck_hgpr),
+				stckLwpr: Number(data.output.stck_lwpr),
+				w52Hgpr: Number(data.output.w52_hgpr),
+				w52Lwpr: Number(data.output.w52_lwpr),
+				htsAvls: Number(data.output.hts_avls),
 			};
 
 			return new ApiResponse<any>(returnData, "Successfully fetched the stock's price information");
