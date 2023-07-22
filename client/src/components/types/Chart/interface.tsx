@@ -30,6 +30,15 @@ export interface APIData {
 	acmlVol: string;
 }
 
+export interface PriceInfoData {
+	stckYtd: number;
+	stckHgpr: number;
+	stckLwpr: number;
+	w52Hgpr: number;
+	w52Lwpr: number;
+	htsAvls: number;
+}
+
 export interface ChartDiagramProps {
 	chartDiagramData: ChartDiagramData[];
 	handlePeriodDivChange: (newPeriodDiv: any) => void;
@@ -37,4 +46,10 @@ export interface ChartDiagramProps {
 
 export interface ChartRealTimePriceProps {
 	stockCode: string;
+	currentPrice: string;
+	setCurrentPrice: (price: string) => void;
+}
+
+export interface ChartSummaryProps {
+	priceInfoData: PriceInfoData;
 }

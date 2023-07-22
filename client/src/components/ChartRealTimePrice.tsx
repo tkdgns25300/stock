@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import io from "socket.io-client";
 import { ChartRealTimePriceProps } from "./types/Chart/interface";
 
-const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) => {
-	const [price, setPrice] = useState<string>("");
-
-	useEffect(() => {
-		const fetchCurrentPrice = async () => {
-			try {
-				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/current-price/${stockCode}`);
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				const data = await response.json();
-				setPrice(data.result);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-
-		fetchCurrentPrice();
-	}, [stockCode]);
-
+const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode, currentPrice, setCurrentPrice }) => {
 	useEffect(() => {
 		const webSocket = io(`${process.env.REACT_APP_WEBSOCKET_SERVER_WS_URI}`, {
 			withCredentials: true,
@@ -48,7 +29,7 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 		webSocket.on("message", (message) => {
 			console.log("WebSocket message:", message);
 			if (message.event === "messageFromKSI" && message.data.stockCode === stockCode) {
-				setPrice(message.data.price);
+				setCurrentPrice(message.data.price);
 			}
 		});
 
@@ -57,13 +38,13 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode }) =>
 				webSocket.close();
 			}
 		};
-	}, [stockCode]);
+	}, [stockCode, setCurrentPrice]);
 
-	if (price === "") {
+	if (currentPrice === "") {
 		return <div>Loading...</div>;
 	}
 
-	return <div>{price}</div>;
+	return <div>{currentPrice}</div>;
 };
 
 export default ChartRealTimePrice;

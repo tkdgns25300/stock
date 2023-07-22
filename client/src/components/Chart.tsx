@@ -1,17 +1,40 @@
 import React, { useEffect, useState } from "react";
 import ChartDiagram from "./ChartDiagram";
 import ChartRealTimePrice from "./ChartRealTimePrice";
-import { APIData, ChartDiagramData, ChartProps, Query } from "./types/Chart/interface";
+import { APIData, ChartDiagramData, ChartProps, PriceInfoData, Query } from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
+import ChartSummary from "./ChartSummary";
 
 const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	const [chartDiagramData, setChartData] = useState<ChartDiagramData[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [periodDiv, setPeriodDiv] = useState<PeriodDiv>(PeriodDiv.DAILY);
+	const [currentPrice, setCurrentPrice] = useState<string>("");
+	const [priceInfoData, setPriceInfoData] = useState<PriceInfoData>({} as PriceInfoData);
 
 	const handlePeriodDivChange = (newPeriodDiv: PeriodDiv) => {
 		setPeriodDiv(newPeriodDiv);
 	};
+
+	useEffect(() => {
+		const fetchCurrentPrice = async () => {
+			try {
+				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/price-info/${stockCode}`);
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				const data = await response.json();
+				console.log(data);
+				setCurrentPrice(data.result.stckPrpr);
+				delete data.result.stckPrpr;
+				setPriceInfoData(data.result);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		fetchCurrentPrice();
+	}, [stockCode]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -100,7 +123,8 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	return (
 		<div className="w-full">
 			<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
-			<ChartRealTimePrice stockCode={stockCode} />
+			<ChartRealTimePrice stockCode={stockCode} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice} />
+			<ChartSummary priceInfoData={priceInfoData} />
 		</div>
 	);
 };
