@@ -1,40 +1,17 @@
+// Chart.tsx
 import React, { useEffect, useState } from "react";
 import ChartDiagram from "./ChartDiagram";
 import ChartRealTimePrice from "./ChartRealTimePrice";
+import ChartSummary from "./ChartSummary";
 import { APIData, ChartDiagramData, ChartProps, PriceInfoData, Query } from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
-import ChartSummary from "./ChartSummary";
 
 const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	const [chartDiagramData, setChartData] = useState<ChartDiagramData[]>([]);
-	const [loading, setLoading] = useState(true);
 	const [periodDiv, setPeriodDiv] = useState<PeriodDiv>(PeriodDiv.DAILY);
+	const [loading, setLoading] = useState(true);
 	const [currentPrice, setCurrentPrice] = useState<string>("");
 	const [priceInfoData, setPriceInfoData] = useState<PriceInfoData>({} as PriceInfoData);
-
-	const handlePeriodDivChange = (newPeriodDiv: PeriodDiv) => {
-		setPeriodDiv(newPeriodDiv);
-	};
-
-	useEffect(() => {
-		const fetchCurrentPrice = async () => {
-			try {
-				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/price-info/${stockCode}`);
-				if (!response.ok) {
-					throw new Error(`HTTP error! status: ${response.status}`);
-				}
-				const data = await response.json();
-				console.log(data);
-				setCurrentPrice(data.result.stckPrpr);
-				delete data.result.stckPrpr;
-				setPriceInfoData(data.result);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-
-		fetchCurrentPrice();
-	}, [stockCode]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -106,15 +83,36 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 						})),
 					);
 				}
-				setLoading(false);
 			} catch (error) {
-				console.error(error);
-				setLoading(false);
+				console.error("Error fetching chart data:", error);
 			}
 		};
 
-		fetchData();
+		fetchData().then(() => setLoading(false)); // fetchData가 완료되면 loading을 false로 설정
 	}, [periodDiv, stockCode]);
+
+	useEffect(() => {
+		const fetchCurrentPrice = async () => {
+			try {
+				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/price-info/${stockCode}`);
+				if (!response.ok) {
+					throw new Error(`HTTP error! status: ${response.status}`);
+				}
+				const data = await response.json();
+				setCurrentPrice(data.result.stckPrpr);
+				delete data.result.stckPrpr;
+				setPriceInfoData(data.result);
+			} catch (error) {
+				console.error("Error fetching price info:", error);
+			}
+		};
+
+		fetchCurrentPrice().then(() => setLoading(false)); // fetchCurrentPrice가 완료되면 loading을 false로 설정
+	}, [stockCode]);
+
+	const handlePeriodDivChange = (newPeriodDiv: PeriodDiv) => {
+		setPeriodDiv(newPeriodDiv);
+	};
 
 	if (loading) {
 		return <div>Loading...</div>;
