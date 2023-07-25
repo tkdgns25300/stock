@@ -6,6 +6,7 @@ import { PeriodDiv } from "./types/Chart/enum";
 const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePeriodDivChange }) => {
 	const getMaxCloseValue = () => {
 		const maxClose = Math.max(...chartDiagramData.map((data: any) => data.close));
+		console.log(chartDiagramData.length);
 		return Math.ceil(maxClose / 10000) * 10000;
 	};
 
@@ -43,14 +44,21 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 							<stop offset="95%" stopColor="#FF0000" stopOpacity={0.2} />
 						</linearGradient>
 					</defs>
-					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="name" tickLine={false} axisLine={false} />
+					<CartesianGrid strokeDasharray="10 0" vertical={false} />
+					<XAxis
+						dataKey="name"
+						axisLine={false}
+						tickLine={true}
+						tick={{ stroke: "black", strokeWidth: 0.5 }}
+						minTickGap={Math.floor(chartDiagramData.length) * 3}
+						// angle={-45}
+					/>
 					<YAxis
 						type="number"
-						domain={[0, getMaxCloseValue() + 1000]}
+						domain={["auto", getMaxCloseValue() + 1000]}
+						tick={{ stroke: "black", strokeWidth: 0.5 }}
 						dataKey="close"
-						orientation="right"
-						tickSize={10}
+						axisLine={false}
 					/>
 					<Tooltip />
 					<Area type="monotone" dataKey="date" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
