@@ -119,10 +119,14 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	}
 
 	return (
-		<div className="w-full">
-			<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
-			<ChartRealTimePrice stockCode={stockCode} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice} />
-			<ChartSummary priceInfoData={priceInfoData} />
+		<div className="w-full flex bg-white relative rounded-3xl p-6 z-20">
+			<div className="w-2/3">
+				<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
+			</div>
+			<div className="w-1/3 flex flex-col">
+				<ChartRealTimePrice stockCode={stockCode} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice} />
+				<ChartSummary priceInfoData={priceInfoData} />
+			</div>
 		</div>
 	);
 };
