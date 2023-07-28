@@ -1,4 +1,3 @@
-// ChartDiagram.tsx
 import React from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { ChartDiagramProps } from "./types/Chart/interface";
@@ -7,7 +6,7 @@ import { PeriodDiv } from "./types/Chart/enum";
 const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePeriodDivChange }) => {
 	const getMaxCloseValue = () => {
 		const maxClose = Math.max(...chartDiagramData.map((data: any) => data.close));
-		return Math.ceil(maxClose / 10000) * 10000;
+		return maxClose;
 	};
 
 	const [selectedPeriod, setSelectedPeriod] = React.useState<PeriodDiv>(PeriodDiv.DAILY);
@@ -19,7 +18,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 
 	return (
 		<div className="w-full">
-			<div className="flex justify-start my-4">
+			<div className="flex justify-start my-2">
 				<div className="relative mx-2">
 					<button
 						className={`px-4 py-2 rounded-md hover:bg-gray-200 ${
@@ -65,7 +64,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 					{selectedPeriod === PeriodDiv.YEARLY && <div className="absolute bottom-0 left-0 w-full h-1 bg-green-600" />}
 				</div>
 			</div>
-			<ResponsiveContainer width="95%" height={window.innerHeight / 4}>
+			<ResponsiveContainer width="100%" height={window.innerHeight / 4}>
 				<AreaChart
 					width={1000}
 					height={400}
@@ -89,11 +88,12 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 						axisLine={false}
 						tickLine={true}
 						// tick={{ stroke: "black", strokeWidth: 0.5 }}
-						minTickGap={Math.floor(chartDiagramData.length) * 3}
+						minTickGap={Math.floor(chartDiagramData.length) * 2}
 					/>
 					<YAxis
 						type="number"
-						domain={["auto", getMaxCloseValue() + 1000]}
+						// domain={["auto", Math.floor(getMaxCloseValue() * 1.1)]}
+						domain={["auto", Math.floor(getMaxCloseValue() * 1.1)]}
 						// tick={{ stroke: "black", strokeWidth: 0.5 }}
 						dataKey="close"
 						axisLine={false}
