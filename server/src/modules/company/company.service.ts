@@ -120,10 +120,8 @@ export class CompanyService {
 
 			const returnData: StockPriceInfoData = {
 				stckPrpr: Number(data.output.stck_prpr),
-				stckYtd:
-					Number(data.output.prdy_vrss_sign) <= 3
-						? Number(data.output.stck_prpr) + Number(data.output.prdy_vrss)
-						: Number(data.output.stck_prpr) - Number(data.output.prdy_vrss),
+				prdyVrss: Number(data.output.prdy_vrss),
+				prdyVrssSign: Number(data.output.prdy_vrss_sign),
 				stckHgpr: Number(data.output.stck_hgpr),
 				stckLwpr: Number(data.output.stck_lwpr),
 				w52Hgpr: Number(data.output.w52_hgpr),
