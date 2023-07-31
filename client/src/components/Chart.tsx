@@ -1,16 +1,22 @@
-// Chart.tsx
 import React, { useEffect, useState } from "react";
 import ChartDiagram from "./ChartDiagram";
 import ChartRealTimePrice from "./ChartRealTimePrice";
 import ChartSummary from "./ChartSummary";
-import { APIData, ChartDiagramData, ChartProps, PriceInfoData, Query } from "./types/Chart/interface";
+import {
+	APIData,
+	ChartDiagramData,
+	ChartProps,
+	PriceInfoData,
+	Query,
+	RealTimePriceData,
+} from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
 
 const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	const [chartDiagramData, setChartData] = useState<ChartDiagramData[]>([]);
 	const [periodDiv, setPeriodDiv] = useState<PeriodDiv>(PeriodDiv.DAILY);
 	const [loading, setLoading] = useState(true);
-	const [currentPrice, setCurrentPrice] = useState<string>("");
+	const [realTimePriceData, setRealTimePriceData] = useState<RealTimePriceData>({} as RealTimePriceData);
 	const [priceInfoData, setPriceInfoData] = useState<PriceInfoData>({} as PriceInfoData);
 
 	useEffect(() => {
@@ -99,7 +105,11 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const data = await response.json();
-				setCurrentPrice(data.result.stckPrpr);
+				setRealTimePriceData({
+					currentPrice: data.result.stckPrpr,
+					prdyVrss: data.result.prdyVrss,
+					prdyVrssSign: data.result.prdyVrssSign,
+				});
 				delete data.result.stckPrpr;
 				setPriceInfoData(data.result);
 			} catch (error) {
@@ -124,7 +134,7 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 				<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
 			</div>
 			<div className="w-1/3 flex flex-col">
-				<ChartRealTimePrice stockCode={stockCode} currentPrice={currentPrice} setCurrentPrice={setCurrentPrice} />
+				<ChartRealTimePrice stockCode={stockCode} realTimePriceData={realTimePriceData} />
 				<ChartSummary priceInfoData={priceInfoData} />
 			</div>
 		</div>

@@ -31,12 +31,19 @@ export interface APIData {
 }
 
 export interface PriceInfoData {
-	stckYtd: number;
+	prdyVrss: number;
+	prdyVrssSign: number;
 	stckHgpr: number;
 	stckLwpr: number;
 	w52Hgpr: number;
 	w52Lwpr: number;
 	htsAvls: number;
+}
+
+export interface RealTimePriceData {
+	currentPrice: number;
+	prdyVrss: number;
+	prdyVrssSign: number;
 }
 
 export interface ChartDiagramProps {
@@ -46,8 +53,7 @@ export interface ChartDiagramProps {
 
 export interface ChartRealTimePriceProps {
 	stockCode: string;
-	currentPrice: string;
-	setCurrentPrice: (price: string) => void;
+	realTimePriceData: RealTimePriceData;
 }
 
 export interface ChartSummaryProps {
