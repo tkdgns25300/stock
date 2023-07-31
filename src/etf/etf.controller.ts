@@ -16,4 +16,10 @@ export class EtfController {
 	getEtnByddTrd() {
 		return this.etfService.etnByddTrd();
 	}
+
+	// ELW 일별매매정보
+	@Get("elw_bydd_trd")
+	getElwByddTrd() {
+		return this.etfService.elwByddTrd();
+	}
 }
