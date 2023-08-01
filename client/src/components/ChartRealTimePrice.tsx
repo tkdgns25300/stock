@@ -9,30 +9,23 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode, real
 		setCurrentPrice(realTimePriceData.currentPrice);
 	}, [realTimePriceData.currentPrice]);
 
-	const ytdPrice =
-		realTimePriceData.prdyVrssSign === 3
-			? currentPrice
-			: realTimePriceData.prdyVrssSign > 3
-			? realTimePriceData.currentPrice + realTimePriceData.prdyVrss
-			: realTimePriceData.currentPrice - realTimePriceData.prdyVrss;
+	const ytdPrice = currentPrice - realTimePriceData.prdyVrss;
 	const compareToYtdPercent = (realTimePriceData.prdyVrss / ytdPrice) * 100;
 
 	return (
-		<div className="w-full flex justify-center items-end my-10">
-			<div className="text-7xl">{currentPrice}</div>
+		<div className="w-auto flex justify-center items-end my-10 font-doHyeon">
+			<div className="m-2 text-7xl">{currentPrice}</div>
 			<div
-				className={`text-3xl ${
+				className={`m-2 p-2 rounded-md text-4xl ${
 					realTimePriceData.prdyVrssSign === 3
-						? "bg-gray-500"
+						? "bg-gray-300 text-gray-700"
 						: realTimePriceData.prdyVrssSign > 3
-						? "bg-blue-500"
-						: "bg-red-500"
+						? "bg-blue-300 text-blue-700"
+						: "bg-red-300 text-red-700"
 				}`}
 			>
 				{compareToYtdPercent.toFixed(2)}%
 			</div>
-			{/* <div>{realTimePriceData.prdyVrss}</div>
-			<div>{realTimePriceData.prdyVrssSign}</div> */}
 		</div>
 	);
 };
