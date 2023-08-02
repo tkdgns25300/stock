@@ -31,6 +31,7 @@ export interface APIData {
 }
 
 export interface PriceInfoData {
+	stckPrpr: number;
 	prdyVrss: number;
 	prdyVrssSign: number;
 	stckHgpr: number;

@@ -13,10 +13,10 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode, real
 	const compareToYtdPercent = (realTimePriceData.prdyVrss / ytdPrice) * 100;
 
 	return (
-		<div className="w-auto flex justify-center items-end my-10 font-doHyeon">
-			<div className="m-2 text-7xl">{currentPrice}</div>
+		<div className="w-auto flex justify-center items-end my-5 font-doHyeon">
+			<div className="m-2 text-7xl">₩{currentPrice}</div>
 			<div
-				className={`m-2 p-2 rounded-md text-4xl ${
+				className={`m-2 p-2 rounded-md text-3xl ${
 					realTimePriceData.prdyVrssSign === 3
 						? "bg-gray-300 text-gray-700"
 						: realTimePriceData.prdyVrssSign > 3

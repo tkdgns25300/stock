@@ -110,7 +110,6 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 					prdyVrss: data.result.prdyVrss,
 					prdyVrssSign: data.result.prdyVrssSign,
 				});
-				delete data.result.stckPrpr;
 				setPriceInfoData(data.result);
 			} catch (error) {
 				console.error("Error fetching price info:", error);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { ChartDiagramProps } from "./types/Chart/interface";
 import { PeriodDiv } from "./types/Chart/enum";
@@ -9,7 +9,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 		return maxClose;
 	};
 
-	const [selectedPeriod, setSelectedPeriod] = React.useState<PeriodDiv>(PeriodDiv.DAILY);
+	const [selectedPeriod, setSelectedPeriod] = useState<PeriodDiv>(PeriodDiv.DAILY);
 
 	const handleButtonClick = (period: PeriodDiv) => {
 		setSelectedPeriod(period);
