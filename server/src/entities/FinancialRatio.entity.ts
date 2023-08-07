@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { StockInfo } from "./StockInfo.entity";
 
 @Entity("financial_ratio")
 export class FinancialRatio {
@@ -66,4 +67,7 @@ export class FinancialRatio {
 		comment: "부채 비율",
 	})
 	lblt_rate: number;
+
+	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.financial_ratio)
+	stock_info: StockInfo;
 }

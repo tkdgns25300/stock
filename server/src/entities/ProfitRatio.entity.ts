@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { StockInfo } from "./StockInfo.entity";
 
 @Entity("profit_ratio")
 export class ProfitRatio {
@@ -36,4 +37,7 @@ export class ProfitRatio {
 		comment: "매출액 총이익율",
 	})
 	sale_totl_rate: number;
+
+	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.profit_ratio)
+	stock_info: StockInfo;
 }

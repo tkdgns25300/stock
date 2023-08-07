@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { StockInfo } from "./StockInfo.entity";
 
-@Entity("balanceSheet")
+@Entity("balance_sheet")
 export class BalanceSheet {
 	@PrimaryGeneratedColumn({
 		comment: "대차대조표 아이디",
@@ -60,4 +61,7 @@ export class BalanceSheet {
 		comment: "자본총계",
 	})
 	total_cptl: number;
+
+	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.balance_sheet)
+	stock_info: StockInfo;
 }
