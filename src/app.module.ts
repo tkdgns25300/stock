@@ -5,9 +5,10 @@ import { StockModule } from './stock/stock.module';
 import { LoggingMiddleware } from './middleware/logging.middleware';
 import { IndexModule } from './index/index.module';
 import { EtfModule } from './etf/etf.module';
+import { BondModule } from './bond/bond.module';
 
 @Module({
-  imports: [StockModule, IndexModule, EtfModule],
+  imports: [StockModule, IndexModule, EtfModule, BondModule],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
