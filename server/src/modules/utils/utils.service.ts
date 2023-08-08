@@ -9,6 +9,8 @@ import { CompanyInfo } from "src/entities/CompanyInfo.entity";
 import { StockInfo } from "src/entities/StockInfo.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { getToken } from "src/util/token/token";
+import { ApiResponse } from "src/dtos/ApiResponse.dto";
 
 @Injectable()
 export class UtilsService {
@@ -308,5 +310,28 @@ export class UtilsService {
 		}
 
 		return "DB 데이터가 생성되었습니다.";
+	}
+
+	async financialInfoToDatabase(stockCode: string): Promise<ApiResponse<any>> {
+		const token = await getToken();
+		const headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			appkey: process.env.KIS_APP_KEY,
+			appsecret: process.env.KIS_APP_SECRET,
+			tr_id: "FHKST66430100",
+			Authorization: `Bearer ${token}`,
+			custtype: "P",
+		};
+		const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stockCode}`;
+		const response = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers,
+			},
+		);
+		const jsonData = await response.json();
+
+		return new ApiResponse(jsonData, "Successfully fetched financial info");
 	}
 }

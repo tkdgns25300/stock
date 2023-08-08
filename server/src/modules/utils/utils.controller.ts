@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { UtilsService } from "./utils.service";
+import { ApiResponse } from "src/dtos/ApiResponse.dto";
 
 @Controller("utils")
 export class UtilsController {
@@ -27,5 +28,11 @@ export class UtilsController {
 	@Get("/json-to-database/:market/:date")
 	async jsonToDatabase(@Param("market") market: string, @Param("date") date: string): Promise<string> {
 		return await this.utilsService.jsonToDatabase(market, date);
+	}
+
+	// Finacial Info to DB
+	@Get("/financial-info-to-database/:stockCode")
+	async financialInfoToDatabase(@Param("stockCode") stockCode: string): Promise<ApiResponse<any>> {
+		return await this.utilsService.financialInfoToDatabase(stockCode);
 	}
 }
