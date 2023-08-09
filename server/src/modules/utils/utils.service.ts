@@ -318,20 +318,50 @@ export class UtilsService {
 			"Content-Type": "application/json; charset=utf-8",
 			appkey: process.env.KIS_APP_KEY,
 			appsecret: process.env.KIS_APP_SECRET,
-			tr_id: "FHKST66430100",
 			Authorization: `Bearer ${token}`,
 			custtype: "P",
 		};
 		const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stockCode}`;
-		const response = await fetch(
+
+		const balanceSheetResponse = await fetch(
 			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
 			{
 				method: "GET",
-				headers,
+				headers: { ...headers, tr_id: "FHKST66430100" },
 			},
-		);
-		const jsonData = await response.json();
+		).then((res) => res.json());
+		const balanceSheet = await balanceSheetResponse.output;
 
-		return new ApiResponse(jsonData, "Successfully fetched financial info");
+		const incomeStatementResponse = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers: { ...headers, tr_id: "FHKST66430200" },
+			},
+		).then((res) => res.json());
+		const incomeStatement = await incomeStatementResponse.output;
+
+		const financialRatioResponse = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers: { ...headers, tr_id: "FHKST66430300" },
+			},
+		).then((res) => res.json());
+		const financialRatio = await financialRatioResponse.output;
+
+		const profitRatioResponse = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers: { ...headers, tr_id: "FHKST66430400" },
+			},
+		).then((res) => res.json());
+		const ProfitRatio = await profitRatioResponse.output;
+
+		return new ApiResponse(
+			{ balanceSheet, incomeStatement, financialRatio, ProfitRatio },
+			"Successfully fetched financial info",
+		);
 	}
 }
