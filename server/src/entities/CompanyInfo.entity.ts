@@ -106,6 +106,5 @@ export class CompanyInfo {
 	founded_date: Date | null;
 
 	@OneToMany(() => StockInfo, (stockInfo) => stockInfo.company_info, { cascade: true })
-	@JoinColumn({ name: "stock_infos" })
 	stock_infos: StockInfo[];
 }

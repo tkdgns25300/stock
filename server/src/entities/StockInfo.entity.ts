@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
 import { CompanyInfo } from "./CompanyInfo.entity";
 import { BalanceSheet } from "./BalanceSheet.entity";
 import { IncomeStatement } from "./IncomeStatement.entity";
@@ -73,19 +73,15 @@ export class StockInfo {
 	@JoinColumn({ name: "company_info" })
 	company_info: CompanyInfo;
 
-	@OneToOne(() => BalanceSheet, (balanceSheet) => balanceSheet.stock_info)
-	@JoinColumn({ name: "balance_sheet_id" })
-	balance_sheet: BalanceSheet;
+	@OneToMany(() => BalanceSheet, (balanceSheet) => balanceSheet.stock_info, { cascade: true })
+	balance_sheets: BalanceSheet[];
 
-	@OneToOne(() => IncomeStatement, (incomeStatement) => incomeStatement.stock_info)
-	@JoinColumn({ name: "income_statement_id" })
-	income_statement: IncomeStatement;
+	@OneToMany(() => IncomeStatement, (incomeStatement) => incomeStatement.stock_info, { cascade: true })
+	income_statements: IncomeStatement[];
 
-	@OneToOne(() => FinancialRatio, (financialRatio) => financialRatio.stock_info)
-	@JoinColumn({ name: "financial_ratio_id" })
-	financial_ratio: FinancialRatio;
+	@OneToMany(() => FinancialRatio, (financialRatio) => financialRatio.stock_info, { cascade: true })
+	financial_ratios: FinancialRatio[];
 
-	@OneToOne(() => ProfitRatio, (profitRatio) => profitRatio.stock_info)
-	@JoinColumn({ name: "profit_ratio_id" })
-	profit_ratio: ProfitRatio;
+	@OneToMany(() => ProfitRatio, (profitRatio) => profitRatio.stock_info, { cascade: true })
+	profit_ratios: ProfitRatio[];
 }

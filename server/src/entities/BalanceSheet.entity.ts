@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { StockInfo } from "./StockInfo.entity";
 
 @Entity("balance_sheet")
@@ -62,6 +62,7 @@ export class BalanceSheet {
 	})
 	total_cptl: number;
 
-	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.balance_sheet)
+	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.balance_sheets)
+	@JoinColumn({ name: "stock_info" })
 	stock_info: StockInfo;
 }

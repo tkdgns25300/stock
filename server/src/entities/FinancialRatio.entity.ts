@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { StockInfo } from "./StockInfo.entity";
 
 @Entity("financial_ratio")
@@ -68,6 +68,7 @@ export class FinancialRatio {
 	})
 	lblt_rate: number;
 
-	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.financial_ratio)
+	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.financial_ratios)
+	@JoinColumn({ name: "stock_info" })
 	stock_info: StockInfo;
 }

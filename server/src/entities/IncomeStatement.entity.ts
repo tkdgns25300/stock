@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { StockInfo } from "./StockInfo.entity";
 
 @Entity("income_statement")
@@ -62,6 +62,7 @@ export class IncomeStatement {
 	})
 	thtr_ntin: number;
 
-	@OneToOne(() => StockInfo, (stockInfo) => stockInfo.income_statement)
+	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.income_statements)
+	@JoinColumn({ name: "stock_info" })
 	stock_info: StockInfo;
 }
