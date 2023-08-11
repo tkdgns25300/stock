@@ -11,6 +11,10 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { getToken } from "src/util/token/token";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
+import { BalanceSheet } from "src/entities/BalanceSheet.entity";
+import { IncomeStatement } from "src/entities/IncomeStatement.entity";
+import { FinancialRatio } from "src/entities/FinancialRatio.entity";
+import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 
 @Injectable()
 export class UtilsService {
@@ -19,6 +23,14 @@ export class UtilsService {
 		private companyInfoRepository: Repository<CompanyInfo>,
 		@InjectRepository(StockInfo)
 		private stockInfoRepository: Repository<StockInfo>,
+		@InjectRepository(BalanceSheet)
+		private balanceSheetRepository: Repository<BalanceSheet>,
+		@InjectRepository(IncomeStatement)
+		private incomeStatementRepository: Repository<IncomeStatement>,
+		@InjectRepository(FinancialRatio)
+		private financialRatioRepository: Repository<FinancialRatio>,
+		@InjectRepository(ProfitRatio)
+		private profitRatioRepository: Repository<ProfitRatio>,
 	) {}
 
 	async csvToJsonFirst(market: string, date: string): Promise<string> {
@@ -263,7 +275,8 @@ export class UtilsService {
 	}
 
 	async jsonToDatabase(market: string, date: string): Promise<string> {
-		const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
+		// const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
+		const thirdJsonFilePath = path.resolve(`./resources/output/${date}/${market}/third.json`);
 		const jsonData = fs.readFileSync(thirdJsonFilePath, "utf-8");
 		const ThirdJsonData = JSON.parse(jsonData);
 
@@ -312,56 +325,87 @@ export class UtilsService {
 		return "DB 데이터가 생성되었습니다.";
 	}
 
-	async financialInfoToDatabase(stockCode: string): Promise<ApiResponse<any>> {
-		const token = await getToken();
-		const headers = {
-			"Content-Type": "application/json; charset=utf-8",
-			appkey: process.env.KIS_APP_KEY,
-			appsecret: process.env.KIS_APP_SECRET,
-			Authorization: `Bearer ${token}`,
-			custtype: "P",
-		};
-		const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stockCode}`;
+	async financialInfoToDatabase(): Promise<ApiResponse<{}>> {
+		const stockInfo = await this.stockInfoRepository.find();
 
-		const balanceSheetResponse = await fetch(
-			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-			{
-				method: "GET",
-				headers: { ...headers, tr_id: "FHKST66430100" },
-			},
-		).then((res) => res.json());
-		const balanceSheet = await balanceSheetResponse.output;
+		for (const stock of stockInfo) {
+			// Get Financial Information
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				Authorization: `Bearer ${token}`,
+				custtype: "P",
+			};
+			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
 
-		const incomeStatementResponse = await fetch(
-			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-			{
-				method: "GET",
-				headers: { ...headers, tr_id: "FHKST66430200" },
-			},
-		).then((res) => res.json());
-		const incomeStatement = await incomeStatementResponse.output;
+			const balanceSheetResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430100" },
+				},
+			).then((res) => res.json());
+			const balanceSheetDataArray = await balanceSheetResponse.output;
 
-		const financialRatioResponse = await fetch(
-			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-			{
-				method: "GET",
-				headers: { ...headers, tr_id: "FHKST66430300" },
-			},
-		).then((res) => res.json());
-		const financialRatio = await financialRatioResponse.output;
+			const incomeStatementResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430200" },
+				},
+			).then((res) => res.json());
+			const incomeStatementDataArray = await incomeStatementResponse.output;
 
-		const profitRatioResponse = await fetch(
-			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-			{
-				method: "GET",
-				headers: { ...headers, tr_id: "FHKST66430400" },
-			},
-		).then((res) => res.json());
-		const ProfitRatio = await profitRatioResponse.output;
+			const financialRatioResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430300" },
+				},
+			).then((res) => res.json());
+			const financialRatioDataArray = await financialRatioResponse.output;
 
-		return new ApiResponse(
-			{ balanceSheet, incomeStatement, financialRatio, ProfitRatio },
-			"Successfully fetched financial info",
-		);
+			const profitRatioResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430400" },
+				},
+			).then((res) => res.json());
+			const ProfitRatioDataArray = await profitRatioResponse.output;
+
+			// Store Financial Information into DB
+			if (balanceSheetDataArray && balanceSheetDataArray.length !== 0) {
+				for (const balanceSheetData of balanceSheetDataArray) {
+					const balanceSheet = this.balanceSheetRepository.create({ ...balanceSheetData, stock_info: stock });
+					await this.balanceSheetRepository.save(balanceSheet);
+				}
+			}
+
+			if (incomeStatementDataArray && incomeStatementDataArray.length !== 0) {
+				for (const incomeStatementData of incomeStatementDataArray) {
+					const incomeStatement = this.incomeStatementRepository.create({ ...incomeStatementData, stock_info: stock });
+					await this.incomeStatementRepository.save(incomeStatement);
+				}
+			}
+
+			if (financialRatioDataArray && financialRatioDataArray.length !== 0) {
+				for (const financialRatioData of financialRatioDataArray) {
+					const financialRatio = this.financialRatioRepository.create({ ...financialRatioData, stock_info: stock });
+					await this.financialRatioRepository.save(financialRatio);
+				}
+			}
+
+			if (ProfitRatioDataArray && ProfitRatioDataArray.length !== 0) {
+				for (const ProfitRatioData of ProfitRatioDataArray) {
+					const profitRatio = this.profitRatioRepository.create({ ...ProfitRatioData, stock_info: stock });
+					await this.profitRatioRepository.save(profitRatio);
+				}
+			}
+		}
+
+		return new ApiResponse({}, "Successfully fetched financial info");
 	}
 }

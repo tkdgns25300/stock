@@ -31,8 +31,8 @@ export class UtilsController {
 	}
 
 	// Finacial Info to DB
-	@Get("/financial-info-to-database/:stockCode")
-	async financialInfoToDatabase(@Param("stockCode") stockCode: string): Promise<ApiResponse<any>> {
-		return await this.utilsService.financialInfoToDatabase(stockCode);
+	@Get("/financial-info-to-database")
+	async financialInfoToDatabase(): Promise<ApiResponse<{}>> {
+		return await this.utilsService.financialInfoToDatabase();
 	}
 }
