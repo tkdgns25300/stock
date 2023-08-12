@@ -63,6 +63,6 @@ export class BalanceSheet {
 	total_cptl: number;
 
 	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.balance_sheets)
-	@JoinColumn({ name: "stock_info" })
+	@JoinColumn({ name: "stock_code", referencedColumnName: "stock_code" })
 	stock_info: StockInfo;
 }

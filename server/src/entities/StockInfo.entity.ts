@@ -1,4 +1,4 @@
-import { Column, Entity, OneToOne, PrimaryColumn, CreateDateColumn, JoinColumn, ManyToOne, OneToMany } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn, CreateDateColumn, JoinColumn } from "typeorm";
 import { CompanyInfo } from "./CompanyInfo.entity";
 import { BalanceSheet } from "./BalanceSheet.entity";
 import { IncomeStatement } from "./IncomeStatement.entity";
@@ -17,6 +17,7 @@ export class StockInfo {
 	@Column({
 		type: "varchar",
 		length: 10,
+		unique: true,
 		comment: "종목코드",
 	})
 	stock_code: string;

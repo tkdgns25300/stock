@@ -69,6 +69,6 @@ export class FinancialRatio {
 	lblt_rate: number;
 
 	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.financial_ratios)
-	@JoinColumn({ name: "stock_info" })
+	@JoinColumn({ name: "stock_info", referencedColumnName: "stock_code" })
 	stock_info: StockInfo;
 }
