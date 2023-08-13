@@ -39,6 +39,6 @@ export class ProfitRatio {
 	sale_totl_rate: number;
 
 	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.profit_ratios)
-	@JoinColumn({ name: "stock_info", referencedColumnName: "stock_code" })
+	@JoinColumn({ name: "stock_code", referencedColumnName: "stock_code" })
 	stock_info: StockInfo;
 }

@@ -63,6 +63,6 @@ export class IncomeStatement {
 	thtr_ntin: number;
 
 	@ManyToOne(() => StockInfo, (stockInfo) => stockInfo.income_statements)
-	@JoinColumn({ name: "stock_info", referencedColumnName: "stock_code" })
+	@JoinColumn({ name: "stock_code", referencedColumnName: "stock_code" })
 	stock_info: StockInfo;
 }
