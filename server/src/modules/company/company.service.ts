@@ -9,6 +9,11 @@ import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
 import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
 import { getToken } from "src/util/token/token";
 import { StockPriceInfoData } from "src/types/StockPriceInfoData";
+import { BalanceSheet } from "src/entities/BalanceSheet.entity";
+import { IncomeStatement } from "src/entities/IncomeStatement.entity";
+import { FinancialRatio } from "src/entities/FinancialRatio.entity";
+import { ProfitRatio } from "src/entities/ProfitRatio.entity";
+import { FinancialInfoData } from "src/types/FinancialInfoData";
 
 @Injectable()
 export class CompanyService {
@@ -17,6 +22,14 @@ export class CompanyService {
 		private companyInfoRepository: Repository<CompanyInfo>,
 		@InjectRepository(StockInfo)
 		private stockInfoRepository: Repository<StockInfo>,
+		@InjectRepository(BalanceSheet)
+		private balanceSheetRepository: Repository<BalanceSheet>,
+		@InjectRepository(IncomeStatement)
+		private incomeStatementRepository: Repository<IncomeStatement>,
+		@InjectRepository(FinancialRatio)
+		private financialRatioRepository: Repository<FinancialRatio>,
+		@InjectRepository(ProfitRatio)
+		private profitRatioRepository: Repository<ProfitRatio>,
 	) {}
 
 	async getStockList(): Promise<ApiResponse<StockInfo[]>> {
@@ -129,7 +142,35 @@ export class CompanyService {
 				htsAvls: Number(data.output.hts_avls),
 			};
 
-			return new ApiResponse<any>(returnData, "Successfully fetched the stock's price information");
+			return new ApiResponse<StockPriceInfoData>(returnData, "Successfully fetched the stock's price information");
+		} catch (error) {
+			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getFinanceInfo(stockCode: string): Promise<ApiResponse<FinancialInfoData>> {
+		try {
+			const balanceSheet = await this.balanceSheetRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const incomeStatement = await this.incomeStatementRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const financialRatio = await this.financialRatioRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const profitRatio = await this.profitRatioRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+
+			const returnData: FinancialInfoData = {
+				balanceSheet,
+				incomeStatement,
+				financialRatio,
+				profitRatio,
+			};
+
+			return new ApiResponse<FinancialInfoData>(returnData, "Successfully fetched the stock's financial information");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
