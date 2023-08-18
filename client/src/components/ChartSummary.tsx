@@ -2,7 +2,6 @@ import React from "react";
 import { ChartSummaryProps } from "./types/Chart/interface";
 
 const ChartSummary: React.FC<ChartSummaryProps> = ({ priceInfoData }) => {
-	console.log(priceInfoData);
 	return (
 		// <div className="p-4 border rounded-lg max-w-xs mx-auto font-doHyeon text-xl">
 		<div className="w-full p-4 border rounded-lg max-w-xs mx-auto font-gothic-ai text-sm text-gray-800">
