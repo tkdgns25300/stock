@@ -10,4 +10,10 @@ export class BondController {
 	getKtsByddTrd() {
 		return this.bondService.ktsByddTrd();
 	}
+
+	// 일반채권시장 일별매매정보
+	@Get("bnd_bydd_trd")
+	getBndByddTrd() {
+		return this.bondService.bndByddTrd();
+	}
 }
