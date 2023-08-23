@@ -21,7 +21,7 @@ const ResultRight: React.FC<ResultRightProps> = ({ companyName, stockCode, stock
 				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
 					Finance
 				</div>
-				<Finance />
+				<Finance stockCode={stockCode} />
 			</div>
 		</div>
 	);
