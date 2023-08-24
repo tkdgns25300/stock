@@ -16,6 +16,39 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 		handlePeriodDivChange(period);
 	};
 
+	const CustomTooltip = (props: any) => {
+		if (props.payload != null && props.payload[0] != null) {
+			return (
+				<div className="bg-white p-5 rounded-xl shadow-xl font-doHyeon text-base">
+					<div className="flex justify-between">
+						<span>날짜 :</span>
+						<span className="mx-2">{props.payload[0].value}</span>
+					</div>
+					<div className="flex justify-between">
+						<span>시작가 :</span>
+						<span className="mx-2">{props.payload[1].value}</span>
+					</div>
+					<div className="flex justify-between text-emerald-600">
+						<span>종가 :</span>
+						<span className="mx-2">{props.payload[2].value}</span>
+					</div>
+					<div className="flex justify-between">
+						<span>최고가 :</span>
+						<span className="mx-2">{props.payload[3].value}</span>
+					</div>
+					<div className="flex justify-between">
+						<span>최저가 :</span>
+						<span className="mx-2">{props.payload[4].value}</span>
+					</div>
+					<div className="flex justify-between">
+						<span>거래량 :</span>
+						<span className="mx-2">{props.payload[5].value}</span>
+					</div>
+				</div>
+			);
+		}
+	};
+
 	return (
 		<div className="w-full">
 			<div className="flex justify-start my-2">
@@ -98,13 +131,53 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 						dataKey="close"
 						axisLine={false}
 					/>
-					<Tooltip />
-					<Area type="monotone" dataKey="date" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
-					<Area type="monotone" dataKey="open" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
-					<Area type="monotone" dataKey="close" stroke="#82ca9d" fillOpacity={1} fill="url(#color)" />
-					<Area type="monotone" dataKey="high" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
-					<Area type="monotone" dataKey="low" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
-					<Area type="monotone" dataKey="volume" stroke="none" activeDot={false} fillOpacity={0} fill="#808080" />
+					<Tooltip content={CustomTooltip} />
+					<Area
+						type="monotone"
+						dataKey="date"
+						name="날짜"
+						stroke="none"
+						activeDot={false}
+						fillOpacity={0}
+						fill="#808080"
+					/>
+					<Area
+						type="monotone"
+						dataKey="open"
+						name="시작가"
+						stroke="none"
+						activeDot={false}
+						fillOpacity={0}
+						fill="#808080"
+					/>
+					<Area type="monotone" dataKey="close" name="종가" stroke="#82ca9d" fillOpacity={1} fill="url(#color)" />
+					<Area
+						type="monotone"
+						dataKey="high"
+						name="최고가"
+						stroke="none"
+						activeDot={false}
+						fillOpacity={0}
+						fill="#808080"
+					/>
+					<Area
+						type="monotone"
+						dataKey="low"
+						name="최저가"
+						stroke="none"
+						activeDot={false}
+						fillOpacity={0}
+						fill="#808080"
+					/>
+					<Area
+						type="monotone"
+						dataKey="volume"
+						name="거래량"
+						stroke="none"
+						activeDot={false}
+						fillOpacity={0}
+						fill="#808080"
+					/>
 				</AreaChart>
 			</ResponsiveContainer>
 		</div>
