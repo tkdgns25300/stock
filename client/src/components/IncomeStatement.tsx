@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { IncomeStatementProps } from "./types/Chart/interface";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }) => {
-	const fiveIncomeStatementData = IncomeStatementData.slice(0, 5);
+	const [selectedIndex, setSelectedIndex] = useState<number>(4);
+	const fiveIncomeStatementData = IncomeStatementData.slice(0, 5).reverse();
+
+	const handleBarClick = (info: any) => {
+		setSelectedIndex(info.index);
+	};
 
 	const getMaxValue = () => {
 		const maxValue = Math.max(...fiveIncomeStatementData.map((data: any) => data.saleAccount));
@@ -47,20 +52,53 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 
 	return (
 		<div className="w-full">
-			<h2 className="text-xl font-semibold mb-4">Income Statement</h2>
 			<div className="w-full mb-4">
-				<ResponsiveContainer width="100%" aspect={4 / 1}>
-					<BarChart data={fiveIncomeStatementData}>
+				<ResponsiveContainer width="100%" height={400}>
+					<BarChart data={fiveIncomeStatementData} margin={{ top: 20, right: 30, left: 20, bottom: 50 }}>
 						<CartesianGrid strokeDasharray="10 0" vertical={false} />
-						{/* <XAxis dataKey="stacYymm" tickFormatter={formatDate} axisLine={false} /> */}
+						<XAxis
+							dataKey="stacYymm"
+							tickFormatter={formatDate}
+							axisLine={false}
+							tickMargin={20}
+							onClick={(info) => handleBarClick(info)}
+							tick={(props) => {
+								const isSelected = props.index === selectedIndex;
+								return (
+									<g
+										transform={`translate(${props.x},${props.y})`}
+										cursor="pointer"
+										onClick={() => handleBarClick({ index: props.index })}
+									>
+										{isSelected && <rect x={-50} y={-10} width={100} height={40} fill="#dceff7" rx={3} ry={3} />}
+										<text
+											className="font-gothic-a1 font-bold text-base"
+											fill={isSelected ? "#0447c4" : "black"}
+											x={0}
+											y={0}
+											dy={16}
+											textAnchor="middle"
+										>
+											{formatDate(props.payload.value)}
+										</text>
+									</g>
+								);
+							}}
+						/>
+
 						<YAxis axisLine={false} domain={["auto", Math.floor(getMaxValue() * 1.1)]} width={80} />
-						<Tooltip content={CustomTooltip} cursor={{ fill: "transparent" }} />
+						<Tooltip
+							content={CustomTooltip}
+							cursor={{ fill: "transparent" }}
+							wrapperStyle={{ pointerEvents: "auto" }}
+							trigger="click"
+						/>
 						<Legend
 							iconType="circle"
 							iconSize={8}
 							align="right"
 							verticalAlign="top"
-							wrapperStyle={{ top: -20, right: 0 }}
+							wrapperStyle={{ top: 0, right: 30 }}
 						/>
 						<Bar dataKey="saleAccount" fill="#5882FA" name="매출액" barSize={25} radius={[5, 5, 5, 5]} />
 						<Bar dataKey="bsopPrti" fill="#82ca9d" name="영업이익" barSize={25} radius={[5, 5, 5, 5]} />
@@ -68,6 +106,11 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 					</BarChart>
 				</ResponsiveContainer>
 			</div>
+			{selectedIndex === 0 && <div>0</div>}
+			{selectedIndex === 1 && <div>1</div>}
+			{selectedIndex === 2 && <div>2</div>}
+			{selectedIndex === 3 && <div>3</div>}
+			{selectedIndex === 4 && <div>4</div>}
 		</div>
 	);
 };
