@@ -114,6 +114,10 @@ export interface IncomeStatementProps {
 	IncomeStatementData: IncomeStatementData[];
 }
 
+export interface IncomeStatementQuartlyProps {
+	IncomeStatementQuartlyData: IncomeStatementData;
+}
+
 export interface BalanceSheetProps {
 	BalanceSheetData: BalanceSheetData[];
 }
