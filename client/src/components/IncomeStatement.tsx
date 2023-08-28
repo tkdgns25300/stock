@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IncomeStatementProps } from "./types/Chart/interface";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import IncomeStatementQuartly from "./IncomeStatementQuartly";
 
 const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }) => {
 	const [selectedIndex, setSelectedIndex] = useState<number>(4);
@@ -11,7 +12,9 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 	};
 
 	const getMaxValue = () => {
-		const maxValue = Math.max(...fiveIncomeStatementData.map((data: any) => data.saleAccount));
+		const maxValue = Math.max(
+			...fiveIncomeStatementData.map((data: any) => Math.max(data.saleAccount, data.bsopPrti, data.thtrNtin)),
+		);
 		return maxValue;
 	};
 
@@ -86,13 +89,18 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 							}}
 						/>
 
-						<YAxis axisLine={false} domain={["auto", Math.floor(getMaxValue() * 1.1)]} width={80} />
-						<Tooltip
-							content={CustomTooltip}
-							cursor={{ fill: "transparent" }}
-							wrapperStyle={{ pointerEvents: "auto" }}
-							trigger="click"
+						<YAxis
+							axisLine={false}
+							domain={["auto", Math.floor(getMaxValue() * 1.1)]}
+							width={80}
+							tickFormatter={(tickItem: number) => {
+								if (tickItem >= 10000) {
+									return `${(tickItem / 10000).toFixed(1)}조`; // 1조 = 100,000억
+								}
+								return `${tickItem.toFixed(1)}억`;
+							}}
 						/>
+						<Tooltip content={CustomTooltip} cursor={{ fill: "transparent" }} />
 						<Legend
 							iconType="circle"
 							iconSize={8}
@@ -106,11 +114,9 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 					</BarChart>
 				</ResponsiveContainer>
 			</div>
-			{selectedIndex === 0 && <div>0</div>}
-			{selectedIndex === 1 && <div>1</div>}
-			{selectedIndex === 2 && <div>2</div>}
-			{selectedIndex === 3 && <div>3</div>}
-			{selectedIndex === 4 && <div>4</div>}
+			{fiveIncomeStatementData.length > 0 && (
+				<IncomeStatementQuartly IncomeStatementQuartlyData={fiveIncomeStatementData[selectedIndex]} />
+			)}
 		</div>
 	);
 };
