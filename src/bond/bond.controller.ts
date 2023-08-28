@@ -16,4 +16,10 @@ export class BondController {
 	getBndByddTrd() {
 		return this.bondService.bndByddTrd();
 	}
+
+	// 소액채권시장 일별매매정보
+	@Get("smb_bydd_trd")
+	getSmbByddTrd() {
+		return this.bondService.smbByddTrd();
+	}
 }

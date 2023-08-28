@@ -37,4 +37,11 @@ export class BondService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async smbByddTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
