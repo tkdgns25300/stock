@@ -3,9 +3,10 @@ import { IncomeStatementProps } from "./types/Chart/interface";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import IncomeStatementQuartly from "./IncomeStatementQuartly";
 
-const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }) => {
+const IncomeStatement: React.FC<IncomeStatementProps> = ({ incomeStatementData }) => {
 	const [selectedIndex, setSelectedIndex] = useState<number>(4);
-	const fiveIncomeStatementData = IncomeStatementData.slice(0, 5).reverse();
+	const sixIncomeStatementData = incomeStatementData.slice(0, 6).reverse();
+	const fiveIncomeStatementData = incomeStatementData.slice(0, 5).reverse();
 
 	const handleBarClick = (info: any) => {
 		setSelectedIndex(info.index);
@@ -115,7 +116,10 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ IncomeStatementData }
 				</ResponsiveContainer>
 			</div>
 			{fiveIncomeStatementData.length > 0 && (
-				<IncomeStatementQuartly IncomeStatementQuartlyData={fiveIncomeStatementData[selectedIndex]} />
+				<IncomeStatementQuartly
+					curIncomeStatementData={fiveIncomeStatementData[selectedIndex]}
+					previousIncomeStatementData={sixIncomeStatementData[selectedIndex]}
+				/>
 			)}
 		</div>
 	);
