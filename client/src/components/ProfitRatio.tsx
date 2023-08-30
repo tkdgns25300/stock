@@ -1,6 +1,7 @@
 import React from "react";
+import { ProfitRatioProps } from "./types/Chart/interface";
 
-const ProfitRatio: React.FC = () => {
+const ProfitRatio: React.FC<ProfitRatioProps> = ({ profitRatioData }) => {
 	return (
 		<div className="w-full">
 			<div className="text-3xl font-gothic-ai">수익성비율</div>

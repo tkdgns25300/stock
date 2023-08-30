@@ -67,14 +67,14 @@ export interface FinanceProps {
 
 export interface IncomeStatementData {
 	stacYymm: string; // 결산년월
-	saleAccount: string; // 매출액
-	saleCost: string; // 매출원가
-	saleTotlPrfi: string; // 매출총이익
-	bsopPrti: string; // 영업이익
-	opPrfi: string; // 경상이익
-	specPrfi: string; // 특별이익
-	specLoss: string; // 특별손실
-	thtrNtin: string; // 당기순이익
+	saleAccount: number; // 매출액
+	saleCost: number; // 매출원가
+	saleTotlPrfi: number; // 매출총이익
+	bsopPrti: number; // 영업이익
+	opPrfi: number; // 경상이익
+	specPrfi: number; // 특별이익
+	specLoss: number; // 특별손실
+	thtrNtin: number; // 당기순이익
 }
 
 export interface BalanceSheetData {
@@ -111,21 +111,22 @@ export interface ProfitRatioData {
 }
 
 export interface IncomeStatementProps {
-	IncomeStatementData: IncomeStatementData[];
+	incomeStatementData: IncomeStatementData[];
 }
 
 export interface IncomeStatementQuartlyProps {
-	IncomeStatementQuartlyData: IncomeStatementData;
+	curIncomeStatementData: IncomeStatementData;
+	previousIncomeStatementData: IncomeStatementData;
 }
 
 export interface BalanceSheetProps {
-	BalanceSheetData: BalanceSheetData[];
+	balanceSheetData: BalanceSheetData[];
 }
 
 export interface FinancialRatioProps {
-	FinancialRatioData: FinancialRatioData[];
+	financialRatioData: FinancialRatioData[];
 }
 
 export interface ProfitRatioProps {
-	ProfitRatioData: ProfitRatioData[];
+	profitRatioData: ProfitRatioData[];
 }

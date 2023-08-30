@@ -111,7 +111,7 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 						showIncomeStatement ? "max-h-screen" : "max-h-0"
 					}`}
 				>
-					{showIncomeStatement && <IncomeStatement IncomeStatementData={IncomeStatementData} />}
+					{showIncomeStatement && <IncomeStatement incomeStatementData={IncomeStatementData} />}
 				</div>
 			</div>
 
@@ -132,7 +132,7 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 						showBalanceSheet ? "max-h-screen" : "max-h-0"
 					}`}
 				>
-					{showBalanceSheet && <BalanceSheet BalanceSheetData={BalanceSheetData} />}
+					{showBalanceSheet && <BalanceSheet balanceSheetData={BalanceSheetData} />}
 				</div>
 			</div>
 
@@ -153,7 +153,7 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 						showFinancialRatio ? "max-h-screen" : "max-h-0"
 					}`}
 				>
-					{showFinancialRatio && <FinancialRatio FinancialRatioData={FinancialRatioData} />}
+					{showFinancialRatio && <FinancialRatio financialRatioData={FinancialRatioData} />}
 				</div>
 			</div>
 
@@ -174,7 +174,7 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 						showProfitRatio ? "max-h-screen" : "max-h-0"
 					}`}
 				>
-					{showProfitRatio && <ProfitRatio ProfitRatioData={ProfitRatioData} />}
+					{showProfitRatio && <ProfitRatio profitRatioData={ProfitRatioData} />}
 				</div>
 			</div>
 		</div>
