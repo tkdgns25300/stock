@@ -150,10 +150,10 @@ export class CompanyService {
 
 	async getFinanceInfo(stockCode: string): Promise<ApiResponse<FinancialInfoData>> {
 		try {
-			const balanceSheet = await this.balanceSheetRepository.find({
+			const incomeStatement = await this.incomeStatementRepository.find({
 				where: { stock_info: { stock_code: stockCode } },
 			});
-			const incomeStatement = await this.incomeStatementRepository.find({
+			const balanceSheet = await this.balanceSheetRepository.find({
 				where: { stock_info: { stock_code: stockCode } },
 			});
 			const financialRatio = await this.financialRatioRepository.find({
@@ -164,8 +164,8 @@ export class CompanyService {
 			});
 
 			const returnData: FinancialInfoData = {
-				balanceSheet,
 				incomeStatement,
+				balanceSheet,
 				financialRatio,
 				profitRatio,
 			};
