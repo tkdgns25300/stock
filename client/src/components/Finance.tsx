@@ -33,21 +33,53 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 				const data = await response.json();
 
 				// 손익계산서 데이터 변환
-				const transformedIncomeStatementData: IncomeStatementData[] = data.result.incomeStatement.map((item: any) => ({
-					stacYymm: item.stac_yymm,
-					saleAccount: item.sale_account,
-					saleCost: item.sale_cost,
-					saleTotlPrfi: item.sale_totl_prfi,
-					bsopPrti: item.bsop_prti,
-					opPrfi: item.op_prfi,
-					specPrfi: item.spec_prfi,
-					specLoss: item.spec_loss,
-					thtrNtin: item.thtr_ntin,
-				}));
+				const incomeStatementData: IncomeStatementData[] = data.result.incomeStatement
+					.map((item: any) => ({
+						stacYymm: item.stac_yymm,
+						saleAccount: Number(item.sale_account),
+						saleCost: Number(item.sale_cost),
+						saleTotlPrfi: Number(item.sale_totl_prfi),
+						bsopPrti: Number(item.bsop_prti),
+						opPrfi: Number(item.op_prfi),
+						specPrfi: Number(item.spec_prfi),
+						specLoss: Number(item.spec_loss),
+						thtrNtin: Number(item.thtr_ntin),
+					}))
+					.reverse();
+
+				// 누적 데이터 제거
+				const transformedIncomeStatementData: IncomeStatementData[] = [];
+				let currentYear: number | null = null;
+				let cumulativeData: IncomeStatementData | null = null;
+
+				incomeStatementData.forEach((item: IncomeStatementData) => {
+					const year = new Date(item.stacYymm).getFullYear();
+
+					if (year !== currentYear) {
+						currentYear = year;
+						cumulativeData = null;
+					}
+
+					if (!cumulativeData) {
+						transformedIncomeStatementData.push(item);
+					} else {
+						transformedIncomeStatementData.push({
+							...item,
+							saleAccount: item.saleAccount - cumulativeData.saleAccount,
+							saleCost: item.saleCost - cumulativeData.saleCost,
+							saleTotlPrfi: item.saleTotlPrfi - cumulativeData.saleTotlPrfi,
+							bsopPrti: item.bsopPrti - cumulativeData.bsopPrti,
+							opPrfi: item.opPrfi - cumulativeData.opPrfi,
+							thtrNtin: item.thtrNtin - cumulativeData.thtrNtin,
+						});
+					}
+					cumulativeData = { ...item };
+				});
+
 				setIncomeStatementData(transformedIncomeStatementData);
 
 				// 대차대조표 데이터 변환
-				const transformedBalanceSheetData: BalanceSheetData[] = data.result.balanceSheet.map((item: any) => ({
+				const transformedBalanceSheetData: BalanceSheetData[] = data.result.balanceSheet.reverse().map((item: any) => ({
 					stacYymm: item.stac_yymm,
 					totalAset: item.total_aset,
 					totalLblt: item.total_lblt,
@@ -61,22 +93,24 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 				setBalanceSheetData(transformedBalanceSheetData);
 
 				// 재무비율 데이터 변환
-				const transformedFinancialRatioData: FinancialRatioData[] = data.result.financialRatio.map((item: any) => ({
-					stacYymm: item.stac_yymm,
-					grs: item.grs,
-					bsopPrfiInrt: item.bsop_prfi_inrt,
-					ntinInrt: item.ntin_inrt,
-					roeVal: item.roe_val,
-					eps: item.eps,
-					sps: item.sps,
-					bps: item.bps,
-					rsrvRate: item.rsrv_rate,
-					lbltRate: item.lblt_rate,
-				}));
+				const transformedFinancialRatioData: FinancialRatioData[] = data.result.financialRatio
+					.reverse()
+					.map((item: any) => ({
+						stacYymm: item.stac_yymm,
+						grs: item.grs,
+						bsopPrfiInrt: item.bsop_prfi_inrt,
+						ntinInrt: item.ntin_inrt,
+						roeVal: item.roe_val,
+						eps: item.eps,
+						sps: item.sps,
+						bps: item.bps,
+						rsrvRate: item.rsrv_rate,
+						lbltRate: item.lblt_rate,
+					}));
 				setFinancialRatioData(transformedFinancialRatioData);
 
 				// 수익성비율 데이터 변환
-				const transformedProfitRatioData: ProfitRatioData[] = data.result.profitRatio.map((item: any) => ({
+				const transformedProfitRatioData: ProfitRatioData[] = data.result.profitRatio.reverse().map((item: any) => ({
 					stacYymm: item.stac_yymm,
 					cptlNtinRate: item.cptl_ntin_rate,
 					selfCptlNtinInrt: item.self_cptl_ntin_inrt,

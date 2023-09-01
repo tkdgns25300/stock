@@ -5,8 +5,8 @@ import IncomeStatementQuartly from "./IncomeStatementQuartly";
 
 const IncomeStatement: React.FC<IncomeStatementProps> = ({ incomeStatementData }) => {
 	const [selectedIndex, setSelectedIndex] = useState<number>(4);
-	const sixIncomeStatementData = incomeStatementData.slice(0, 6).reverse();
-	const fiveIncomeStatementData = incomeStatementData.slice(0, 5).reverse();
+	const sixIncomeStatementData = incomeStatementData.slice(-6);
+	const fiveIncomeStatementData = incomeStatementData.slice(-5);
 
 	const handleBarClick = (info: any) => {
 		setSelectedIndex(info.index);
