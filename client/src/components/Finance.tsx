@@ -127,10 +127,10 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 	}, [stockCode]);
 
 	return (
-		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20">
+		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1 font-semibold text-lg">
 			<div>
 				<button
-					className="flex justify-between w-full py-2 focus:outline-none"
+					className="flex justify-between w-full p-2 focus:outline-none"
 					onClick={() => setShowIncomeStatement(!showIncomeStatement)}
 				>
 					<span>손익계산서</span>
@@ -149,9 +149,11 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 				</div>
 			</div>
 
+			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+
 			<div>
 				<button
-					className="flex justify-between w-full py-2 focus:outline-none"
+					className="flex justify-between w-full p-2 focus:outline-none"
 					onClick={() => setShowBalanceSheet(!showBalanceSheet)}
 				>
 					<span>대차대조표</span>
@@ -170,9 +172,11 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 				</div>
 			</div>
 
+			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+
 			<div>
 				<button
-					className="flex justify-between w-full py-2 focus:outline-none"
+					className="flex justify-between w-full p-2 focus:outline-none"
 					onClick={() => setShowFinancialRatio(!showFinancialRatio)}
 				>
 					<span>재무비율</span>
@@ -191,9 +195,11 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 				</div>
 			</div>
 
+			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+
 			<div>
 				<button
-					className="flex justify-between w-full py-2 focus:outline-none"
+					className="flex justify-between w-full p-2 focus:outline-none"
 					onClick={() => setShowProfitRatio(!showProfitRatio)}
 				>
 					<span>수익성비율</span>
