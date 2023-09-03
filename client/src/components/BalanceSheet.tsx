@@ -1,5 +1,5 @@
 import React from "react";
-import { BalanceSheetProps } from "./types/Chart/interface";
+import { BalanceSheetProps } from "./types/Finance/interface";
 
 const BalanceSheet: React.FC<BalanceSheetProps> = ({ balanceSheetData }) => {
 	return (

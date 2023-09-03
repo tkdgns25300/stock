@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { IncomeStatementQuartlyProps, IncomeStatementData } from "./types/Chart/interface";
+import { IncomeStatementQuartlyProps, IncomeStatementData } from "./types/Finance/interface";
 
 const IncomeStatementQuartly: React.FC<IncomeStatementQuartlyProps> = ({
 	curIncomeStatementData,

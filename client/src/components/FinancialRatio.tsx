@@ -1,5 +1,5 @@
 import React from "react";
-import { FinancialRatioProps } from "./types/Chart/interface";
+import { FinancialRatioProps } from "./types/Finance/interface";
 
 const FinancialRatio: React.FC<FinancialRatioProps> = ({ financialRatioData }) => {
 	return (

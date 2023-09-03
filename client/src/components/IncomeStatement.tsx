@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { IncomeStatementProps } from "./types/Chart/interface";
+import { IncomeStatementProps } from "./types/Finance/interface";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import IncomeStatementQuartly from "./IncomeStatementQuartly";
 

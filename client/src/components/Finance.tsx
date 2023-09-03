@@ -9,7 +9,7 @@ import {
 	FinancialRatioData,
 	IncomeStatementData,
 	ProfitRatioData,
-} from "./types/Chart/interface";
+} from "./types/Finance/interface";
 import ProfitRatio from "./ProfitRatio";
 
 const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
