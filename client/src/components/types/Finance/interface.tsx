@@ -60,6 +60,11 @@ export interface BalanceSheetProps {
 	balanceSheetData: BalanceSheetData[];
 }
 
+export interface BalanceSheetQuartlyProps {
+	curBalanceSheetData: BalanceSheetData;
+	previousBalanceSheetData: BalanceSheetData;
+}
+
 export interface FinancialRatioProps {
 	financialRatioData: FinancialRatioData[];
 }
