@@ -33,8 +33,8 @@ export interface FinancialRatioData {
 	ntinInrt: string; // 순이익 증가율
 	roeVal: string; // ROE 값
 	eps: string; // EPS
-	sps: string; // 주당매출액
 	bps: string; // BPS
+	sps: string; // 주당매출액
 	rsrvRate: string; // 유보비율
 	lbltRate: string; // 부채비율
 }
@@ -69,6 +69,16 @@ export interface FinancialRatioProps {
 	financialRatioData: FinancialRatioData[];
 }
 
+export interface FinancialRatioQuartlyProps {
+	curFinancialRatioData: FinancialRatioData;
+	previousFinancialRatioData: FinancialRatioData;
+}
+
 export interface ProfitRatioProps {
 	profitRatioData: ProfitRatioData[];
+}
+
+export interface ProfitRatioQuartlyProps {
+	curProfitRatioData: ProfitRatioData;
+	previousProfitRatioData: ProfitRatioData;
 }
