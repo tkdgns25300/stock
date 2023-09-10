@@ -35,4 +35,10 @@ export class UtilsController {
 	async financialInfoToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.financialInfoToDatabase();
 	}
+
+	// Financial Info : Balance Sheet Info to DB
+	@Get("/balance-sheet-to-database")
+	async balanceSheetToDatabase(): Promise<ApiResponse<{}>> {
+		return await this.utilsService.balanceSheetToDatabase();
+	}
 }

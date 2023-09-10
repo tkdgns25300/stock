@@ -408,4 +408,38 @@ export class UtilsService {
 
 		return new ApiResponse({}, "Successfully fetched financial info");
 	}
+
+	async balanceSheetToDatabase(): Promise<ApiResponse<{}>> {
+		const stockInfo = await this.stockInfoRepository.find();
+
+		for (const stock of stockInfo) {
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				Authorization: `Bearer ${token}`,
+				custtype: "P",
+			};
+			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
+
+			const balanceSheetResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430100" },
+				},
+			).then((res) => res.json());
+			const balanceSheetDataArray = await balanceSheetResponse.output;
+
+			if (balanceSheetDataArray && balanceSheetDataArray.length !== 0) {
+				for (const balanceSheetData of balanceSheetDataArray) {
+					const balanceSheet = this.balanceSheetRepository.create({ ...balanceSheetData, stock_info: stock });
+					await this.balanceSheetRepository.save(balanceSheet);
+				}
+			}
+		}
+
+		return new ApiResponse({}, "Successfully fetched balance sheet info");
+	}
 }
