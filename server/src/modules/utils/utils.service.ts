@@ -476,4 +476,38 @@ export class UtilsService {
 
 		return new ApiResponse({}, "Successfully fetched income statement info");
 	}
+
+	async financialRatioToDatabase(): Promise<ApiResponse<{}>> {
+		const stockInfo = await this.stockInfoRepository.find();
+
+		for (const stock of stockInfo) {
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				Authorization: `Bearer ${token}`,
+				custtype: "P",
+			};
+			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
+
+			const financialRatioResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430300" },
+				},
+			).then((res) => res.json());
+			const financialRatioDataArray = await financialRatioResponse.output;
+
+			if (financialRatioDataArray && financialRatioDataArray.length !== 0) {
+				for (const financialRatioData of financialRatioDataArray) {
+					const financialRatio = this.financialRatioRepository.create({ ...financialRatioData, stock_info: stock });
+					await this.financialRatioRepository.save(financialRatio);
+				}
+			}
+		}
+
+		return new ApiResponse({}, "Successfully fetched financial ratio info");
+	}
 }
