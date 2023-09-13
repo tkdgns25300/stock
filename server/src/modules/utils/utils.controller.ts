@@ -53,4 +53,10 @@ export class UtilsController {
 	async financialRatioToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.financialRatioToDatabase();
 	}
+
+	// Financial Info : Profit Ratio Info to DB
+	@Get("/profit-ratio-to-database")
+	async profitRatioToDatabase(): Promise<ApiResponse<{}>> {
+		return await this.utilsService.profitRatioToDatabase();
+	}
 }
