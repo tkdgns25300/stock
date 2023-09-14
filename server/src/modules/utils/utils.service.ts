@@ -8,7 +8,7 @@ import { writeFile } from "fs/promises";
 import { CompanyInfo } from "src/entities/CompanyInfo.entity";
 import { StockInfo } from "src/entities/StockInfo.entity";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { getToken } from "src/util/token/token";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
 import { BalanceSheet } from "src/entities/BalanceSheet.entity";
@@ -409,139 +409,184 @@ export class UtilsService {
 		return new ApiResponse({}, "Successfully fetched financial info");
 	}
 
-	async balanceSheetToDatabase(): Promise<ApiResponse<{}>> {
+	async balanceSheetToDatabase(): Promise<ApiResponse<string[]>> {
 		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
 
 		for (const stock of stockInfo) {
-			const token = await getToken();
-			const headers = {
-				"Content-Type": "application/json; charset=utf-8",
-				appkey: process.env.KIS_APP_KEY,
-				appsecret: process.env.KIS_APP_SECRET,
-				Authorization: `Bearer ${token}`,
-				custtype: "P",
-			};
-			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
-
-			const balanceSheetResponse = await fetch(
-				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-				{
-					method: "GET",
-					headers: { ...headers, tr_id: "FHKST66430100" },
-				},
-			).then((res) => res.json());
-			const balanceSheetDataArray = await balanceSheetResponse.output;
-
-			if (balanceSheetDataArray && balanceSheetDataArray.length !== 0) {
-				for (const balanceSheetData of balanceSheetDataArray) {
-					const balanceSheet = this.balanceSheetRepository.create({ ...balanceSheetData, stock_info: stock });
-					await this.balanceSheetRepository.save(balanceSheet);
-				}
+			try {
+				await this.fetchAndSaveData(stock, "balance-sheet");
+			} catch (error) {
+				console.error(`Failed to fetch balance-sheet for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
 			}
 		}
 
-		return new ApiResponse({}, "Successfully fetched balance sheet info");
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for balance-sheet: ${failedStocks.join(", ")}`);
+			await this.retryFailedFetches(failedStocks, "balance-sheet");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all balance-sheet data, with some failures");
 	}
 
-	async incomeStatementToDatabase(): Promise<ApiResponse<{}>> {
+	async incomeStatementToDatabase(): Promise<ApiResponse<string[]>> {
 		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
 
 		for (const stock of stockInfo) {
-			const token = await getToken();
-			const headers = {
-				"Content-Type": "application/json; charset=utf-8",
-				appkey: process.env.KIS_APP_KEY,
-				appsecret: process.env.KIS_APP_SECRET,
-				Authorization: `Bearer ${token}`,
-				custtype: "P",
-			};
-			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
-
-			const incomeStatementResponse = await fetch(
-				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-				{
-					method: "GET",
-					headers: { ...headers, tr_id: "FHKST66430200" },
-				},
-			).then((res) => res.json());
-			const incomeStatementDataArray = await incomeStatementResponse.output;
-
-			if (incomeStatementDataArray && incomeStatementDataArray.length !== 0) {
-				for (const incomeStatementData of incomeStatementDataArray) {
-					const incomeStatement = this.incomeStatementRepository.create({ ...incomeStatementData, stock_info: stock });
-					await this.incomeStatementRepository.save(incomeStatement);
-				}
+			try {
+				await this.fetchAndSaveData(stock, "income-statement");
+			} catch (error) {
+				console.error(`Failed to fetch income-statement for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
 			}
 		}
 
-		return new ApiResponse({}, "Successfully fetched income statement info");
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for income-statement: ${failedStocks.join(", ")}`);
+			await this.retryFailedFetches(failedStocks, "income-statement");
+		}
+
+		return new ApiResponse(
+			failedStocks,
+			"Successfully fetched and saved all income-statement data, with some failures",
+		);
 	}
 
-	async financialRatioToDatabase(): Promise<ApiResponse<{}>> {
+	async financialRatioToDatabase(): Promise<ApiResponse<string[]>> {
 		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
 
 		for (const stock of stockInfo) {
-			const token = await getToken();
-			const headers = {
-				"Content-Type": "application/json; charset=utf-8",
-				appkey: process.env.KIS_APP_KEY,
-				appsecret: process.env.KIS_APP_SECRET,
-				Authorization: `Bearer ${token}`,
-				custtype: "P",
-			};
-			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
-
-			const financialRatioResponse = await fetch(
-				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-				{
-					method: "GET",
-					headers: { ...headers, tr_id: "FHKST66430300" },
-				},
-			).then((res) => res.json());
-			const financialRatioDataArray = await financialRatioResponse.output;
-
-			if (financialRatioDataArray && financialRatioDataArray.length !== 0) {
-				for (const financialRatioData of financialRatioDataArray) {
-					const financialRatio = this.financialRatioRepository.create({ ...financialRatioData, stock_info: stock });
-					await this.financialRatioRepository.save(financialRatio);
-				}
+			try {
+				await this.fetchAndSaveData(stock, "financial-ratio");
+			} catch (error) {
+				console.error(`Failed to fetch financial-ratio for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
 			}
 		}
 
-		return new ApiResponse({}, "Successfully fetched financial ratio info");
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for financial-ratio: ${failedStocks.join(", ")}`);
+			await this.retryFailedFetches(failedStocks, "financial-ratio");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all financial-ratio data, with some failures");
 	}
 
-	async profitRatioToDatabase(): Promise<ApiResponse<{}>> {
+	async profitRatioToDatabase(): Promise<ApiResponse<string[]>> {
 		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
 
 		for (const stock of stockInfo) {
-			const token = await getToken();
-			const headers = {
-				"Content-Type": "application/json; charset=utf-8",
-				appkey: process.env.KIS_APP_KEY,
-				appsecret: process.env.KIS_APP_SECRET,
-				Authorization: `Bearer ${token}`,
-				custtype: "P",
-			};
-			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
-
-			const profitRatioResponse = await fetch(
-				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
-				{
-					method: "GET",
-					headers: { ...headers, tr_id: "FHKST66430400" },
-				},
-			).then((res) => res.json());
-			const profitRatioDataArray = await profitRatioResponse.output;
-
-			if (profitRatioDataArray && profitRatioDataArray.length !== 0) {
-				for (const profitRatioData of profitRatioDataArray) {
-					const profitRatio = this.profitRatioRepository.create({ ...profitRatioData, stock_info: stock });
-					await this.profitRatioRepository.save(profitRatio);
-				}
+			try {
+				await this.fetchAndSaveData(stock, "profit-ratio");
+			} catch (error) {
+				console.error(`Failed to fetch profit-ratio for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
 			}
 		}
 
-		return new ApiResponse({}, "Successfully fetched profit ratio info");
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for profit-ratio: ${failedStocks.join(", ")}`);
+			await this.retryFailedFetches(failedStocks, "profit-ratio");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all profit-ratio data, with some failures");
+	}
+
+	async retryFailedFetches(failedStocks: string[], type: string): Promise<void> {
+		const retryLimit = 3;
+		const retryDelay = 1000; // 1 second
+
+		for (let attempt = 1; attempt <= retryLimit; attempt++) {
+			console.log(`Retry attempt ${attempt} for failed fetches`);
+			const remainingFailedStocks: string[] = [];
+
+			for (const stockCode of failedStocks) {
+				try {
+					await this.fetchAndSaveData({ stock_code: stockCode }, type);
+				} catch (error) {
+					console.error(`Retry failed to fetch ${type} for ${stockCode}: ${error.message}`);
+					remainingFailedStocks.push(stockCode);
+				}
+			}
+
+			if (remainingFailedStocks.length === 0) {
+				console.log(`All retries succeeded for ${type}`);
+				break;
+			} else {
+				console.log(`Remaining failed fetches for ${type}: ${remainingFailedStocks.join(", ")}`);
+				failedStocks = remainingFailedStocks;
+				await new Promise((res) => setTimeout(res, retryDelay));
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.error(`Failed to fetch ${type} after ${retryLimit} attempts: ${failedStocks.join(", ")}`);
+		}
+	}
+
+	async fetchAndSaveData(stock: any, type: string): Promise<void> {
+		const token = await getToken();
+		const headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			appkey: process.env.KIS_APP_KEY,
+			appsecret: process.env.KIS_APP_SECRET,
+			Authorization: `Bearer ${token}`,
+			custtype: "P",
+		};
+		const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
+
+		const tr_id =
+			type === "balance-sheet"
+				? "FHKST66430100"
+				: type === "income-statement"
+				? "FHKST66430200"
+				: type === "financial-ratio"
+				? "FHKST66430300"
+				: "FHKST66430400";
+
+		const response = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers: { ...headers, tr_id },
+			},
+		);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch ${type} for ${stock.stock_code}: ${response.statusText}`);
+		}
+
+		const dataResponse = await response.json();
+		const dataArray = dataResponse.output;
+
+		if (dataArray && dataArray.length !== 0) {
+			let repository: Repository<any>;
+
+			switch (type) {
+				case "balance-sheet":
+					repository = this.balanceSheetRepository;
+					break;
+				case "income-statement":
+					repository = this.incomeStatementRepository;
+					break;
+				case "financial-ratio":
+					repository = this.financialRatioRepository;
+					break;
+				case "profit-ratio":
+					repository = this.profitRatioRepository;
+					break;
+				default:
+					throw new Error(`Unknown type: ${type}`);
+			}
+
+			for (const data of dataArray) {
+				const entity = repository.create({ ...data, stock_info: stock });
+				await repository.save(entity);
+			}
+		}
 	}
 }

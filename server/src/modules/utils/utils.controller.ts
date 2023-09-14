@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { UtilsService } from "./utils.service";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
 
@@ -31,31 +31,31 @@ export class UtilsController {
 	}
 
 	// Finacial Info to DB
-	@Get("/financial-info-to-database")
+	@Post("/financial-info-to-database")
 	async financialInfoToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.financialInfoToDatabase();
 	}
 
 	// Financial Info : Balance Sheet Info to DB
-	@Get("/balance-sheet-to-database")
+	@Post("/balance-sheet-to-database")
 	async balanceSheetToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.balanceSheetToDatabase();
 	}
 
 	// Financial Info : Income Statement Info to DB
-	@Get("/income-statement-to-database")
+	@Post("/income-statement-to-database")
 	async incomeStatementToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.incomeStatementToDatabase();
 	}
 
 	// Financial Info : Financial Ratio Info to DB
-	@Get("/financial-ratio-to-database")
+	@Post("/financial-ratio-to-database")
 	async financialRatioToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.financialRatioToDatabase();
 	}
 
 	// Financial Info : Profit Ratio Info to DB
-	@Get("/profit-ratio-to-database")
+	@Post("/profit-ratio-to-database")
 	async profitRatioToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.profitRatioToDatabase();
 	}
