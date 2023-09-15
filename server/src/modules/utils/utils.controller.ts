@@ -42,10 +42,20 @@ export class UtilsController {
 		return await this.utilsService.balanceSheetToDatabase();
 	}
 
+	@Post("/retry-failed-balance-sheet-to-database")
+	async retryFailedBalanceSheetToDatabase(@Body() failedStocks: string[]): Promise<ApiResponse<{}>> {
+		return await this.utilsService.retryFailedBalanceSheetToDatabase(failedStocks);
+	}
+
 	// Financial Info : Income Statement Info to DB
 	@Post("/income-statement-to-database")
 	async incomeStatementToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.incomeStatementToDatabase();
+	}
+
+	@Post("/retry-failed-income-statement-to-database")
+	async retryFailedIncomeStatementToDatabase(@Body() failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		return await this.utilsService.retryFailedIncomeStatementToDatabase(failedStocks);
 	}
 
 	// Financial Info : Financial Ratio Info to DB
@@ -54,9 +64,19 @@ export class UtilsController {
 		return await this.utilsService.financialRatioToDatabase();
 	}
 
+	@Post("/retry-failed-financial-ratio-to-database")
+	async retryFailedFinancialRatioToDatabase(@Body() failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		return await this.utilsService.retryFailedFinancialRatioToDatabase(failedStocks);
+	}
+
 	// Financial Info : Profit Ratio Info to DB
 	@Post("/profit-ratio-to-database")
 	async profitRatioToDatabase(): Promise<ApiResponse<{}>> {
 		return await this.utilsService.profitRatioToDatabase();
+	}
+
+	@Post("/retry-failed-profit-ratio-to-database")
+	async retryFailedProfitRatioToDatabase(@Body() failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		return await this.utilsService.retryFailedProfitRatioToDatabase(failedStocks);
 	}
 }

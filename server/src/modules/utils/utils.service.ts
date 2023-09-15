@@ -424,9 +424,20 @@ export class UtilsService {
 
 		if (failedStocks.length > 0) {
 			console.log(`Initial failed fetches for balance-sheet: ${failedStocks.join(", ")}`);
-			await this.retryFailedFetches(failedStocks, "balance-sheet");
+			failedStocks = await this.retryFailedFetches(failedStocks, "balance-sheet");
 		}
 
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all balance-sheet data, with some failures");
+	}
+
+	async retryFailedBalanceSheetToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.balanceSheetRepository
+			.createQueryBuilder()
+			.delete()
+			.from(BalanceSheet)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+		failedStocks = await this.retryFailedFetches(failedStocks, "balance-sheet");
 		return new ApiResponse(failedStocks, "Successfully fetched and saved all balance-sheet data, with some failures");
 	}
 
@@ -445,9 +456,24 @@ export class UtilsService {
 
 		if (failedStocks.length > 0) {
 			console.log(`Initial failed fetches for income-statement: ${failedStocks.join(", ")}`);
-			await this.retryFailedFetches(failedStocks, "income-statement");
+			failedStocks = await this.retryFailedFetches(failedStocks, "income-statement");
 		}
 
+		return new ApiResponse(
+			failedStocks,
+			"Successfully fetched and saved all income-statement data, with some failures",
+		);
+	}
+
+	async retryFailedIncomeStatementToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.incomeStatementRepository
+			.createQueryBuilder()
+			.delete()
+			.from(IncomeStatement)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "income-statement");
 		return new ApiResponse(
 			failedStocks,
 			"Successfully fetched and saved all income-statement data, with some failures",
@@ -469,9 +495,21 @@ export class UtilsService {
 
 		if (failedStocks.length > 0) {
 			console.log(`Initial failed fetches for financial-ratio: ${failedStocks.join(", ")}`);
-			await this.retryFailedFetches(failedStocks, "financial-ratio");
+			failedStocks = await this.retryFailedFetches(failedStocks, "financial-ratio");
 		}
 
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all financial-ratio data, with some failures");
+	}
+
+	async retryFailedFinancialRatioToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.financialRatioRepository
+			.createQueryBuilder()
+			.delete()
+			.from(FinancialRatio)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "financial-ratio");
 		return new ApiResponse(failedStocks, "Successfully fetched and saved all financial-ratio data, with some failures");
 	}
 
@@ -490,13 +528,25 @@ export class UtilsService {
 
 		if (failedStocks.length > 0) {
 			console.log(`Initial failed fetches for profit-ratio: ${failedStocks.join(", ")}`);
-			await this.retryFailedFetches(failedStocks, "profit-ratio");
+			failedStocks = await this.retryFailedFetches(failedStocks, "profit-ratio");
 		}
 
 		return new ApiResponse(failedStocks, "Successfully fetched and saved all profit-ratio data, with some failures");
 	}
 
-	async retryFailedFetches(failedStocks: string[], type: string): Promise<void> {
+	async retryFailedProfitRatioToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.profitRatioRepository
+			.createQueryBuilder()
+			.delete()
+			.from(ProfitRatio)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "profit-ratio");
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all profit-ratio data, with some failures");
+	}
+
+	async retryFailedFetches(failedStocks: string[], type: string): Promise<string[]> {
 		const retryLimit = 3;
 		const retryDelay = 1000; // 1 second
 
@@ -526,6 +576,8 @@ export class UtilsService {
 		if (failedStocks.length > 0) {
 			console.error(`Failed to fetch ${type} after ${retryLimit} attempts: ${failedStocks.join(", ")}`);
 		}
+
+		return failedStocks.length === 0 ? [] : failedStocks;
 	}
 
 	async fetchAndSaveData(stock: any, type: string): Promise<void> {
