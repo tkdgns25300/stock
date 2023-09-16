@@ -29,12 +29,12 @@ const FinancialRatioQuartly: React.FC<FinancialRatioQuartlyProps> = ({
 	};
 
 	const dataItems: { label: string; key: keyof FinancialRatioData; unit: string }[] = [
-		{ label: "매출액 증가율", key: "grs", unit: "%" },
-		{ label: "영업이익 증가율", key: "bsopPrfiInrt", unit: "%" },
-		{ label: "순이익 증가율", key: "ntinInrt", unit: "%" },
+		{ label: "매출액 증가율", key: "grs", unit: "" },
+		{ label: "영업이익 증가율", key: "bsopPrfiInrt", unit: "" },
+		{ label: "순이익 증가율", key: "ntinInrt", unit: "" },
 		{ label: "ROE", key: "roeVal", unit: "" },
 		{ label: "EPS", key: "eps", unit: "" },
-		{ label: "주당매출액", key: "sps", unit: "원" },
+		{ label: "주당매출액", key: "sps", unit: "" },
 		{ label: "BPS", key: "bps", unit: "" },
 		{ label: "유보비율", key: "rsrvRate", unit: "" },
 		{ label: "부채비율", key: "lbltRate", unit: "" },
