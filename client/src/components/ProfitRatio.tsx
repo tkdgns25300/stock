@@ -14,7 +14,7 @@ const ProfitRatio: React.FC<ProfitRatioProps> = ({ profitRatioData }) => {
 
 	const getMaxValue = () => {
 		const maxValue = Math.max(
-			...fiveProfitRatioData.map((data: any) => Math.max(data.saleAccount, data.bsopPrti, data.thtrNtin)),
+			...fiveProfitRatioData.map((data: any) => Math.max(data.cptlNtinRate, data.selfCptlNtinInrt, data.saleNtinRate)),
 		);
 		return maxValue;
 	};

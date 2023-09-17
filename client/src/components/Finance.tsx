@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import FinancialRatio from "./FinancialRatio";
 import IncomeStatement from "./IncomeStatement";
 import BalanceSheet from "./BalanceSheet";
+import ProfitRatio from "./ProfitRatio";
 import { IoMdArrowDown } from "react-icons/io";
 import {
 	BalanceSheetData,
@@ -10,7 +11,6 @@ import {
 	IncomeStatementData,
 	ProfitRatioData,
 } from "./types/Finance/interface";
-import ProfitRatio from "./ProfitRatio";
 
 const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 	const [IncomeStatementData, setIncomeStatementData] = useState<IncomeStatementData[]>([]);

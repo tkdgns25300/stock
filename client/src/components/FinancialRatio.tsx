@@ -14,7 +14,7 @@ const FinancialRatio: React.FC<FinancialRatioProps> = ({ financialRatioData }) =
 
 	const getMaxValue = () => {
 		const maxValue = Math.max(
-			...fiveFinancialRatioData.map((data: any) => Math.max(data.saleAccount, data.bsopPrti, data.thtrNtin)),
+			...fiveFinancialRatioData.map((data: any) => Math.max(data.grs, data.bsopPrfiInrt, data.ntinInrt)),
 		);
 		return maxValue;
 	};
