@@ -23,6 +23,14 @@ export class DerivativesService {
 
 	async eqsfuStkByddTrd() {
 		try {
+			const url = "http://data-dbg.krx.co.kr/svc/apis/drv/fut_bydd_trd?basDd=20200414";
+
+			const response = await axios.get(url, {
+				responseType: "json",
+				headers: {
+					AUTH_KEY: process.env.API_KEY,
+				},
+			});
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
