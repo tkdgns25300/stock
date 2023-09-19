@@ -23,6 +23,12 @@ const ResultRight: React.FC<ResultRightProps> = ({ companyName, stockCode, stock
 				</div>
 				<Finance stockCode={stockCode} />
 			</div>
+			<div className="relative mx-12 my-12 shadow-xl w-auto" style={{ borderRadius: "2rem" }}>
+				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
+					News
+				</div>
+				<div>{companyName}</div>
+			</div>
 		</div>
 	);
 };
