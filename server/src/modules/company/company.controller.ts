@@ -38,9 +38,14 @@ export class CompanyController {
 		return await this.companyService.getPriceInfo(stockCode);
 	}
 
-	// // get company finance info by stock code
+	// get company finance info by stock code
 	@Get("/finance-info/:stockCode")
 	async getFinanceInfo(@Param("stockCode") stockCode: string): Promise<ApiResponse<FinancialInfoData>> {
 		return await this.companyService.getFinanceInfo(stockCode);
+	}
+
+	@Get("/news/:companyName")
+	async getNews(@Param("companyName") companyName: string) {
+		return await this.companyService.getNews(companyName);
 	}
 }

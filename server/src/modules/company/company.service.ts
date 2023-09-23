@@ -14,6 +14,8 @@ import { IncomeStatement } from "src/entities/IncomeStatement.entity";
 import { FinancialRatio } from "src/entities/FinancialRatio.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 import { FinancialInfoData } from "src/types/FinancialInfoData";
+import Parser from "rss-parser";
+import { NewsData } from "src/types/NewsData";
 
 @Injectable()
 export class CompanyService {
@@ -173,6 +175,29 @@ export class CompanyService {
 			return new ApiResponse<FinancialInfoData>(returnData, "Successfully fetched the stock's financial information");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getNews(companyName: string) {
+		try {
+			const parser = new Parser();
+			const encodedCompanyName = encodeURIComponent(companyName);
+			const RSS_URL = `https://news.google.com/rss/search?q=${encodedCompanyName}&hl=ko&gl=KR&ceid=KR:ko`;
+			const feed = await parser.parseURL(RSS_URL);
+
+			const returnData: NewsData[] = feed.items.map((item) => ({
+				title: item.title as string,
+				link: item.link as string,
+				pubDate: item.pubDate as string,
+				content: item.content as string,
+				contentSnippet: item.contentSnippet as string,
+				guid: item.guid as string,
+				isoDate: item.isoDate as string,
+			}));
+
+			return new ApiResponse(returnData, `Successfully fetched news for ${companyName}`);
+		} catch (error) {
+			throw new HttpException(`Failed to fetch news: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
