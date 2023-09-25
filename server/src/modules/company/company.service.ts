@@ -15,7 +15,11 @@ import { FinancialRatio } from "src/entities/FinancialRatio.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 import { FinancialInfoData } from "src/types/FinancialInfoData";
 import Parser from "rss-parser";
+import puppeteer from "puppeteer";
+import axios from "axios";
+import cheerio from "cheerio";
 import { NewsData } from "src/types/NewsData";
+import { link } from "fs";
 
 @Injectable()
 export class CompanyService {
@@ -178,26 +182,124 @@ export class CompanyService {
 		}
 	}
 
-	async getNews(companyName: string) {
+	// async getNews(companyName: string): Promise<ApiResponse<NewsData[]>> {
+	// 	try {
+	// 		const browser = await puppeteer.launch();
+	// 		const page = await browser.newPage();
+	// 		const encodedCompanyName = encodeURIComponent(companyName);
+	// 		const searchURL = `https://news.google.com/search?q=${encodedCompanyName}&hl=ko&gl=KR&ceid=KR:ko`;
+
+	// 		await page.goto(searchURL, { waitUntil: "networkidle2" });
+
+	// 		const articles = await page.evaluate(() => {
+	// 			const articleNodes = Array.from(document.querySelectorAll("article"));
+	// 			return articleNodes.slice(0, 30).map((article) => {
+	// 				const titleElement = article.querySelector("h3") || article.querySelector("h4");
+	// 				const linkElement = article.querySelector("a");
+	// 				const snippetElement = article.querySelector(".HO8did");
+	// 				const dateElement = article.querySelector("time");
+
+	// 				return {
+	// 					title: titleElement?.textContent || "",
+	// 					link: linkElement?.href || "",
+	// 					contentSnippet: snippetElement?.textContent || "",
+	// 					pubDate: dateElement?.getAttribute("datetime") || "",
+	// 					guid: linkElement?.href || "",
+	// 					isoDate: dateElement?.getAttribute("datetime") || "",
+	// 					content: "", // Assuming content is not directly available
+	// 				};
+	// 			});
+	// 		});
+
+	// 		await browser.close();
+
+	// 		const newsData: NewsData[] = await Promise.all(articles.map(async (article) => article));
+
+	// 		return new ApiResponse(newsData, `Successfully fetched news for ${companyName}`);
+	// 	} catch (error) {
+	// 		throw new HttpException(`Failed to fetch news: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+	// 	}
+	// }
+
+	async getNews(companyName: string): Promise<ApiResponse<NewsData[]>> {
 		try {
-			const parser = new Parser();
+			// Puppeteer 브라우저 실행
+			const browser = await puppeteer.launch();
+			const page = await browser.newPage();
+
+			// 검색어를 인코딩하여 URL 생성
 			const encodedCompanyName = encodeURIComponent(companyName);
-			const RSS_URL = `https://news.google.com/rss/search?q=${encodedCompanyName}&hl=ko&gl=KR&ceid=KR:ko`;
-			const feed = await parser.parseURL(RSS_URL);
+			const searchURL = `https://news.google.com/search?q=${encodedCompanyName}&hl=ko&gl=KR&ceid=KR:ko`;
 
-			const returnData: NewsData[] = feed.items.map((item) => ({
-				title: item.title as string,
-				link: item.link as string,
-				pubDate: item.pubDate as string,
-				content: item.content as string,
-				contentSnippet: item.contentSnippet as string,
-				guid: item.guid as string,
-				isoDate: item.isoDate as string,
-			}));
+			// 페이지 이동 및 로드 대기
+			await page.goto(searchURL, { waitUntil: "networkidle2" });
 
-			return new ApiResponse(returnData, `Successfully fetched news for ${companyName}`);
+			// 기사 추출
+			const articles = await page.evaluate(() => {
+				// 페이지에서 모든 기사(article) 요소 선택
+				const articleNodes = Array.from(document.querySelectorAll("article"));
+				console.log(articleNodes.length);
+
+				// 기사 요소를 순회하며 필요한 데이터 추출
+				return articleNodes.slice(0, 30).map((article: HTMLElement) => {
+					// 기사 제목과 링크 추출
+					const titleElement = article.querySelector("h3 a") || article.querySelector("h4 a");
+					const linkElement = article.querySelector("h3 a") || article.querySelector("h4 a");
+					const title = titleElement?.textContent?.trim() || "";
+					const link = linkElement?.getAttribute("href") || "";
+
+					// 기사 발행일 추출
+					const dateElement = article.querySelector("time");
+					const pubDate = dateElement?.getAttribute("datetime") || "";
+
+					// 기사 내용 요약 추출
+					const snippetElement = article.querySelector(".HO8did");
+					const contentSnippet = snippetElement?.textContent?.trim() || "";
+
+					// GUID 설정 (기사 링크로 대체)
+					const guid = link;
+
+					// ISO 날짜 추출
+					const isoDate = pubDate;
+
+					// 기사 데이터 객체 반환
+					return {
+						title,
+						link,
+						pubDate,
+						contentSnippet,
+						guid,
+						isoDate,
+						content: "", // 기사 내용은 직접적으로 추출하지 않음
+					};
+				});
+			});
+
+			// Puppeteer 브라우저 종료
+			await browser.close();
+
+			// 추출한 기사 데이터 반환
+			return new ApiResponse(articles, `${companyName}에 대한 뉴스 가져오기 성공`);
 		} catch (error) {
-			throw new HttpException(`Failed to fetch news: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+			// 에러 발생 시 예외 처리
+			throw new HttpException(`뉴스 가져오기 실패: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 }
+// article :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article
+
+// title :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article > div.m5k28 > div.B6pJDd > div > a
+
+// link :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article > div.m5k28 > div.B6pJDd > div > a
+
+// news logo :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article > div.m5k28 > div.B6pJDd > div > div > img.msvBD.zC7z7b
+
+// time :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article > div.UOVeFe > time
+
+// image :
+// #yDmH0d > c-wiz:nth-child(29) > div > main > div.UW0SDc > c-wiz > c-wiz:nth-child(1) > c-wiz > article > div.m5k28 > figure > img
