@@ -15,6 +15,7 @@ import { FinancialRatio } from "src/entities/FinancialRatio.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 import { FinancialInfoData } from "src/types/FinancialInfoData";
 import Parser from "rss-parser";
+import puppeteer from "puppeteer";
 import { NewsData } from "src/types/NewsData";
 
 @Injectable()
@@ -178,7 +179,7 @@ export class CompanyService {
 		}
 	}
 
-	private async getNewsFromGoogle(companyName: string): Promise<NewsData[]> {
+	async getNews(companyName: string): Promise<ApiResponse<NewsData[]>> {
 		try {
 			const parser = new Parser();
 			const encodedCompanyName = encodeURIComponent(companyName);
@@ -193,17 +194,9 @@ export class CompanyService {
 				contentSnippet: item.contentSnippet || "",
 				guid: item.guid || "",
 				isoDate: item.isoDate || "",
+				image: "", // 이미지 필드, 클라이언트 측 구현
 			}));
 
-			return newsData;
-		} catch (error) {
-			throw new Error(`Failed to fetch news: ${error.message}`);
-		}
-	}
-
-	async getNews(companyName: string): Promise<ApiResponse<NewsData[]>> {
-		try {
-			const newsData = await this.getNewsFromGoogle(companyName);
 			return new ApiResponse(newsData, `Successfully fetched news for ${companyName}`);
 		} catch (error) {
 			throw new Error(`Failed to fetch news: ${error.message}`);
