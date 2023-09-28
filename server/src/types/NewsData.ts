@@ -6,4 +6,5 @@ export interface NewsData {
 	contentSnippet: string;
 	guid: string;
 	isoDate: string;
+	image: string;
 }
