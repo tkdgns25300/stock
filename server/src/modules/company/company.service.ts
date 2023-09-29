@@ -194,7 +194,6 @@ export class CompanyService {
 				contentSnippet: item.contentSnippet || "",
 				guid: item.guid || "",
 				isoDate: item.isoDate || "",
-				image: "", // 이미지 필드, 클라이언트 측 구현
 			}));
 
 			return new ApiResponse(newsData, `Successfully fetched news for ${companyName}`);
