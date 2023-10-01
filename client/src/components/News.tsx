@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NewsData, NewsProps } from "./types/News/interface";
+import NewsItem from "./NewsItem";
 
 const News: React.FC<NewsProps> = ({ companyName }) => {
 	const [articles, setArticles] = useState<NewsData[]>([]);
 	const [page, setPage] = useState<number>(1);
 	const [loading, setLoading] = useState<boolean>(false);
-	const [hasMore, setHasMore] = useState<boolean>(true);
 
 	useEffect(() => {
 		const fetchNewsData = async () => {
@@ -18,10 +18,6 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const newsData = await response.json();
-
-				if (newsData.result.length === 0) {
-					setHasMore(false);
-				}
 
 				setArticles(newsData.result);
 			} catch (error) {
@@ -37,7 +33,6 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 	useEffect(() => {
 		setArticles([]);
 		setPage(1);
-		setHasMore(true);
 	}, [companyName]);
 
 	const handleLoadMore = () => {
@@ -45,28 +40,28 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 	};
 
 	return (
-		<div>
+		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1">
 			<h2>Latest News for {companyName}</h2>
 			<ul>
 				{articles.slice(0, page * 5).map((article, index) => (
-					<li key={index}>
-						<h3>
-							<a href={article.link} target="_blank" rel="noopener noreferrer">
-								{article.title}
-							</a>
-						</h3>
-						<p>{article.contentSnippet}</p>
-						<p>Published Date: {article.pubDate}</p>
-					</li>
+					<NewsItem
+						key={index}
+						title={article.title}
+						link={article.link}
+						pubDate={article.pubDate}
+						content={article.content}
+						contentSnippet={article.contentSnippet}
+						guid={article.guid}
+						isoDate={article.isoDate}
+					/>
 				))}
 			</ul>
 			{loading && <p>Loading...</p>}
-			{!loading && hasMore && (
+			{!loading && (
 				<button onClick={handleLoadMore} disabled={loading}>
 					Load More
 				</button>
 			)}
-			{!loading && !hasMore && <p>No more news available</p>}
 		</div>
 	);
 };
