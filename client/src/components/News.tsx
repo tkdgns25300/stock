@@ -41,24 +41,31 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 
 	return (
 		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1">
-			<h2>Latest News for {companyName}</h2>
 			<ul>
 				{articles.slice(0, page * 5).map((article, index) => (
-					<NewsItem
-						key={index}
-						title={article.title}
-						link={article.link}
-						pubDate={article.pubDate}
-						content={article.content}
-						contentSnippet={article.contentSnippet}
-						guid={article.guid}
-						isoDate={article.isoDate}
-					/>
+					<React.Fragment key={index}>
+						<NewsItem
+							title={article.title}
+							link={article.link}
+							pubDate={article.pubDate}
+							content={article.content}
+							contentSnippet={article.contentSnippet}
+							guid={article.guid}
+							isoDate={article.isoDate}
+						/>
+						{index < articles.slice(0, page * 5).length - 1 && (
+							<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+						)}
+					</React.Fragment>
 				))}
 			</ul>
 			{loading && <p>Loading...</p>}
 			{!loading && (
-				<button onClick={handleLoadMore} disabled={loading}>
+				<button
+					onClick={handleLoadMore}
+					disabled={loading}
+					className="mt-4 py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+				>
 					Load More
 				</button>
 			)}
