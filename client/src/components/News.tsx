@@ -64,7 +64,7 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 				<button
 					onClick={handleLoadMore}
 					disabled={loading}
-					className="mt-4 py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+					className="mt-4 py-2 px-4 font-bold rounded-md bg-gray-100 hover:bg-gray-300"
 				>
 					Load More
 				</button>
