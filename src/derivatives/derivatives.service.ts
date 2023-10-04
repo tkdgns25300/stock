@@ -54,4 +54,11 @@ export class DerivativesService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async optByddTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

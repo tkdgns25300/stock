@@ -22,4 +22,10 @@ export class DerivativesController {
 	getEqkfuKsqByddTrd() {
 		return this.derivativesService.eqkfuKsqByddTrd();
 	}
+
+	// 옵션 일별매매정보 (주식옵션外)
+	@Get("opt_bydd_trd")
+	getOptByddTrd() {
+		return this.derivativesService.optByddTrd();
+	}
 }
