@@ -201,4 +201,56 @@ export class CompanyService {
 			throw new Error(`Failed to fetch news: ${error.message}`);
 		}
 	}
+
+	async getInvestOpinion(stockCode: string) {
+		try {
+			// 날짜를 'YYYYMMDD' 형식으로 변환하는 함수
+			const formatDate = (date) => {
+				const year = date.getFullYear();
+				const month = String(date.getMonth() + 1).padStart(2, "0");
+				const day = String(date.getDate()).padStart(2, "0");
+				return `${year}${month}${day}`;
+			};
+
+			// 오늘의 날짜와 5년 전의 날짜를 계산
+			const today = new Date();
+			const fiveYearsAgo = new Date();
+			fiveYearsAgo.setFullYear(today.getFullYear() - 5);
+
+			const FID_INPUT_DATE_2 = formatDate(today);
+			const FID_INPUT_DATE_1 = formatDate(fiveYearsAgo);
+
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				tr_id: "FHKST663400C0",
+				custtype: "P",
+				Authorization: `Bearer ${token}`,
+			};
+
+			const response = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/invest-opbysec?FID_COND_MRKT_DIV_CODE=J&FID_COND_SCR_DIV_CODE=16634&FID_INPUT_ISCD=${stockCode}&FID_DIV_CLS_CODE=0&FID_INPUT_DATE_1=${FID_INPUT_DATE_1}&FID_INPUT_DATE_2=${FID_INPUT_DATE_2}`,
+				{ headers },
+			);
+
+			const data = await response.json();
+
+			// const returnData: StockPriceInfoData = {
+			// 	stckPrpr: Number(data.output.stck_prpr),
+			// 	prdyVrss: Number(data.output.prdy_vrss),
+			// 	prdyVrssSign: Number(data.output.prdy_vrss_sign),
+			// 	stckHgpr: Number(data.output.stck_hgpr),
+			// 	stckLwpr: Number(data.output.stck_lwpr),
+			// 	w52Hgpr: Number(data.output.w52_hgpr),
+			// 	w52Lwpr: Number(data.output.w52_lwpr),
+			// 	htsAvls: Number(data.output.hts_avls),
+			// };
+
+			return new ApiResponse<StockPriceInfoData>(data, "Successfully fetched the stock's price information");
+		} catch (error) {
+			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

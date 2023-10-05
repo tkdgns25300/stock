@@ -44,8 +44,15 @@ export class CompanyController {
 		return await this.companyService.getFinanceInfo(stockCode);
 	}
 
+	// get company news by company name
 	@Get("/news/:companyName")
 	async getNews(@Param("companyName") companyName: string) {
 		return await this.companyService.getNews(companyName);
+	}
+
+	// get company invest opinion by stock code
+	@Get("/investOpinion/:stockCode")
+	async getInvestOpinion(@Param("stockCode") stockCode: string) {
+		return await this.companyService.getInvestOpinion(stockCode);
 	}
 }
