@@ -8,6 +8,7 @@ import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
 import { StockPriceInfoData } from "src/types/StockPriceInfoData";
 import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
 import { FinancialInfoData } from "src/types/FinancialInfoData";
+import { InvestmentOpinionData } from "src/types/InvestmentOpinionData";
 
 @Controller("company")
 export class CompanyController {
@@ -52,7 +53,7 @@ export class CompanyController {
 
 	// get company invest opinion by stock code
 	@Get("/investOpinion/:stockCode")
-	async getInvestOpinion(@Param("stockCode") stockCode: string) {
-		return await this.companyService.getInvestOpinion(stockCode);
+	async getInvestOpinion(@Param("stockCode") stockCode: string): Promise<ApiResponse<InvestmentOpinionData[]>> {
+		return await this.companyService.getInvestmentOpinion(stockCode);
 	}
 }

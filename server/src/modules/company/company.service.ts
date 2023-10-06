@@ -17,6 +17,7 @@ import { FinancialInfoData } from "src/types/FinancialInfoData";
 import Parser from "rss-parser";
 import puppeteer from "puppeteer";
 import { NewsData } from "src/types/NewsData";
+import { InvestmentOpinionData } from "src/types/InvestmentOpinionData";
 
 @Injectable()
 export class CompanyService {
@@ -202,7 +203,7 @@ export class CompanyService {
 		}
 	}
 
-	async getInvestOpinion(stockCode: string) {
+	async getInvestmentOpinion(stockCode: string): Promise<ApiResponse<InvestmentOpinionData[]>> {
 		try {
 			// 날짜를 'YYYYMMDD' 형식으로 변환하는 함수
 			const formatDate = (date) => {
@@ -236,19 +237,17 @@ export class CompanyService {
 			);
 
 			const data = await response.json();
+			const returnData: InvestmentOpinionData[] = data.output.map((investOpinion) => {
+				return {
+					stckBsopDate: investOpinion.stck_bsop_date,
+					invtOpnn: investOpinion.invt_opnn,
+					invtOpnnClsCode: investOpinion.invt_opnn_cls_code,
+					mbcrName: investOpinion.mbcr_name,
+					htsGoalPrc: investOpinion.hts_goal_prc,
+				};
+			});
 
-			// const returnData: StockPriceInfoData = {
-			// 	stckPrpr: Number(data.output.stck_prpr),
-			// 	prdyVrss: Number(data.output.prdy_vrss),
-			// 	prdyVrssSign: Number(data.output.prdy_vrss_sign),
-			// 	stckHgpr: Number(data.output.stck_hgpr),
-			// 	stckLwpr: Number(data.output.stck_lwpr),
-			// 	w52Hgpr: Number(data.output.w52_hgpr),
-			// 	w52Lwpr: Number(data.output.w52_lwpr),
-			// 	htsAvls: Number(data.output.hts_avls),
-			// };
-
-			return new ApiResponse<StockPriceInfoData>(data, "Successfully fetched the stock's price information");
+			return new ApiResponse<InvestmentOpinionData>(returnData, "Successfully fetched the stock's price information");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
