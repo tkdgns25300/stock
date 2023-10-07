@@ -206,7 +206,7 @@ export class CompanyService {
 	async getInvestmentOpinion(stockCode: string): Promise<ApiResponse<InvestmentOpinionData[]>> {
 		try {
 			// 날짜를 'YYYYMMDD' 형식으로 변환하는 함수
-			const formatDate = (date) => {
+			const formatDate = (date: Date): string => {
 				const year = date.getFullYear();
 				const month = String(date.getMonth() + 1).padStart(2, "0");
 				const day = String(date.getDate()).padStart(2, "0");
@@ -237,7 +237,7 @@ export class CompanyService {
 			);
 
 			const data = await response.json();
-			const returnData: InvestmentOpinionData[] = data.output.map((investOpinion) => {
+			const returnData: InvestmentOpinionData[] = data.output.map((investOpinion: any) => {
 				return {
 					stckBsopDate: investOpinion.stck_bsop_date,
 					invtOpnn: investOpinion.invt_opnn,
@@ -247,7 +247,7 @@ export class CompanyService {
 				};
 			});
 
-			return new ApiResponse<InvestmentOpinionData>(returnData, "Successfully fetched the stock's price information");
+			return new ApiResponse<InvestmentOpinionData[]>(returnData, "Successfully fetched the stock's price information");
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
