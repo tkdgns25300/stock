@@ -2,7 +2,7 @@ export interface InvestmentOpinionProps {
 	stockCode: string;
 }
 
-export interface NewsData {
+export interface InvestmentOpinionData {
 	stckBsopDate: string;
 	invtOpnn: string;
 	invtOpnnClsCode: string;
@@ -10,7 +10,7 @@ export interface NewsData {
 	htsGoalPrc: string;
 }
 
-export interface NewsItemProps {
+export interface InvestmentOpinionItemProps {
 	stckBsopDate: string;
 	invtOpnn: string;
 	invtOpnnClsCode: string;
