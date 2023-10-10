@@ -11,9 +11,7 @@ const News: React.FC<NewsProps> = ({ companyName }) => {
 		const fetchNewsData = async () => {
 			try {
 				setLoading(true);
-				const response = await fetch(
-					`${process.env.REACT_APP_API_SERVER_URI}/company/news/${companyName}?page=${page}&pageSize=5`,
-				);
+				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/news/${companyName}`);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
