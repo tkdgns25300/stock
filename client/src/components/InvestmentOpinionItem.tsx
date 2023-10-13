@@ -8,7 +8,15 @@ const InvestmentOpinionItem: React.FC<InvestmentOpinionItemProps> = ({
 	mbcrName,
 	htsGoalPrc,
 }) => {
-	return <div>ok</div>;
+	return (
+		<tr>
+			<td>{mbcrName}</td>
+			<td>{stckBsopDate}</td>
+			<td>{invtOpnn}</td>
+			<td>{invtOpnnClsCode}</td>
+			<td>{htsGoalPrc.toLocaleString()}</td>
+		</tr>
+	);
 };
 
 export default InvestmentOpinionItem;
