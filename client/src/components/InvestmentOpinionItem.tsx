@@ -10,11 +10,11 @@ const InvestmentOpinionItem: React.FC<InvestmentOpinionItemProps> = ({
 }) => {
 	return (
 		<tr>
-			<td>{mbcrName}</td>
-			<td>{stckBsopDate}</td>
-			<td>{invtOpnn}</td>
-			<td>{invtOpnnClsCode}</td>
-			<td>{htsGoalPrc.toLocaleString()}</td>
+			<td className="px-4 py-2 border border-gray-300">{stckBsopDate}</td>
+			<td className="px-4 py-2 border border-gray-300">{invtOpnn}</td>
+			<td className="px-4 py-2 border border-gray-300">{invtOpnnClsCode}</td>
+			<td className="px-4 py-2 border border-gray-300">{htsGoalPrc.toLocaleString()}</td>
+			<td className="px-4 py-2 border border-gray-300">{mbcrName}</td>
 		</tr>
 	);
 };

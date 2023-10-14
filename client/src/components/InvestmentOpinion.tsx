@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { InvestmentOpinionData, InvestmentOpinionProps } from "./types/InvestmentOpinion/interface";
+import InvestmentOpinionItem from "./InvestmentOpinionItem";
 
 const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 	const [opinions, setOpinions] = useState<InvestmentOpinionData[]>([]);
@@ -30,25 +31,26 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 			{loading ? (
 				<div>Loading...</div>
 			) : (
-				<table>
-					<thead>
+				<table className="min-w-full bg-white border border-gray-300">
+					<thead className="bg-gray-100">
 						<tr>
-							<th>증권사명</th>
-							<th>발표일</th>
-							<th>투자 의견</th>
-							<th>투자 의견 구분코드</th>
-							<th>목표가</th>
+							<th className="px-4 py-2 border border-gray-300">발표일</th>
+							<th className="px-4 py-2 border border-gray-300">투자 의견</th>
+							<th className="px-4 py-2 border border-gray-300">투자 의견 구분 코드</th>
+							<th className="px-4 py-2 border border-gray-300">목표가</th>
+							<th className="px-4 py-2 border border-gray-300">증권사명</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody className="font-doHyeon font-2xl">
 						{opinions.map((opinion, index) => (
-							<tr key={index}>
-								<td>{opinion.mbcrName}</td>
-								<td>{opinion.stckBsopDate}</td>
-								<td>{opinion.invtOpnn}</td>
-								<td>{opinion.invtOpnnClsCode}</td>
-								<td>{opinion.htsGoalPrc.toLocaleString()}</td>
-							</tr>
+							<InvestmentOpinionItem
+								key={index}
+								stckBsopDate={opinion.stckBsopDate}
+								invtOpnn={opinion.invtOpnn}
+								invtOpnnClsCode={opinion.invtOpnnClsCode}
+								mbcrName={opinion.mbcrName}
+								htsGoalPrc={opinion.htsGoalPrc}
+							/>
 						))}
 					</tbody>
 				</table>
