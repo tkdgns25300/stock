@@ -241,7 +241,7 @@ export class CompanyService {
 				return {
 					stckBsopDate: investOpinion.stck_bsop_date,
 					invtOpnn: investOpinion.invt_opnn,
-					invtOpnnClsCode: investOpinion.invt_opnn_cls_code,
+					stckPrpr: investOpinion.stck_prpr,
 					mbcrName: investOpinion.mbcr_name,
 					htsGoalPrc: investOpinion.hts_goal_prc,
 				};

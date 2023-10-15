@@ -1,7 +1,7 @@
 export interface InvestmentOpinionData {
 	stckBsopDate: string;
 	invtOpnn: string;
-	invtOpnnClsCode: string;
+	stckPrpr: string;
 	mbcrName: string;
 	htsGoalPrc: string;
 }
