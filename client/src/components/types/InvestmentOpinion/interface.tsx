@@ -5,7 +5,7 @@ export interface InvestmentOpinionProps {
 export interface InvestmentOpinionData {
 	stckBsopDate: string; // 발표일
 	invtOpnn: string; // 투자 의견
-	invtOpnnClsCode: string; // 투자 의견 구분 코드
+	stckPrpr: string; // 현재가
 	mbcrName: string; // 증권사명
 	htsGoalPrc: string; // 목표가
 }
@@ -13,7 +13,7 @@ export interface InvestmentOpinionData {
 export interface InvestmentOpinionItemProps {
 	stckBsopDate: string;
 	invtOpnn: string;
-	invtOpnnClsCode: string;
+	stckPrpr: string;
 	mbcrName: string;
 	htsGoalPrc: string;
 }

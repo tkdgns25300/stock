@@ -36,8 +36,8 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 						<tr>
 							<th className="px-4 py-2 border border-gray-300">발표일</th>
 							<th className="px-4 py-2 border border-gray-300">투자 의견</th>
-							<th className="px-4 py-2 border border-gray-300">투자 의견 구분 코드</th>
 							<th className="px-4 py-2 border border-gray-300">목표가</th>
+							<th className="px-4 py-2 border border-gray-300">괴리율</th>
 							<th className="px-4 py-2 border border-gray-300">증권사명</th>
 						</tr>
 					</thead>
@@ -47,7 +47,7 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 								key={index}
 								stckBsopDate={opinion.stckBsopDate}
 								invtOpnn={opinion.invtOpnn}
-								invtOpnnClsCode={opinion.invtOpnnClsCode}
+								stckPrpr={opinion.stckPrpr}
 								mbcrName={opinion.mbcrName}
 								htsGoalPrc={opinion.htsGoalPrc}
 							/>
