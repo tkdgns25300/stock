@@ -4,6 +4,7 @@ import InvestmentOpinionItem from "./InvestmentOpinionItem";
 
 const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 	const [opinions, setOpinions] = useState<InvestmentOpinionData[]>([]);
+	const [page, setPage] = useState<number>(1);
 	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
@@ -26,6 +27,10 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 		fetchInvestmentData();
 	}, [stockCode]);
 
+	const handleLoadMore = () => {
+		setPage((prevPage) => prevPage + 1);
+	};
+
 	return (
 		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1">
 			{loading ? (
@@ -42,7 +47,7 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 						</tr>
 					</thead>
 					<tbody className="font-doHyeon font-2xl">
-						{opinions.map((opinion, index) => (
+						{opinions.slice(0, page * 5).map((opinion, index) => (
 							<InvestmentOpinionItem
 								key={index}
 								stckBsopDate={opinion.stckBsopDate}
@@ -54,6 +59,11 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 						))}
 					</tbody>
 				</table>
+			)}
+			{opinions.length > page * 5 && (
+				<button onClick={handleLoadMore} className="mt-4 py-2 px-4 font-bold rounded-md bg-gray-100 hover:bg-gray-300">
+					Load More
+				</button>
 			)}
 		</div>
 	);
