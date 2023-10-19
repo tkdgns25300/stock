@@ -213,10 +213,10 @@ export class CompanyService {
 				return `${year}${month}${day}`;
 			};
 
-			// 오늘의 날짜와 5년 전의 날짜를 계산
+			// 오늘의 날짜와 1년 전의 날짜를 계산
 			const today = new Date();
 			const fiveYearsAgo = new Date();
-			fiveYearsAgo.setFullYear(today.getFullYear() - 5);
+			fiveYearsAgo.setFullYear(today.getFullYear() - 1);
 
 			const FID_INPUT_DATE_2 = formatDate(today);
 			const FID_INPUT_DATE_1 = formatDate(fiveYearsAgo);
