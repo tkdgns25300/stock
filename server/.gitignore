@@ -6,4 +6,11 @@
 .env.production
 
 # distribution
+<<<<<<< HEAD
 /dist
+=======
+/dist
+
+# token
+/src/util/token/token.json
+>>>>>>> dev

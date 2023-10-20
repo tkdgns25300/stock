@@ -8,7 +8,17 @@ import { writeFile } from "fs/promises";
 import { CompanyInfo } from "src/entities/CompanyInfo.entity";
 import { StockInfo } from "src/entities/StockInfo.entity";
 import { InjectRepository } from "@nestjs/typeorm";
+<<<<<<< HEAD
 import { Repository } from "typeorm";
+=======
+import { DeepPartial, Repository } from "typeorm";
+import { getToken } from "src/util/token/token";
+import { ApiResponse } from "src/dtos/ApiResponse.dto";
+import { BalanceSheet } from "src/entities/BalanceSheet.entity";
+import { IncomeStatement } from "src/entities/IncomeStatement.entity";
+import { FinancialRatio } from "src/entities/FinancialRatio.entity";
+import { ProfitRatio } from "src/entities/ProfitRatio.entity";
+>>>>>>> dev
 
 @Injectable()
 export class UtilsService {
@@ -17,6 +27,17 @@ export class UtilsService {
 		private companyInfoRepository: Repository<CompanyInfo>,
 		@InjectRepository(StockInfo)
 		private stockInfoRepository: Repository<StockInfo>,
+<<<<<<< HEAD
+=======
+		@InjectRepository(BalanceSheet)
+		private balanceSheetRepository: Repository<BalanceSheet>,
+		@InjectRepository(IncomeStatement)
+		private incomeStatementRepository: Repository<IncomeStatement>,
+		@InjectRepository(FinancialRatio)
+		private financialRatioRepository: Repository<FinancialRatio>,
+		@InjectRepository(ProfitRatio)
+		private profitRatioRepository: Repository<ProfitRatio>,
+>>>>>>> dev
 	) {}
 
 	async csvToJsonFirst(market: string, date: string): Promise<string> {
@@ -261,7 +282,12 @@ export class UtilsService {
 	}
 
 	async jsonToDatabase(market: string, date: string): Promise<string> {
+<<<<<<< HEAD
 		const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
+=======
+		// const thirdJsonFilePath = path.resolve(__dirname, `../../resources/output/${date}/${market}/third.json`);
+		const thirdJsonFilePath = path.resolve(`./resources/output/${date}/${market}/third.json`);
+>>>>>>> dev
 		const jsonData = fs.readFileSync(thirdJsonFilePath, "utf-8");
 		const ThirdJsonData = JSON.parse(jsonData);
 
@@ -309,4 +335,324 @@ export class UtilsService {
 
 		return "DB 데이터가 생성되었습니다.";
 	}
+<<<<<<< HEAD
+=======
+
+	async financialInfoToDatabase(): Promise<ApiResponse<{}>> {
+		const stockInfo = await this.stockInfoRepository.find();
+
+		for (const stock of stockInfo) {
+			// Get Financial Information
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				Authorization: `Bearer ${token}`,
+				custtype: "P",
+			};
+			const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
+
+			const balanceSheetResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430100" },
+				},
+			).then((res) => res.json());
+			const balanceSheetDataArray = await balanceSheetResponse.output;
+
+			const incomeStatementResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430200" },
+				},
+			).then((res) => res.json());
+			const incomeStatementDataArray = await incomeStatementResponse.output;
+
+			const financialRatioResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430300" },
+				},
+			).then((res) => res.json());
+			const financialRatioDataArray = await financialRatioResponse.output;
+
+			const profitRatioResponse = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+				{
+					method: "GET",
+					headers: { ...headers, tr_id: "FHKST66430400" },
+				},
+			).then((res) => res.json());
+			const ProfitRatioDataArray = await profitRatioResponse.output;
+
+			// Store Financial Information into DB
+			if (balanceSheetDataArray && balanceSheetDataArray.length !== 0) {
+				for (const balanceSheetData of balanceSheetDataArray) {
+					const balanceSheet = this.balanceSheetRepository.create({ ...balanceSheetData, stock_info: stock });
+					await this.balanceSheetRepository.save(balanceSheet);
+				}
+			}
+
+			if (incomeStatementDataArray && incomeStatementDataArray.length !== 0) {
+				for (const incomeStatementData of incomeStatementDataArray) {
+					const incomeStatement = this.incomeStatementRepository.create({ ...incomeStatementData, stock_info: stock });
+					await this.incomeStatementRepository.save(incomeStatement);
+				}
+			}
+
+			if (financialRatioDataArray && financialRatioDataArray.length !== 0) {
+				for (const financialRatioData of financialRatioDataArray) {
+					const financialRatio = this.financialRatioRepository.create({ ...financialRatioData, stock_info: stock });
+					await this.financialRatioRepository.save(financialRatio);
+				}
+			}
+
+			if (ProfitRatioDataArray && ProfitRatioDataArray.length !== 0) {
+				for (const ProfitRatioData of ProfitRatioDataArray) {
+					const profitRatio = this.profitRatioRepository.create({ ...ProfitRatioData, stock_info: stock });
+					await this.profitRatioRepository.save(profitRatio);
+				}
+			}
+		}
+
+		return new ApiResponse({}, "Successfully fetched financial info");
+	}
+
+	async balanceSheetToDatabase(): Promise<ApiResponse<string[]>> {
+		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
+
+		for (const stock of stockInfo) {
+			try {
+				await this.fetchAndSaveData(stock, "balance-sheet");
+			} catch (error) {
+				console.error(`Failed to fetch balance-sheet for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for balance-sheet: ${failedStocks.join(", ")}`);
+			failedStocks = await this.retryFailedFetches(failedStocks, "balance-sheet");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all balance-sheet data, with some failures");
+	}
+
+	async retryFailedBalanceSheetToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.balanceSheetRepository
+			.createQueryBuilder()
+			.delete()
+			.from(BalanceSheet)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+		failedStocks = await this.retryFailedFetches(failedStocks, "balance-sheet");
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all balance-sheet data, with some failures");
+	}
+
+	async incomeStatementToDatabase(): Promise<ApiResponse<string[]>> {
+		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
+
+		for (const stock of stockInfo) {
+			try {
+				await this.fetchAndSaveData(stock, "income-statement");
+			} catch (error) {
+				console.error(`Failed to fetch income-statement for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for income-statement: ${failedStocks.join(", ")}`);
+			failedStocks = await this.retryFailedFetches(failedStocks, "income-statement");
+		}
+
+		return new ApiResponse(
+			failedStocks,
+			"Successfully fetched and saved all income-statement data, with some failures",
+		);
+	}
+
+	async retryFailedIncomeStatementToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.incomeStatementRepository
+			.createQueryBuilder()
+			.delete()
+			.from(IncomeStatement)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "income-statement");
+		return new ApiResponse(
+			failedStocks,
+			"Successfully fetched and saved all income-statement data, with some failures",
+		);
+	}
+
+	async financialRatioToDatabase(): Promise<ApiResponse<string[]>> {
+		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
+
+		for (const stock of stockInfo) {
+			try {
+				await this.fetchAndSaveData(stock, "financial-ratio");
+			} catch (error) {
+				console.error(`Failed to fetch financial-ratio for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for financial-ratio: ${failedStocks.join(", ")}`);
+			failedStocks = await this.retryFailedFetches(failedStocks, "financial-ratio");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all financial-ratio data, with some failures");
+	}
+
+	async retryFailedFinancialRatioToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.financialRatioRepository
+			.createQueryBuilder()
+			.delete()
+			.from(FinancialRatio)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "financial-ratio");
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all financial-ratio data, with some failures");
+	}
+
+	async profitRatioToDatabase(): Promise<ApiResponse<string[]>> {
+		const stockInfo = await this.stockInfoRepository.find();
+		let failedStocks: string[] = [];
+
+		for (const stock of stockInfo) {
+			try {
+				await this.fetchAndSaveData(stock, "profit-ratio");
+			} catch (error) {
+				console.error(`Failed to fetch profit-ratio for ${stock.stock_code}: ${error.message}`);
+				failedStocks.push(stock.stock_code);
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.log(`Initial failed fetches for profit-ratio: ${failedStocks.join(", ")}`);
+			failedStocks = await this.retryFailedFetches(failedStocks, "profit-ratio");
+		}
+
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all profit-ratio data, with some failures");
+	}
+
+	async retryFailedProfitRatioToDatabase(failedStocks: string[]): Promise<ApiResponse<string[]>> {
+		await this.profitRatioRepository
+			.createQueryBuilder()
+			.delete()
+			.from(ProfitRatio)
+			.where("stock_code IN (:...stockCodes)", { stockCodes: failedStocks })
+			.execute();
+
+		failedStocks = await this.retryFailedFetches(failedStocks, "profit-ratio");
+		return new ApiResponse(failedStocks, "Successfully fetched and saved all profit-ratio data, with some failures");
+	}
+
+	async retryFailedFetches(failedStocks: string[], type: string): Promise<string[]> {
+		const retryLimit = 3;
+		const retryDelay = 1000; // 1 second
+
+		for (let attempt = 1; attempt <= retryLimit; attempt++) {
+			console.log(`Retry attempt ${attempt} for failed fetches`);
+			const remainingFailedStocks: string[] = [];
+
+			for (const stockCode of failedStocks) {
+				try {
+					await this.fetchAndSaveData({ stock_code: stockCode }, type);
+				} catch (error) {
+					console.error(`Retry failed to fetch ${type} for ${stockCode}: ${error.message}`);
+					remainingFailedStocks.push(stockCode);
+				}
+			}
+
+			if (remainingFailedStocks.length === 0) {
+				console.log(`All retries succeeded for ${type}`);
+				break;
+			} else {
+				console.log(`Remaining failed fetches for ${type}: ${remainingFailedStocks.join(", ")}`);
+				failedStocks = remainingFailedStocks;
+				await new Promise((res) => setTimeout(res, retryDelay));
+			}
+		}
+
+		if (failedStocks.length > 0) {
+			console.error(`Failed to fetch ${type} after ${retryLimit} attempts: ${failedStocks.join(", ")}`);
+		}
+
+		return failedStocks.length === 0 ? [] : failedStocks;
+	}
+
+	async fetchAndSaveData(stock: any, type: string): Promise<void> {
+		const token = await getToken();
+		const headers = {
+			"Content-Type": "application/json; charset=utf-8",
+			appkey: process.env.KIS_APP_KEY,
+			appsecret: process.env.KIS_APP_SECRET,
+			Authorization: `Bearer ${token}`,
+			custtype: "P",
+		};
+		const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stock.stock_code}`;
+
+		const tr_id =
+			type === "balance-sheet"
+				? "FHKST66430100"
+				: type === "income-statement"
+				? "FHKST66430200"
+				: type === "financial-ratio"
+				? "FHKST66430300"
+				: "FHKST66430400";
+
+		const response = await fetch(
+			`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+			{
+				method: "GET",
+				headers: { ...headers, tr_id },
+			},
+		);
+
+		if (!response.ok) {
+			throw new Error(`Failed to fetch ${type} for ${stock.stock_code}: ${response.statusText}`);
+		}
+
+		const dataResponse = await response.json();
+		const dataArray = dataResponse.output;
+
+		if (dataArray && dataArray.length !== 0) {
+			let repository: Repository<any>;
+
+			switch (type) {
+				case "balance-sheet":
+					repository = this.balanceSheetRepository;
+					break;
+				case "income-statement":
+					repository = this.incomeStatementRepository;
+					break;
+				case "financial-ratio":
+					repository = this.financialRatioRepository;
+					break;
+				case "profit-ratio":
+					repository = this.profitRatioRepository;
+					break;
+				default:
+					throw new Error(`Unknown type: ${type}`);
+			}
+
+			for (const data of dataArray) {
+				const entity = repository.create({ ...data, stock_info: stock });
+				await repository.save(entity);
+			}
+		}
+	}
+>>>>>>> dev
 }

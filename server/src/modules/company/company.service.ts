@@ -6,8 +6,23 @@ import { Repository } from "typeorm";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
 import { CompanySearchDto } from "src/dtos/CompanySearch.dto";
 import { ChartDataQueryDto } from "src/dtos/StockPriceSearch.dto";
+<<<<<<< HEAD
 import { StockPriceSearchData } from "src/types/StockPriceSearchData";
 import { getToken } from "src/util/token/token";
+=======
+import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
+import { getToken } from "src/util/token/token";
+import { StockPriceInfoData } from "src/types/StockPriceInfoData";
+import { BalanceSheet } from "src/entities/BalanceSheet.entity";
+import { IncomeStatement } from "src/entities/IncomeStatement.entity";
+import { FinancialRatio } from "src/entities/FinancialRatio.entity";
+import { ProfitRatio } from "src/entities/ProfitRatio.entity";
+import { FinancialInfoData } from "src/types/FinancialInfoData";
+import Parser from "rss-parser";
+import puppeteer from "puppeteer";
+import { NewsData } from "src/types/NewsData";
+import { InvestmentOpinionData } from "src/types/InvestmentOpinionData";
+>>>>>>> dev
 
 @Injectable()
 export class CompanyService {
@@ -16,6 +31,17 @@ export class CompanyService {
 		private companyInfoRepository: Repository<CompanyInfo>,
 		@InjectRepository(StockInfo)
 		private stockInfoRepository: Repository<StockInfo>,
+<<<<<<< HEAD
+=======
+		@InjectRepository(BalanceSheet)
+		private balanceSheetRepository: Repository<BalanceSheet>,
+		@InjectRepository(IncomeStatement)
+		private incomeStatementRepository: Repository<IncomeStatement>,
+		@InjectRepository(FinancialRatio)
+		private financialRatioRepository: Repository<FinancialRatio>,
+		@InjectRepository(ProfitRatio)
+		private profitRatioRepository: Repository<ProfitRatio>,
+>>>>>>> dev
 	) {}
 
 	async getStockList(): Promise<ApiResponse<StockInfo[]>> {
@@ -71,7 +97,11 @@ export class CompanyService {
 		}
 	}
 
+<<<<<<< HEAD
 	async getChartData(query: ChartDataQueryDto): Promise<ApiResponse<StockPriceSearchData[]>> {
+=======
+	async getChartData(query: ChartDataQueryDto): Promise<ApiResponse<StockPriceByPeriodData[]>> {
+>>>>>>> dev
 		try {
 			const token = await getToken();
 			const headers = {
@@ -87,7 +117,11 @@ export class CompanyService {
 				{ headers },
 			);
 			const data = await response.json();
+<<<<<<< HEAD
 			const returnData: StockPriceSearchData[] = data.output2.map((item) => ({
+=======
+			const returnData: StockPriceByPeriodData[] = data.output2.map((item) => ({
+>>>>>>> dev
 				stckBsopDate: item.stck_bsop_date,
 				stckClpr: item.stck_clpr,
 				stckOprc: item.stck_oprc,
@@ -96,13 +130,21 @@ export class CompanyService {
 				acmlVol: item.acml_vol,
 			}));
 
+<<<<<<< HEAD
 			return new ApiResponse<StockPriceSearchData[]>(returnData, "Successfully fetched chart data");
+=======
+			return new ApiResponse<StockPriceByPeriodData[]>(returnData, "Successfully fetched chart data");
+>>>>>>> dev
 		} catch (error) {
 			throw new HttpException(`Failed to fetch chart data: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
+<<<<<<< HEAD
 	async getCurrentPrice(stockCode: string): Promise<ApiResponse<string>> {
+=======
+	async getPriceInfo(stockCode: string): Promise<ApiResponse<StockPriceInfoData>> {
+>>>>>>> dev
 		try {
 			const token = await getToken();
 			const headers = {
@@ -117,7 +159,123 @@ export class CompanyService {
 			);
 			const data = await response.json();
 
+<<<<<<< HEAD
 			return new ApiResponse<any>(data.output.stck_prpr, "Successfully fetched current price");
+=======
+			const returnData: StockPriceInfoData = {
+				stckPrpr: Number(data.output.stck_prpr),
+				prdyVrss: Number(data.output.prdy_vrss),
+				prdyVrssSign: Number(data.output.prdy_vrss_sign),
+				stckHgpr: Number(data.output.stck_hgpr),
+				stckLwpr: Number(data.output.stck_lwpr),
+				w52Hgpr: Number(data.output.w52_hgpr),
+				w52Lwpr: Number(data.output.w52_lwpr),
+				htsAvls: Number(data.output.hts_avls),
+			};
+
+			return new ApiResponse<StockPriceInfoData>(returnData, "Successfully fetched the stock's price information");
+		} catch (error) {
+			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getFinanceInfo(stockCode: string): Promise<ApiResponse<FinancialInfoData>> {
+		try {
+			const incomeStatement = await this.incomeStatementRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const balanceSheet = await this.balanceSheetRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const financialRatio = await this.financialRatioRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+			const profitRatio = await this.profitRatioRepository.find({
+				where: { stock_info: { stock_code: stockCode } },
+			});
+
+			const returnData: FinancialInfoData = {
+				incomeStatement,
+				balanceSheet,
+				financialRatio,
+				profitRatio,
+			};
+
+			return new ApiResponse<FinancialInfoData>(returnData, "Successfully fetched the stock's financial information");
+		} catch (error) {
+			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getNews(companyName: string): Promise<ApiResponse<NewsData[]>> {
+		try {
+			const parser = new Parser();
+			const encodedCompanyName = encodeURIComponent(companyName);
+			const RSS_URL = `https://news.google.com/rss/search?q=${encodedCompanyName}&hl=ko&gl=KR&ceid=KR:ko`;
+			const feed = await parser.parseURL(RSS_URL);
+
+			const newsData: NewsData[] = feed.items.map((item) => ({
+				title: item.title || "",
+				link: item.link || "",
+				pubDate: item.pubDate || "",
+				content: item.content || "",
+				contentSnippet: item.contentSnippet || "",
+				guid: item.guid || "",
+				isoDate: item.isoDate || "",
+			}));
+
+			return new ApiResponse(newsData, `Successfully fetched news for ${companyName}`);
+		} catch (error) {
+			throw new Error(`Failed to fetch news: ${error.message}`);
+		}
+	}
+
+	async getInvestmentOpinion(stockCode: string): Promise<ApiResponse<InvestmentOpinionData[]>> {
+		try {
+			// 날짜를 'YYYYMMDD' 형식으로 변환하는 함수
+			const formatDate = (date: Date): string => {
+				const year = date.getFullYear();
+				const month = String(date.getMonth() + 1).padStart(2, "0");
+				const day = String(date.getDate()).padStart(2, "0");
+				return `${year}${month}${day}`;
+			};
+
+			// 오늘의 날짜와 1년 전의 날짜를 계산
+			const today = new Date();
+			const fiveYearsAgo = new Date();
+			fiveYearsAgo.setFullYear(today.getFullYear() - 1);
+
+			const FID_INPUT_DATE_2 = formatDate(today);
+			const FID_INPUT_DATE_1 = formatDate(fiveYearsAgo);
+
+			const token = await getToken();
+			const headers = {
+				"Content-Type": "application/json; charset=utf-8",
+				appkey: process.env.KIS_APP_KEY,
+				appsecret: process.env.KIS_APP_SECRET,
+				tr_id: "FHKST663400C0",
+				custtype: "P",
+				Authorization: `Bearer ${token}`,
+			};
+
+			const response = await fetch(
+				`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/invest-opbysec?FID_COND_MRKT_DIV_CODE=J&FID_COND_SCR_DIV_CODE=16634&FID_INPUT_ISCD=${stockCode}&FID_DIV_CLS_CODE=0&FID_INPUT_DATE_1=${FID_INPUT_DATE_1}&FID_INPUT_DATE_2=${FID_INPUT_DATE_2}`,
+				{ headers },
+			);
+
+			const data = await response.json();
+			const returnData: InvestmentOpinionData[] = data.output.map((investOpinion: any) => {
+				return {
+					stckBsopDate: investOpinion.stck_bsop_date,
+					invtOpnn: investOpinion.invt_opnn,
+					stckPrpr: investOpinion.stck_prpr,
+					mbcrName: investOpinion.mbcr_name,
+					htsGoalPrc: investOpinion.hts_goal_prc,
+				};
+			});
+
+			return new ApiResponse<InvestmentOpinionData[]>(returnData, "Successfully fetched the stock's price information");
+>>>>>>> dev
 		} catch (error) {
 			throw new HttpException(`Failed to fetch current price: ${error.message}`, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
