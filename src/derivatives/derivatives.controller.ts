@@ -34,4 +34,10 @@ export class DerivativesController {
 	getEqsopByddTrd() {
 		return this.derivativesService.eqsopByddTrd();
 	}
+
+	// 주식옵션(코스닥) 일별매매정보
+	@Get("eqkop_bydd_trd")
+	getEqkopByddTrd() {
+		return this.derivativesService.eqkopByddTrd();
+	}
 }
