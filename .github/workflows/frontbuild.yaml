@@ -1,0 +1,6 @@
+name: Front Deployment
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["client/**"]
