@@ -29,11 +29,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: change directory to client
-        run: cd client
-
-      - name: install npm dependencies
-        run: npm install --legacy-peer-deps
+      - name: change directory and install npm dependencies
+        run: |
+          cd client
+          npm install --legacy-peer-deps
 
       - name: react build
         run: npm run build
