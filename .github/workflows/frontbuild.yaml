@@ -3,7 +3,7 @@ name: Front Deployment
 on:
   push:
     branches: ["master"]
-    paths: ["client/**"]
+    paths: ["client/**", ".github/**"]
 
 jobs:
   build:
@@ -34,8 +34,10 @@ jobs:
           cd client
           npm install --legacy-peer-deps
 
-      - name: react build
-        run: npm run build
+      - name: change directory and react build
+        run: |
+          cd client
+          npm run build
 
       # aws에 접근하기 위한 권한을 받아옵니다.
       - name: Configure AWS credentials
@@ -51,7 +53,7 @@ jobs:
           BUCKET_NAME: ${{ secrets.AWS_S3_BUCKET_NAME}}
         run: |
           aws s3 sync \
-            ./build s3://$BUCKET_NAME
+            ./client/build s3://$BUCKET_NAME
 
       - name: CloudFront Cache Invalidation
         env:
