@@ -58,7 +58,7 @@ const Search: React.FC = () => {
 				.slice(0, 10);
 			setDropDownList(choosenStockList);
 		}
-	}, [inputValue]);
+	}, [inputValue, wholeStockList]);
 
 	const changeInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value);
