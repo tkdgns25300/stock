@@ -29,6 +29,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: .env setting
+        run: |
+          echo "REACT_APP_API_SERVER_URI=${{ secrets.REACT_APP_API_SERVER_URI }}" >> .env.production
+          echo "REACT_APP_KIS_APP_KEY=${{ secrets.REACT_APP_KIS_APP_KEY }}" >> .env.production
+          echo "REACT_APP_WEBSOCKET_SERVER_WS_URI=${{ secrets.REACT_APP_WEBSOCKET_SERVER_WS_URI }}" >> .env.production
+          echo "REACT_APP_KIS_APP_KEY=${{ secrets.REACT_APP_KIS_APP_KEY }}" >> .env.production
+          echo "REACT_APP_KIS_APP_SECRET=${{ secrets.REACT_APP_KIS_APP_SECRET }}" >> .env.production
+          echo "REACT_APP_WEB_SOCKET_APPROVAL_KEY=${{ secrets.REACT_APP_WEB_SOCKET_APPROVAL_KEY }}" >> .env.production
+
       - name: change directory and install npm dependencies
         run: |
           cd client
