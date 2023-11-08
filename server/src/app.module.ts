@@ -4,9 +4,10 @@ import { UtilsModule } from "./modules/utils/utils.module";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { typeOrmModuleOptions } from "./db/configs/typeorm.config";
 import { DataSource } from "typeorm";
+import { HealthModule } from './health/health.module';
 
 @Module({
-	imports: [TypeOrmModule.forRoot(typeOrmModuleOptions), CompanyModule, UtilsModule],
+	imports: [TypeOrmModule.forRoot(typeOrmModuleOptions), CompanyModule, UtilsModule, HealthModule],
 	controllers: [],
 	providers: [],
 })
