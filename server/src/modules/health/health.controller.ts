@@ -1,4 +1,13 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from "@nestjs/common";
+import { HealthService } from "./health.service";
 
-@Controller('health')
-export class HealthController {}
+@Controller("health")
+export class HealthController {
+	constructor(private healthService: HealthService) {}
+
+	// health check
+	@Get()
+	getHealth(): string {
+		return "OK";
+	}
+}
