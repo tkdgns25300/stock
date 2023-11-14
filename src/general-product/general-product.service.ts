@@ -4,7 +4,7 @@ import axios from "axios";
 
 @Injectable()
 export class GeneralProductService {
-	async futByddTrd() {
+	async oilByddTrd() {
 		try {
 			const url = "http://data-dbg.krx.co.kr/svc/apis/gen/oil_bydd_trd?basDd=20200414";
 
@@ -16,6 +16,13 @@ export class GeneralProductService {
 			});
 
 			return new PageResObj(response.data, "석유시장 일별매매정보 조회에 성공하였습니다.");
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
+
+	async goldByddTrd() {
+		try {
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
