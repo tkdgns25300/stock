@@ -3,10 +3,10 @@ name: Front Deployment
 on:
   push:
     branches: ["master"]
-    paths: ["client/**", ".github/**"]
+    paths: ["client/**", ".github/workflows/frontbuild.yaml"]
 
 jobs:
-  build:
+  build & deploy:
     name: react build & deploy # name은 단계별로 실행되는 액션들의 설명을 담은 것으로, 나중에 github action에서 workflow에 표시됩니다.
     runs-on: ubuntu-latest # runner가 실행될 환경을 지정합니다.
 
