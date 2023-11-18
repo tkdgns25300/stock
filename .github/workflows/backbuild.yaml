@@ -1,0 +1,30 @@
+name: Backend Deployment
+
+on:
+  push:
+    branches: ["master"]
+    paths: ["server/**", "wsserver/**", ".github/workflows/backbuild.yaml"]
+
+jobs:
+  build & deploy:
+    name: nest deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: excuting remote ssh commands
+        uses: appleboy/ssh-action@v0.1.6 # ssh 접속하는 오픈소스
+        with:
+          host: ${{ secrets.EC2_REMOTE_IP }} # 인스턴스 IP
+          username: ${{ secrets.EC2_REMOTE_USER }} # 우분투 아이디
+          key: ${{ secrets.EC2_REMOTE_PRIVATE_KEY }} # ec2 instance pem key
+          port: ${{ secrets.EC2_REMOTE_SSH_PORT }} # 접속포트
+          script: | # 실행할 스크립트
+            echo 'start code deploy'
+            echo 'please wait please...'
+            cd /server
+            git checkout master
+            git pull origin main --no-edit
+            npm i --legacy-peer-deps
+            sudo pm2 delete server
+            sudo pm2 start npm --name "server" -- run start:prod
+            echo 'code deploy end!'
