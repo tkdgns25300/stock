@@ -6,7 +6,7 @@ on:
     paths: ["server/**", "wsserver/**", ".github/workflows/backbuild.yaml"]
 
 jobs:
-  build & deploy:
+  deploy:
     name: nest deploy
     runs-on: ubuntu-latest
 
