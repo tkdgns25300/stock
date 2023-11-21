@@ -21,7 +21,7 @@ jobs:
           script: |
             echo 'start code deploy'
             echo 'please wait please...'
-            cd /server
+            cd /stock/server
             git checkout master
             git pull origin main --no-edit
             npm i --legacy-peer-deps
