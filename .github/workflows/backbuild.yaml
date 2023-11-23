@@ -23,7 +23,7 @@ jobs:
             echo 'please wait please...'
             cd stock/server
             git checkout master
-            git pull origin main --no-edit
+            git pull origin master --no-edit
             npm i --legacy-peer-deps
             sudo pm2 delete server
             sudo pm2 start npm --name "server" -- run start:prod
