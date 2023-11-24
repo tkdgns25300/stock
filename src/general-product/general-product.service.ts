@@ -37,4 +37,11 @@ export class GeneralProductService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async etsByddTrd() {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

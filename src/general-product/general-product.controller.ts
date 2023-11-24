@@ -16,4 +16,10 @@ export class GeneralProductController {
 	getGoldByddTrd() {
 		return this.generalProductService.goldByddTrd();
 	}
+
+	// 배출권 시장 일별매매정보
+	@Get("ets_bydd_trd")
+	getEtsByddTrd() {
+		return this.generalProductService.etsByddTrd();
+	}
 }
