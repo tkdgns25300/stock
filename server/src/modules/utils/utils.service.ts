@@ -641,4 +641,12 @@ export class UtilsService {
 			}
 		}
 	}
+
+	async databaseUpdate(): Promise<ApiResponse<null[]>> {
+		try {
+			return new ApiResponse(null, "Successfully fetched and saved all profit-ratio data, with some failures");
+		} catch (error) {
+			throw error;
+		}
+	}
 }

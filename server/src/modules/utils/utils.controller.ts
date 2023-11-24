@@ -79,4 +79,9 @@ export class UtilsController {
 	async retryFailedProfitRatioToDatabase(@Body() failedStocks: string[]): Promise<ApiResponse<string[]>> {
 		return await this.utilsService.retryFailedProfitRatioToDatabase(failedStocks);
 	}
+
+	@Post("/database-update")
+	async databaseUpdate(): Promise<ApiResponse<string[]>> {
+		return await this.utilsService.databaseUpdate();
+	}
 }
