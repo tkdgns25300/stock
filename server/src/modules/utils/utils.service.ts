@@ -644,6 +644,48 @@ export class UtilsService {
 
 	async databaseUpdate(): Promise<ApiResponse<null[]>> {
 		try {
+			// 1. 현재 DB에 없는 회사(종목) 조회
+			const browser = await puppeteer.launch({});
+
+			const page = await browser.newPage();
+
+			const downloadPath = path.resolve(__dirname, "downloadFolder");
+			if (!fs.existsSync(downloadPath)) {
+				fs.mkdirSync(downloadPath);
+			}
+
+			const cdpSession = await page.target().createCDPSession();
+			await cdpSession.send("Page.setDownloadBehavior", {
+				behavior: "allow",
+				downloadPath: downloadPath,
+			});
+
+			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
+				waitUntil: "networkidle2",
+			});
+
+			const firstButtonSelector =
+				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
+			await page.waitForSelector(firstButtonSelector, { timeout: 60000 });
+			await page.click(firstButtonSelector);
+
+			const secondButtonSelector = "#ui-id-5 > div > div:nth-child(2)";
+			await page.waitForSelector(secondButtonSelector, { timeout: 60000 });
+			await page.click(secondButtonSelector);
+
+			await new Promise((resolve) => setTimeout(resolve, 10000)); // 10초 대기
+
+			const downloadedFiles = fs.readdirSync(downloadPath);
+			downloadedFiles.forEach((file) => {
+				console.log("다운로드된 파일:", file);
+			});
+
+			await browser.close();
+
+			// 2. 해당 회사(종목) 데이터 가져오기
+
+			// 3. DB에 저장
+
 			return new ApiResponse(null, "Successfully fetched and saved all profit-ratio data, with some failures");
 		} catch (error) {
 			throw error;
