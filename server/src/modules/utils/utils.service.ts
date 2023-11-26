@@ -645,16 +645,22 @@ export class UtilsService {
 	async databaseUpdate(): Promise<ApiResponse<null[]>> {
 		try {
 			// 1. 현재 DB에 없는 회사(종목) 조회
-			const browser = await puppeteer.launch({});
-
+			const browser = await puppeteer.launch({
+				headless: false,
+				args: ["--disable-dev-shm-usage", "--no-sandbox"],
+			});
 			const page = await browser.newPage();
+			await page.setUserAgent(
+				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
+			);
 
 			const downloadPath = path.resolve(__dirname, "downloadFolder");
 			if (!fs.existsSync(downloadPath)) {
 				fs.mkdirSync(downloadPath);
 			}
+			console.log(downloadPath);
 
-			const cdpSession = await page.target().createCDPSession();
+			const cdpSession = await page.createCDPSession();
 			await cdpSession.send("Page.setDownloadBehavior", {
 				behavior: "allow",
 				downloadPath: downloadPath,
@@ -663,17 +669,17 @@ export class UtilsService {
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
 				waitUntil: "networkidle2",
 			});
+			await new Promise((resolve) => setTimeout(resolve, 5000)); // 5초 대기
 
-			const firstButtonSelector =
-				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
-			await page.waitForSelector(firstButtonSelector, { timeout: 60000 });
+			const firstButtonSelector = "#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
+			await page.waitForSelector(firstButtonSelector, { timeout: 5000 });
 			await page.click(firstButtonSelector);
 
-			const secondButtonSelector = "#ui-id-5 > div > div:nth-child(2)";
-			await page.waitForSelector(secondButtonSelector, { timeout: 60000 });
+			const secondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
+			await page.waitForSelector(secondButtonSelector, { timeout: 5000 });
 			await page.click(secondButtonSelector);
 
-			await new Promise((resolve) => setTimeout(resolve, 10000)); // 10초 대기
+			await new Promise((resolve) => setTimeout(resolve, 5000)); // 5초 대기
 
 			const downloadedFiles = fs.readdirSync(downloadPath);
 			downloadedFiles.forEach((file) => {
@@ -686,7 +692,7 @@ export class UtilsService {
 
 			// 3. DB에 저장
 
-			return new ApiResponse(null, "Successfully fetched and saved all profit-ratio data, with some failures");
+			return new ApiResponse(null, "Successfully download CSV file");
 		} catch (error) {
 			throw error;
 		}
