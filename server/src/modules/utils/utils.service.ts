@@ -15,6 +15,7 @@ import { BalanceSheet } from "src/entities/BalanceSheet.entity";
 import { IncomeStatement } from "src/entities/IncomeStatement.entity";
 import { FinancialRatio } from "src/entities/FinancialRatio.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
+import { getFormattedDate } from "src/util/formattedData";
 
 @Injectable()
 export class UtilsService {
@@ -646,7 +647,6 @@ export class UtilsService {
 		try {
 			// 1. 현재 DB에 없는 회사(종목) 조회
 			const browser = await puppeteer.launch({
-				headless: false,
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
 			});
 			const page = await browser.newPage();
@@ -658,7 +658,6 @@ export class UtilsService {
 			if (!fs.existsSync(downloadPath)) {
 				fs.mkdirSync(downloadPath);
 			}
-			console.log(downloadPath);
 
 			const cdpSession = await page.createCDPSession();
 			await cdpSession.send("Page.setDownloadBehavior", {
@@ -682,9 +681,34 @@ export class UtilsService {
 			await new Promise((resolve) => setTimeout(resolve, 5000)); // 5초 대기
 
 			const downloadedFiles = fs.readdirSync(downloadPath);
-			downloadedFiles.forEach((file) => {
-				console.log("다운로드된 파일:", file);
-			});
+			if (downloadedFiles.length > 0) {
+				const formattedDate = getFormattedDate();
+				const newFileName = `company_info_${formattedDate}.csv`; // 파일 확장자는 실제 파일 형식에 맞게 변경
+				let fileToRename = null;
+
+				// 파일 이름 변경 조건에 맞는 파일 찾기
+				for (const file of downloadedFiles) {
+					const oldFilePath = path.join(downloadPath, file);
+					const newFilePath = path.join(downloadPath, newFileName);
+
+					// 파일이 이미 날짜 형식으로 되어 있거나, 같은 이름으로 되어 있는 경우 무시
+					if (file !== newFileName) {
+						fileToRename = oldFilePath;
+						break;
+					}
+				}
+
+				if (fileToRename) {
+					const newFilePath = path.join(downloadPath, newFileName);
+					// 파일 이름 변경
+					fs.renameSync(fileToRename, newFilePath);
+					console.log("다운로드된 파일을 다음으로 이름을 변경했습니다:", newFileName);
+				} else {
+					console.log("새로 다운로드된 파일이 없거나, 이미 날짜 형식으로 변경된 파일이 있습니다.");
+				}
+			} else {
+				console.log("다운로드된 파일이 없습니다.");
+			}
 
 			await browser.close();
 
