@@ -645,7 +645,11 @@ export class UtilsService {
 
 	async databaseUpdate(): Promise<ApiResponse<null[]>> {
 		try {
-			// 1. 현재 DB에 없는 회사(종목) 조회
+			/**
+			 * 1. 현재 DB에 없는 회사(종목) 조회
+			 */
+
+			// 상장회사 상세검색
 			const browser = await puppeteer.launch({
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
 			});
@@ -654,7 +658,7 @@ export class UtilsService {
 				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
 			);
 
-			const downloadPath = path.resolve(__dirname, "downloadFolder");
+			const downloadPath = path.resolve(__dirname, "../../../src/modules/utils/downloadFolder"); // Lambda함수에서 변경
 			if (!fs.existsSync(downloadPath)) {
 				fs.mkdirSync(downloadPath);
 			}
@@ -711,6 +715,8 @@ export class UtilsService {
 			}
 
 			await browser.close();
+
+			// 종목 상세검색
 
 			// 2. 해당 회사(종목) 데이터 가져오기
 
