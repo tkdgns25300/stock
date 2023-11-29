@@ -649,8 +649,8 @@ export class UtilsService {
 			 * 1. 현재 DB에 없는 회사(종목) 조회
 			 */
 
-			// 상장회사 상세검색
 			const browser = await puppeteer.launch({
+				headless: false,
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
 			});
 			const page = await browser.newPage();
@@ -669,29 +669,77 @@ export class UtilsService {
 				downloadPath: downloadPath,
 			});
 
+			// 상장회사 상세검색
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
 				waitUntil: "networkidle2",
 			});
-			await new Promise((resolve) => setTimeout(resolve, 5000)); // 5초 대기
+			await new Promise((resolve) => setTimeout(resolve, 5000));
 
-			const firstButtonSelector = "#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
-			await page.waitForSelector(firstButtonSelector, { timeout: 5000 });
-			await page.click(firstButtonSelector);
+			const CompanyFirstButtonSelector = "#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
+			await page.waitForSelector(CompanyFirstButtonSelector, { timeout: 5000 });
+			await page.click(CompanyFirstButtonSelector);
 
-			const secondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
-			await page.waitForSelector(secondButtonSelector, { timeout: 5000 });
-			await page.click(secondButtonSelector);
+			const CompanySecondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
+			await page.waitForSelector(CompanySecondButtonSelector, { timeout: 5000 });
+			await page.click(CompanySecondButtonSelector);
 
-			await new Promise((resolve) => setTimeout(resolve, 5000)); // 5초 대기
+			await new Promise((resolve) => setTimeout(resolve, 5000));
 
-			const downloadedFiles = fs.readdirSync(downloadPath);
-			if (downloadedFiles.length > 0) {
+			const downloadedCompanyFiles = fs.readdirSync(downloadPath);
+			if (downloadedCompanyFiles.length > 0) {
 				const formattedDate = getFormattedDate();
 				const newFileName = `company_info_${formattedDate}.csv`; // 파일 확장자는 실제 파일 형식에 맞게 변경
 				let fileToRename = null;
 
 				// 파일 이름 변경 조건에 맞는 파일 찾기
-				for (const file of downloadedFiles) {
+				for (const file of downloadedCompanyFiles) {
+					const oldFilePath = path.join(downloadPath, file);
+					const newFilePath = path.join(downloadPath, newFileName);
+
+					// 파일이 이미 날짜 형식으로 되어 있거나, 같은 이름으로 되어 있는 경우 무시
+					if (file !== newFileName) {
+						fileToRename = oldFilePath;
+						break;
+					}
+				}
+
+				if (fileToRename) {
+					const newFilePath = path.join(downloadPath, newFileName);
+					// 파일 이름 변경
+					fs.renameSync(fileToRename, newFilePath);
+					console.log("다운로드된 파일을 다음으로 이름을 변경했습니다:", newFileName);
+				} else {
+					console.log("새로 다운로드된 파일이 없거나, 이미 날짜 형식으로 변경된 파일이 있습니다.");
+				}
+			} else {
+				console.log("다운로드된 파일이 없습니다.");
+			}
+
+			// 종목 상세검색
+			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020201", {
+				waitUntil: "networkidle2",
+			});
+			await new Promise((resolve) => setTimeout(resolve, 5000));
+
+			const StockFirstButtonSelector =
+				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
+			await page.waitForSelector(StockFirstButtonSelector, { timeout: 5000 });
+			await page.click(StockFirstButtonSelector);
+
+			const StockSecondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
+			await page.waitForSelector(StockSecondButtonSelector, { timeout: 5000 });
+			await page.click(StockSecondButtonSelector);
+
+			await new Promise((resolve) => setTimeout(resolve, 5000));
+
+			const downloadedStockFiles = fs.readdirSync(downloadPath);
+			if (downloadedStockFiles.length > 0) {
+				const formattedDate = getFormattedDate();
+				const newFileName = `stock_info_${formattedDate}.csv`; // 파일 확장자는 실제 파일 형식에 맞게 변경
+				let fileToRename = null;
+
+				// 파일 이름 변경 조건에 맞는 파일 찾기
+				for (const file of downloadedStockFiles) {
 					const oldFilePath = path.join(downloadPath, file);
 					const newFilePath = path.join(downloadPath, newFileName);
 
@@ -716,8 +764,6 @@ export class UtilsService {
 
 			await browser.close();
 
-			// 종목 상세검색
-
 			// 2. 해당 회사(종목) 데이터 가져오기
 
 			// 3. DB에 저장
@@ -728,3 +774,7 @@ export class UtilsService {
 		}
 	}
 }
+
+// 1. 현재 DB에 없는 회사(종목) 조회
+// 2. 해당 회사(종목) 데이터 가져오기
+// 3. DB에 저장
