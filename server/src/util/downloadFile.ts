@@ -1,10 +1,17 @@
-import { getFormattedDate } from "./formattedData";
-import * as fs from "fs";
+import fs from "fs";
 import path from "path";
+import { getFormattedDate } from "./formattedData";
+import { timeout } from "rxjs";
 
 export async function downloadFile(page, downloadPath, buttonSelector, fileNamePrefix) {
 	await page.waitForSelector(buttonSelector, { timeout: 5000 });
 	await page.click(buttonSelector);
+
+	const secondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
+	await page.waitForSelector(secondButtonSelector, { timeout: 5000 });
+	await page.click(secondButtonSelector);
+
+	await new Promise((resolve) => setTimeout(resolve, 5000));
 
 	const downloadedFiles = fs.readdirSync(downloadPath);
 	if (downloadedFiles.length > 0) {

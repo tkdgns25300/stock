@@ -16,6 +16,7 @@ import { IncomeStatement } from "src/entities/IncomeStatement.entity";
 import { FinancialRatio } from "src/entities/FinancialRatio.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 import { getFormattedDate } from "src/util/formattedData";
+import { downloadFile } from "src/util/downloadFile";
 
 @Injectable()
 export class UtilsService {
@@ -648,7 +649,6 @@ export class UtilsService {
 			/**
 			 * 1. 현재 DB에 없는 회사(종목) 조회
 			 */
-
 			const browser = await puppeteer.launch({
 				headless: false,
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
@@ -658,7 +658,7 @@ export class UtilsService {
 				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
 			);
 
-			const downloadPath = path.resolve(__dirname, "../../../src/modules/utils/downloadFolder"); // Lambda함수에서 변경
+			const downloadPath = path.resolve(__dirname, "../../../src/modules/utils/downloadFolder");
 			if (!fs.existsSync(downloadPath)) {
 				fs.mkdirSync(downloadPath);
 			}
@@ -669,98 +669,29 @@ export class UtilsService {
 				downloadPath: downloadPath,
 			});
 
-			// 상장회사 상세검색
+			// 회사 정보 다운로드
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
 				waitUntil: "networkidle2",
 			});
 			await new Promise((resolve) => setTimeout(resolve, 5000));
+			await downloadFile(
+				page,
+				downloadPath,
+				"#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
+				"company_info",
+			);
 
-			const CompanyFirstButtonSelector = "#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
-			await page.waitForSelector(CompanyFirstButtonSelector, { timeout: 5000 });
-			await page.click(CompanyFirstButtonSelector);
-
-			const CompanySecondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
-			await page.waitForSelector(CompanySecondButtonSelector, { timeout: 5000 });
-			await page.click(CompanySecondButtonSelector);
-
-			await new Promise((resolve) => setTimeout(resolve, 5000));
-
-			const downloadedCompanyFiles = fs.readdirSync(downloadPath);
-			if (downloadedCompanyFiles.length > 0) {
-				const formattedDate = getFormattedDate();
-				const newFileName = `company_info_${formattedDate}.csv`; // 파일 확장자는 실제 파일 형식에 맞게 변경
-				let fileToRename = null;
-
-				// 파일 이름 변경 조건에 맞는 파일 찾기
-				for (const file of downloadedCompanyFiles) {
-					const oldFilePath = path.join(downloadPath, file);
-					const newFilePath = path.join(downloadPath, newFileName);
-
-					// 파일이 이미 날짜 형식으로 되어 있거나, 같은 이름으로 되어 있는 경우 무시
-					if (file !== newFileName) {
-						fileToRename = oldFilePath;
-						break;
-					}
-				}
-
-				if (fileToRename) {
-					const newFilePath = path.join(downloadPath, newFileName);
-					// 파일 이름 변경
-					fs.renameSync(fileToRename, newFilePath);
-					console.log("다운로드된 파일을 다음으로 이름을 변경했습니다:", newFileName);
-				} else {
-					console.log("새로 다운로드된 파일이 없거나, 이미 날짜 형식으로 변경된 파일이 있습니다.");
-				}
-			} else {
-				console.log("다운로드된 파일이 없습니다.");
-			}
-
-			// 종목 상세검색
+			// 종목 정보 다운로드
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020201", {
 				waitUntil: "networkidle2",
 			});
 			await new Promise((resolve) => setTimeout(resolve, 5000));
-
-			const StockFirstButtonSelector =
-				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img";
-			await page.waitForSelector(StockFirstButtonSelector, { timeout: 5000 });
-			await page.click(StockFirstButtonSelector);
-
-			const StockSecondButtonSelector = "#ui-id-1 > div > div:nth-child(2)";
-			await page.waitForSelector(StockSecondButtonSelector, { timeout: 5000 });
-			await page.click(StockSecondButtonSelector);
-
-			await new Promise((resolve) => setTimeout(resolve, 5000));
-
-			const downloadedStockFiles = fs.readdirSync(downloadPath);
-			if (downloadedStockFiles.length > 0) {
-				const formattedDate = getFormattedDate();
-				const newFileName = `stock_info_${formattedDate}.csv`; // 파일 확장자는 실제 파일 형식에 맞게 변경
-				let fileToRename = null;
-
-				// 파일 이름 변경 조건에 맞는 파일 찾기
-				for (const file of downloadedStockFiles) {
-					const oldFilePath = path.join(downloadPath, file);
-					const newFilePath = path.join(downloadPath, newFileName);
-
-					// 파일이 이미 날짜 형식으로 되어 있거나, 같은 이름으로 되어 있는 경우 무시
-					if (file !== newFileName) {
-						fileToRename = oldFilePath;
-						break;
-					}
-				}
-
-				if (fileToRename) {
-					const newFilePath = path.join(downloadPath, newFileName);
-					// 파일 이름 변경
-					fs.renameSync(fileToRename, newFilePath);
-					console.log("다운로드된 파일을 다음으로 이름을 변경했습니다:", newFileName);
-				} else {
-					console.log("새로 다운로드된 파일이 없거나, 이미 날짜 형식으로 변경된 파일이 있습니다.");
-				}
-			} else {
-				console.log("다운로드된 파일이 없습니다.");
-			}
+			await downloadFile(
+				page,
+				downloadPath,
+				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
+				"stock_info",
+			);
 
 			await browser.close();
 
