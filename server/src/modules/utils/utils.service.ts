@@ -650,7 +650,7 @@ export class UtilsService {
 			 * 1. 현재 DB에 없는 회사(종목) 조회
 			 */
 			const browser = await puppeteer.launch({
-				headless: false,
+				// headless: false,
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
 			});
 			const page = await browser.newPage();
@@ -659,9 +659,10 @@ export class UtilsService {
 			);
 
 			const downloadPath = path.resolve(__dirname, "../../../src/modules/utils/downloadFolder");
-			if (!fs.existsSync(downloadPath)) {
-				fs.mkdirSync(downloadPath);
+			if (fs.existsSync(downloadPath)) {
+				fs.rmSync(downloadPath, { recursive: true });
 			}
+			fs.mkdirSync(downloadPath);
 
 			const cdpSession = await page.createCDPSession();
 			await cdpSession.send("Page.setDownloadBehavior", {

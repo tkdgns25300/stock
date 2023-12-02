@@ -17,7 +17,7 @@ export async function downloadFile(page, downloadPath, buttonSelector, fileNameP
 	if (downloadedFiles.length > 0) {
 		const formattedDate = getFormattedDate();
 		const newFileName = `${fileNamePrefix}_${formattedDate}.csv`;
-		const fileToRename = downloadedFiles.find((file) => !file.startsWith(fileNamePrefix));
+		const fileToRename = downloadedFiles.reverse().find((file) => !file.startsWith(fileNamePrefix));
 
 		if (fileToRename) {
 			const oldFilePath = path.join(downloadPath, fileToRename);
