@@ -647,7 +647,7 @@ export class UtilsService {
 	async databaseUpdate(): Promise<ApiResponse<null[]>> {
 		try {
 			/**
-			 * 1. 현재 DB에 없는 회사(종목) 조회
+			 * 1. CSV 파일 다운로드
 			 */
 			const browser = await puppeteer.launch({
 				// headless: false,
@@ -658,16 +658,16 @@ export class UtilsService {
 				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
 			);
 
-			const downloadPath = path.resolve(__dirname, "../../../src/modules/utils/downloadFolder");
-			if (fs.existsSync(downloadPath)) {
-				fs.rmSync(downloadPath, { recursive: true });
+			const csvFilePath = path.resolve(__dirname, "../../../src/modules/utils/csvFolder");
+			if (fs.existsSync(csvFilePath)) {
+				fs.rmSync(csvFilePath, { recursive: true });
 			}
-			fs.mkdirSync(downloadPath);
+			fs.mkdirSync(csvFilePath);
 
 			const cdpSession = await page.createCDPSession();
 			await cdpSession.send("Page.setDownloadBehavior", {
 				behavior: "allow",
-				downloadPath: downloadPath,
+				downloadPath: csvFilePath,
 			});
 
 			// 회사 정보 다운로드
@@ -677,7 +677,7 @@ export class UtilsService {
 			await new Promise((resolve) => setTimeout(resolve, 5000));
 			await downloadFile(
 				page,
-				downloadPath,
+				csvFilePath,
 				"#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
 				"company_info",
 			);
@@ -689,16 +689,103 @@ export class UtilsService {
 			await new Promise((resolve) => setTimeout(resolve, 5000));
 			await downloadFile(
 				page,
-				downloadPath,
+				csvFilePath,
 				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
 				"stock_info",
 			);
 
 			await browser.close();
 
-			// 2. 해당 회사(종목) 데이터 가져오기
+			/**
+			 * 2. CSV to JSON
+			 */
+			const jsonFilePath = path.resolve(__dirname, "../../../src/modules/utils/jsonFolder");
+			if (fs.existsSync(jsonFilePath)) {
+				fs.rmSync(jsonFilePath, { recursive: true });
+			}
+			fs.mkdirSync(jsonFilePath);
 
-			// 3. DB에 저장
+			const formattedDate = getFormattedDate();
+			const csvData = fs.readFileSync(`${csvFilePath}/company_info_${formattedDate}.csv`);
+			const decodedData = iconv.decode(csvData, "EUC-KR");
+
+			const jsonArray = await csvtojson({
+				colParser: {
+					소속부: (item, head, resultRow, row, colIdx) => {
+						// 첫 번째 소속부 컬럼 값만 사용
+						if (resultRow["소속부"] === undefined) {
+							return item;
+						}
+						return undefined; // 두 번째 소속부 컬럼 값 무시
+					},
+				},
+			}).fromString(decodedData);
+
+			// JSON에서 필요 정보 가져오기
+			const filteredData = jsonArray.map((row: CompanyInfoCSVRowData) => ({
+				종목코드: row["종목코드"],
+				종목명: row["종목명"],
+				시장구분: row["시장구분"],
+				소속부: row["소속부"],
+				업종코드: row["업종코드"],
+				업종명: row["업종명"],
+				결산월: row["결산월"],
+				지정자문인: row["지정자문인"],
+				상장주식수: row["상장주식수"],
+				액면가: row["액면가"],
+				자본금: row["자본금"],
+				통화구분: row["통화구분"],
+				대표이사: row["대표이사"],
+				대표전화: row["대표전화"],
+				주소: row["주소"],
+			}));
+
+			// 필요한 형식에 맞게 데이터 변환
+			const convertedCompanyInfo = [];
+
+			for (const data of filteredData) {
+				let convertedCurData = {
+					name: data["종목명"],
+					detailed_name: null,
+					english_name: null,
+					description: null,
+					industry_name: data["업종명"],
+					industry_code: data["업종코드"],
+					capital: data["자본금"],
+					currency: data["통화구분"],
+					fiscal_month: data["결산월"],
+					ceo: data["대표이사"],
+					main_phone: data["대표전화"],
+					address: data["주소"],
+					website: null,
+					founded_date: null,
+					stock_info: [
+						{
+							standard_code: null,
+							stock_code: data["종목코드"],
+							listing_date: null,
+							face_value: data["액면가"],
+							listed_shares: data["상장주식수"],
+							market_type: data["시장구분"],
+							stock_type: null,
+							affiliation: data["소속부"],
+							security_type: null,
+						},
+					],
+				};
+
+				convertedCompanyInfo.push(convertedCurData);
+			}
+
+			// json 파일 생성
+			fs.writeFile(`${jsonFilePath}/first.json`, JSON.stringify(convertedCompanyInfo), (err) => {
+				if (err) throw err;
+				console.log("JSON 파일이 생성되었습니다.");
+			});
+
+			// 3. 해당 회사(종목) 데이터 가져오기
+
+			// 4. DB에 저장
 
 			return new ApiResponse(null, "Successfully download CSV file");
 		} catch (error) {
