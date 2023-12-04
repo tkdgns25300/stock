@@ -706,10 +706,11 @@ export class UtilsService {
 			fs.mkdirSync(jsonFilePath);
 
 			const formattedDate = getFormattedDate();
-			const csvData = fs.readFileSync(`${csvFilePath}/company_info_${formattedDate}.csv`);
-			const decodedData = iconv.decode(csvData, "EUC-KR");
 
-			const jsonArray = await csvtojson({
+			// first json
+			const companyCsvData = fs.readFileSync(`${csvFilePath}/company_info_${formattedDate}.csv`);
+			const companyDecodedData = iconv.decode(companyCsvData, "EUC-KR");
+			const firstJsonArray = await csvtojson({
 				colParser: {
 					소속부: (item, head, resultRow, row, colIdx) => {
 						// 첫 번째 소속부 컬럼 값만 사용
@@ -719,10 +720,9 @@ export class UtilsService {
 						return undefined; // 두 번째 소속부 컬럼 값 무시
 					},
 				},
-			}).fromString(decodedData);
+			}).fromString(companyDecodedData);
 
-			// JSON에서 필요 정보 가져오기
-			const filteredData = jsonArray.map((row: CompanyInfoCSVRowData) => ({
+			const companyFilteredData = firstJsonArray.map((row: CompanyInfoCSVRowData) => ({
 				종목코드: row["종목코드"],
 				종목명: row["종목명"],
 				시장구분: row["시장구분"],
@@ -740,10 +740,9 @@ export class UtilsService {
 				주소: row["주소"],
 			}));
 
-			// 필요한 형식에 맞게 데이터 변환
 			const convertedCompanyInfo = [];
 
-			for (const data of filteredData) {
+			for (const data of companyFilteredData) {
 				let convertedCurData = {
 					name: data["종목명"],
 					detailed_name: null,
@@ -777,10 +776,79 @@ export class UtilsService {
 				convertedCompanyInfo.push(convertedCurData);
 			}
 
-			// json 파일 생성
 			fs.writeFile(`${jsonFilePath}/first.json`, JSON.stringify(convertedCompanyInfo), (err) => {
 				if (err) throw err;
-				console.log("JSON 파일이 생성되었습니다.");
+				console.log("첫번째 JSON 파일이 생성되었습니다.");
+			});
+
+			// second json
+			const stockCsvData = fs.readFileSync(`${csvFilePath}/stock_info_${formattedDate}.csv`);
+			const stockDecodedData = iconv.decode(stockCsvData, "EUC-KR");
+			const secondJsonArray = await csvtojson().fromString(stockDecodedData);
+
+			const stockFilteredData = secondJsonArray.map((row: StockInfoCSVRowData) => ({
+				표준코드: row["표준코드"],
+				단축코드: row["단축코드"],
+				"한글 종목명": row["한글 종목명"],
+				"한글 종목약명": row["한글 종목약명"],
+				"영문 종목명": row["영문 종목명"],
+				상장일: row["상장일"],
+				시장구분: row["시장구분"],
+				증권구분: row["증권구분"],
+				소속부: row["소속부"],
+				주식종류: row["주식종류"],
+				액면가: row["액면가"],
+				상장주식수: row["상장주식수"],
+			}));
+
+			const companyJsonData = fs.readFileSync(`${jsonFilePath}/first.json`, "utf-8");
+			const firstJsonData = JSON.parse(companyJsonData);
+
+			const convertedCompanyStockInfo = [];
+
+			for (const companyData of firstJsonData) {
+				// 뼈대에 먼저 정보 기입
+				let stockData = stockFilteredData.find((e) => {
+					return e["단축코드"] === companyData["stock_info"][0]["stock_code"];
+				});
+				if (stockData) {
+					companyData["detailed_name"] = stockData["한글 종목명"];
+					companyData["english_name"] = stockData["영문 종목명"];
+					companyData["stock_info"][0]["standard_code"] = stockData["표준코드"];
+					companyData["stock_info"][0]["listing_date"] = stockData["상장일"];
+					companyData["stock_info"][0]["stock_type"] = stockData["주식종류"];
+					companyData["stock_info"][0]["security_type"] = stockData["증권구분"];
+				}
+
+				// 우선주 등 있는지 확인 후 기입
+				let otherStockData = stockFilteredData.filter((e) => {
+					return (
+						e["단축코드"].slice(0, -1) === companyData["stock_info"][0]["stock_code"].slice(0, -1) &&
+						e["단축코드"] !== companyData["stock_info"][0]["stock_code"]
+					);
+				});
+				if (otherStockData.length !== 0) {
+					for (const anotherStockData of otherStockData) {
+						companyData["stock_info"].push({
+							standard_code: anotherStockData["표준코드"],
+							stock_code: anotherStockData["단축코드"],
+							listing_date: anotherStockData["상장일"],
+							face_value: anotherStockData["액면가"],
+							listed_shares: anotherStockData["상장주식수"],
+							market_type: anotherStockData["시장구분"],
+							stock_type: anotherStockData["주식종류"],
+							affiliation: anotherStockData["소속부"],
+							security_type: anotherStockData["증권구분"],
+						});
+					}
+				}
+
+				convertedCompanyStockInfo.push(companyData);
+			}
+
+			fs.writeFile(`${jsonFilePath}/second.json`, JSON.stringify(convertedCompanyStockInfo), (err) => {
+				if (err) throw err;
+				console.log("두번째 JSON 파일이 생성되었습니다.");
 			});
 
 			// 3. 해당 회사(종목) 데이터 가져오기
