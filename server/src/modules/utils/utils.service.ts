@@ -649,207 +649,253 @@ export class UtilsService {
 			/**
 			 * 1. CSV 파일 다운로드
 			 */
-			const browser = await puppeteer.launch({
-				// headless: false,
-				args: ["--disable-dev-shm-usage", "--no-sandbox"],
-			});
-			const page = await browser.newPage();
-			await page.setUserAgent(
-				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
-			);
+			// const browser = await puppeteer.launch({
+			// 	// headless: false,
+			// 	args: ["--disable-dev-shm-usage", "--no-sandbox"],
+			// });
+			// const page = await browser.newPage();
+			// await page.setUserAgent(
+			// 	"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
+			// );
 
-			const csvFilePath = path.resolve(__dirname, "../../../src/modules/utils/csvFolder");
-			if (fs.existsSync(csvFilePath)) {
-				fs.rmSync(csvFilePath, { recursive: true });
-			}
-			fs.mkdirSync(csvFilePath);
+			// const csvFilePath = path.resolve(__dirname, "../../../src/modules/utils/csvFolder");
+			// if (fs.existsSync(csvFilePath)) {
+			// 	fs.rmSync(csvFilePath, { recursive: true });
+			// }
+			// fs.mkdirSync(csvFilePath);
 
-			const cdpSession = await page.createCDPSession();
-			await cdpSession.send("Page.setDownloadBehavior", {
-				behavior: "allow",
-				downloadPath: csvFilePath,
-			});
+			// const cdpSession = await page.createCDPSession();
+			// await cdpSession.send("Page.setDownloadBehavior", {
+			// 	behavior: "allow",
+			// 	downloadPath: csvFilePath,
+			// });
 
-			// 회사 정보 다운로드
-			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
-				waitUntil: "networkidle2",
-			});
-			await new Promise((resolve) => setTimeout(resolve, 5000));
-			await downloadFile(
-				page,
-				csvFilePath,
-				"#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
-				"company_info",
-			);
+			// // 회사 정보 다운로드
+			// await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
+			// 	waitUntil: "networkidle2",
+			// });
+			// await new Promise((resolve) => setTimeout(resolve, 5000));
+			// await downloadFile(
+			// 	page,
+			// 	csvFilePath,
+			// 	"#UNIT-WRAP0 > div > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
+			// 	"company_info",
+			// );
 
-			// 종목 정보 다운로드
-			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020201", {
-				waitUntil: "networkidle2",
-			});
-			await new Promise((resolve) => setTimeout(resolve, 5000));
-			await downloadFile(
-				page,
-				csvFilePath,
-				"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
-				"stock_info",
-			);
+			// // 종목 정보 다운로드
+			// await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020201", {
+			// 	waitUntil: "networkidle2",
+			// });
+			// await new Promise((resolve) => setTimeout(resolve, 5000));
+			// await downloadFile(
+			// 	page,
+			// 	csvFilePath,
+			// 	"#UNIT-WRAP0 > div.time.CI-MDI-UNIT > p:nth-child(2) > button.CI-MDI-UNIT-DOWNLOAD > img",
+			// 	"stock_info",
+			// );
 
-			await browser.close();
+			// await browser.close();
+
+			// /**
+			//  * 2. CSV to JSON
+			//  */
+			const jsonFilePath = path.resolve(__dirname, "../../../src/modules/utils/jsonFolder");
+			// if (fs.existsSync(jsonFilePath)) {
+			// 	fs.rmSync(jsonFilePath, { recursive: true });
+			// }
+			// fs.mkdirSync(jsonFilePath);
+
+			// const formattedDate = getFormattedDate();
+
+			// // first json
+			// const companyCsvData = fs.readFileSync(`${csvFilePath}/company_info_${formattedDate}.csv`);
+			// const companyDecodedData = iconv.decode(companyCsvData, "EUC-KR");
+			// const firstJsonArray = await csvtojson({
+			// 	colParser: {
+			// 		소속부: (item, head, resultRow, row, colIdx) => {
+			// 			// 첫 번째 소속부 컬럼 값만 사용
+			// 			if (resultRow["소속부"] === undefined) {
+			// 				return item;
+			// 			}
+			// 			return undefined; // 두 번째 소속부 컬럼 값 무시
+			// 		},
+			// 	},
+			// }).fromString(companyDecodedData);
+
+			// const companyFilteredData = firstJsonArray.map((row: CompanyInfoCSVRowData) => ({
+			// 	종목코드: row["종목코드"],
+			// 	종목명: row["종목명"],
+			// 	시장구분: row["시장구분"],
+			// 	소속부: row["소속부"],
+			// 	업종코드: row["업종코드"],
+			// 	업종명: row["업종명"],
+			// 	결산월: row["결산월"],
+			// 	지정자문인: row["지정자문인"],
+			// 	상장주식수: row["상장주식수"],
+			// 	액면가: row["액면가"],
+			// 	자본금: row["자본금"],
+			// 	통화구분: row["통화구분"],
+			// 	대표이사: row["대표이사"],
+			// 	대표전화: row["대표전화"],
+			// 	주소: row["주소"],
+			// }));
+
+			// const convertedCompanyInfo = [];
+
+			// for (const data of companyFilteredData) {
+			// 	let convertedCurData = {
+			// 		name: data["종목명"],
+			// 		detailed_name: null,
+			// 		english_name: null,
+			// 		description: null,
+			// 		industry_name: data["업종명"],
+			// 		industry_code: data["업종코드"],
+			// 		capital: data["자본금"],
+			// 		currency: data["통화구분"],
+			// 		fiscal_month: data["결산월"],
+			// 		ceo: data["대표이사"],
+			// 		main_phone: data["대표전화"],
+			// 		address: data["주소"],
+			// 		website: null,
+			// 		founded_date: null,
+			// 		stock_info: [
+			// 			{
+			// 				standard_code: null,
+			// 				stock_code: data["종목코드"],
+			// 				listing_date: null,
+			// 				face_value: data["액면가"],
+			// 				listed_shares: data["상장주식수"],
+			// 				market_type: data["시장구분"],
+			// 				stock_type: null,
+			// 				affiliation: data["소속부"],
+			// 				security_type: null,
+			// 			},
+			// 		],
+			// 	};
+
+			// 	convertedCompanyInfo.push(convertedCurData);
+			// }
+
+			// fs.writeFile(`${jsonFilePath}/first.json`, JSON.stringify(convertedCompanyInfo), (err) => {
+			// 	if (err) throw err;
+			// 	console.log("첫번째 JSON 파일이 생성되었습니다.");
+			// });
+
+			// // second json
+			// const stockCsvData = fs.readFileSync(`${csvFilePath}/stock_info_${formattedDate}.csv`);
+			// const stockDecodedData = iconv.decode(stockCsvData, "EUC-KR");
+			// const secondJsonArray = await csvtojson().fromString(stockDecodedData);
+
+			// const stockFilteredData = secondJsonArray.map((row: StockInfoCSVRowData) => ({
+			// 	표준코드: row["표준코드"],
+			// 	단축코드: row["단축코드"],
+			// 	"한글 종목명": row["한글 종목명"],
+			// 	"한글 종목약명": row["한글 종목약명"],
+			// 	"영문 종목명": row["영문 종목명"],
+			// 	상장일: row["상장일"],
+			// 	시장구분: row["시장구분"],
+			// 	증권구분: row["증권구분"],
+			// 	소속부: row["소속부"],
+			// 	주식종류: row["주식종류"],
+			// 	액면가: row["액면가"],
+			// 	상장주식수: row["상장주식수"],
+			// }));
+
+			// const companyJsonData = fs.readFileSync(`${jsonFilePath}/first.json`, "utf-8");
+			// const firstJsonData = JSON.parse(companyJsonData);
+
+			// const convertedCompanyStockInfo = [];
+
+			// for (const companyData of firstJsonData) {
+			// 	// 뼈대에 먼저 정보 기입
+			// 	let stockData = stockFilteredData.find((e) => {
+			// 		return e["단축코드"] === companyData["stock_info"][0]["stock_code"];
+			// 	});
+			// 	if (stockData) {
+			// 		companyData["detailed_name"] = stockData["한글 종목명"];
+			// 		companyData["english_name"] = stockData["영문 종목명"];
+			// 		companyData["stock_info"][0]["standard_code"] = stockData["표준코드"];
+			// 		companyData["stock_info"][0]["listing_date"] = stockData["상장일"];
+			// 		companyData["stock_info"][0]["stock_type"] = stockData["주식종류"];
+			// 		companyData["stock_info"][0]["security_type"] = stockData["증권구분"];
+			// 	}
+
+			// 	// 우선주 등 있는지 확인 후 기입
+			// 	let otherStockData = stockFilteredData.filter((e) => {
+			// 		return (
+			// 			e["단축코드"].slice(0, -1) === companyData["stock_info"][0]["stock_code"].slice(0, -1) &&
+			// 			e["단축코드"] !== companyData["stock_info"][0]["stock_code"]
+			// 		);
+			// 	});
+			// 	if (otherStockData.length !== 0) {
+			// 		for (const anotherStockData of otherStockData) {
+			// 			companyData["stock_info"].push({
+			// 				standard_code: anotherStockData["표준코드"],
+			// 				stock_code: anotherStockData["단축코드"],
+			// 				listing_date: anotherStockData["상장일"],
+			// 				face_value: anotherStockData["액면가"],
+			// 				listed_shares: anotherStockData["상장주식수"],
+			// 				market_type: anotherStockData["시장구분"],
+			// 				stock_type: anotherStockData["주식종류"],
+			// 				affiliation: anotherStockData["소속부"],
+			// 				security_type: anotherStockData["증권구분"],
+			// 			});
+			// 		}
+			// 	}
+
+			// 	convertedCompanyStockInfo.push(companyData);
+			// }
+
+			// fs.writeFile(`${jsonFilePath}/second.json`, JSON.stringify(convertedCompanyStockInfo), (err) => {
+			// 	if (err) throw err;
+			// 	console.log("두번째 JSON 파일이 생성되었습니다.");
+			// });
 
 			/**
-			 * 2. CSV to JSON
+			 * 3. 없는 회사(종목) 구분
 			 */
-			const jsonFilePath = path.resolve(__dirname, "../../../src/modules/utils/jsonFolder");
-			if (fs.existsSync(jsonFilePath)) {
-				fs.rmSync(jsonFilePath, { recursive: true });
-			}
-			fs.mkdirSync(jsonFilePath);
+			const companyStockJsonData = fs.readFileSync(`${jsonFilePath}/second.json`, "utf-8");
+			const secondJsonData = JSON.parse(companyStockJsonData);
 
-			const formattedDate = getFormattedDate();
+			const curDatabaseStockInfo = await this.stockInfoRepository.find();
+			let secondJsonDataStockCount = 0;
+			secondJsonData.forEach((e) => (secondJsonDataStockCount += e.stock_info.length));
+			console.log(secondJsonDataStockCount);
+			console.log(curDatabaseStockInfo.length);
 
-			// first json
-			const companyCsvData = fs.readFileSync(`${csvFilePath}/company_info_${formattedDate}.csv`);
-			const companyDecodedData = iconv.decode(companyCsvData, "EUC-KR");
-			const firstJsonArray = await csvtojson({
-				colParser: {
-					소속부: (item, head, resultRow, row, colIdx) => {
-						// 첫 번째 소속부 컬럼 값만 사용
-						if (resultRow["소속부"] === undefined) {
-							return item;
-						}
-						return undefined; // 두 번째 소속부 컬럼 값 무시
-					},
-				},
-			}).fromString(companyDecodedData);
-
-			const companyFilteredData = firstJsonArray.map((row: CompanyInfoCSVRowData) => ({
-				종목코드: row["종목코드"],
-				종목명: row["종목명"],
-				시장구분: row["시장구분"],
-				소속부: row["소속부"],
-				업종코드: row["업종코드"],
-				업종명: row["업종명"],
-				결산월: row["결산월"],
-				지정자문인: row["지정자문인"],
-				상장주식수: row["상장주식수"],
-				액면가: row["액면가"],
-				자본금: row["자본금"],
-				통화구분: row["통화구분"],
-				대표이사: row["대표이사"],
-				대표전화: row["대표전화"],
-				주소: row["주소"],
-			}));
-
-			const convertedCompanyInfo = [];
-
-			for (const data of companyFilteredData) {
-				let convertedCurData = {
-					name: data["종목명"],
-					detailed_name: null,
-					english_name: null,
-					description: null,
-					industry_name: data["업종명"],
-					industry_code: data["업종코드"],
-					capital: data["자본금"],
-					currency: data["통화구분"],
-					fiscal_month: data["결산월"],
-					ceo: data["대표이사"],
-					main_phone: data["대표전화"],
-					address: data["주소"],
-					website: null,
-					founded_date: null,
-					stock_info: [
-						{
-							standard_code: null,
-							stock_code: data["종목코드"],
-							listing_date: null,
-							face_value: data["액면가"],
-							listed_shares: data["상장주식수"],
-							market_type: data["시장구분"],
-							stock_type: null,
-							affiliation: data["소속부"],
-							security_type: null,
-						},
-					],
-				};
-
-				convertedCompanyInfo.push(convertedCurData);
-			}
-
-			fs.writeFile(`${jsonFilePath}/first.json`, JSON.stringify(convertedCompanyInfo), (err) => {
-				if (err) throw err;
-				console.log("첫번째 JSON 파일이 생성되었습니다.");
-			});
-
-			// second json
-			const stockCsvData = fs.readFileSync(`${csvFilePath}/stock_info_${formattedDate}.csv`);
-			const stockDecodedData = iconv.decode(stockCsvData, "EUC-KR");
-			const secondJsonArray = await csvtojson().fromString(stockDecodedData);
-
-			const stockFilteredData = secondJsonArray.map((row: StockInfoCSVRowData) => ({
-				표준코드: row["표준코드"],
-				단축코드: row["단축코드"],
-				"한글 종목명": row["한글 종목명"],
-				"한글 종목약명": row["한글 종목약명"],
-				"영문 종목명": row["영문 종목명"],
-				상장일: row["상장일"],
-				시장구분: row["시장구분"],
-				증권구분: row["증권구분"],
-				소속부: row["소속부"],
-				주식종류: row["주식종류"],
-				액면가: row["액면가"],
-				상장주식수: row["상장주식수"],
-			}));
-
-			const companyJsonData = fs.readFileSync(`${jsonFilePath}/first.json`, "utf-8");
-			const firstJsonData = JSON.parse(companyJsonData);
-
-			const convertedCompanyStockInfo = [];
-
-			for (const companyData of firstJsonData) {
-				// 뼈대에 먼저 정보 기입
-				let stockData = stockFilteredData.find((e) => {
-					return e["단축코드"] === companyData["stock_info"][0]["stock_code"];
-				});
-				if (stockData) {
-					companyData["detailed_name"] = stockData["한글 종목명"];
-					companyData["english_name"] = stockData["영문 종목명"];
-					companyData["stock_info"][0]["standard_code"] = stockData["표준코드"];
-					companyData["stock_info"][0]["listing_date"] = stockData["상장일"];
-					companyData["stock_info"][0]["stock_type"] = stockData["주식종류"];
-					companyData["stock_info"][0]["security_type"] = stockData["증권구분"];
-				}
-
-				// 우선주 등 있는지 확인 후 기입
-				let otherStockData = stockFilteredData.filter((e) => {
-					return (
-						e["단축코드"].slice(0, -1) === companyData["stock_info"][0]["stock_code"].slice(0, -1) &&
-						e["단축코드"] !== companyData["stock_info"][0]["stock_code"]
-					);
-				});
-				if (otherStockData.length !== 0) {
-					for (const anotherStockData of otherStockData) {
-						companyData["stock_info"].push({
-							standard_code: anotherStockData["표준코드"],
-							stock_code: anotherStockData["단축코드"],
-							listing_date: anotherStockData["상장일"],
-							face_value: anotherStockData["액면가"],
-							listed_shares: anotherStockData["상장주식수"],
-							market_type: anotherStockData["시장구분"],
-							stock_type: anotherStockData["주식종류"],
-							affiliation: anotherStockData["소속부"],
-							security_type: anotherStockData["증권구분"],
-						});
+			let numOfNewStock = 0;
+			secondJsonData.forEach((companyInfo) => {
+				companyInfo.stock_info.forEach((e) => {
+					let isNew = true;
+					for (const stockInfo of curDatabaseStockInfo) {
+						if (e.stock_code === stockInfo.stock_code) isNew = false;
 					}
-				}
-
-				convertedCompanyStockInfo.push(companyData);
-			}
-
-			fs.writeFile(`${jsonFilePath}/second.json`, JSON.stringify(convertedCompanyStockInfo), (err) => {
-				if (err) throw err;
-				console.log("두번째 JSON 파일이 생성되었습니다.");
+					if (isNew) {
+						console.log(e.stock_code);
+						numOfNewStock++;
+					}
+				});
 			});
+			console.log(numOfNewStock);
+
+			// console.log(curDatabaseStockInfo.length);
+			// let numOfStock = 0;
+			// secondJsonData.forEach((company) => {
+			// 	company.stock_info.forEach((stockInfo) => {
+			// 		if (this.stockInfoRepository.findBy({ stock_code: stockInfo.stock_code })) {
+			// 			numOfStock++;
+			// 		}
+			// 	});
+			// });
+			// console.log(numOfStock);
+			// const jsonDataAfterFilteringStockInfo = secondJsonData.map((company) => {
+			// 	const newStockInfo = company.stock_info.filter((stockInfo) => {
+			// 		console.log(stockInfo);
+			// 		if (this.stockInfoRepository.findBy({ stock_code: stockInfo.stock_code })) return false;
+			// 		else return true;
+			// 	});
+			// 	if (newStockInfo.length !== 0) console.log(newStockInfo);
+			// });
 
 			// 3. 해당 회사(종목) 데이터 가져오기
 
