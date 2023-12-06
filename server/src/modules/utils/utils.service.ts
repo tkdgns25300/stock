@@ -856,46 +856,19 @@ export class UtilsService {
 			 */
 			const companyStockJsonData = fs.readFileSync(`${jsonFilePath}/second.json`, "utf-8");
 			const secondJsonData = JSON.parse(companyStockJsonData);
-
 			const curDatabaseStockInfo = await this.stockInfoRepository.find();
-			let secondJsonDataStockCount = 0;
-			secondJsonData.forEach((e) => (secondJsonDataStockCount += e.stock_info.length));
-			console.log(secondJsonDataStockCount);
-			console.log(curDatabaseStockInfo.length);
 
-			let numOfNewStock = 0;
-			secondJsonData.forEach((companyInfo) => {
-				companyInfo.stock_info.forEach((e) => {
-					let isNew = true;
-					for (const stockInfo of curDatabaseStockInfo) {
-						if (e.stock_code === stockInfo.stock_code) isNew = false;
-					}
-					if (isNew) {
-						console.log(e.stock_code);
-						numOfNewStock++;
-					}
-				});
-			});
-			console.log(numOfNewStock);
+			const thirdJsonData = secondJsonData
+				.map((companyInfo) => {
+					const newStockInfo = companyInfo.stock_info.filter(
+						(e) => !curDatabaseStockInfo.some((stockInfo) => e.stock_code === stockInfo.stock_code),
+					);
+					if (newStockInfo.length === 0) return null;
+					return { ...companyInfo, stock_info: newStockInfo };
+				})
+				.filter((companyInfo) => companyInfo !== null);
 
-			// console.log(curDatabaseStockInfo.length);
-			// let numOfStock = 0;
-			// secondJsonData.forEach((company) => {
-			// 	company.stock_info.forEach((stockInfo) => {
-			// 		if (this.stockInfoRepository.findBy({ stock_code: stockInfo.stock_code })) {
-			// 			numOfStock++;
-			// 		}
-			// 	});
-			// });
-			// console.log(numOfStock);
-			// const jsonDataAfterFilteringStockInfo = secondJsonData.map((company) => {
-			// 	const newStockInfo = company.stock_info.filter((stockInfo) => {
-			// 		console.log(stockInfo);
-			// 		if (this.stockInfoRepository.findBy({ stock_code: stockInfo.stock_code })) return false;
-			// 		else return true;
-			// 	});
-			// 	if (newStockInfo.length !== 0) console.log(newStockInfo);
-			// });
+			console.log(thirdJsonData);
 
 			// 3. 해당 회사(종목) 데이터 가져오기
 
