@@ -855,21 +855,28 @@ export class UtilsService {
 			const secondJsonData = JSON.parse(companyStockJsonData);
 			const curDatabaseStockInfo = await this.stockInfoRepository.find();
 
-			const thirdJsonData = secondJsonData
-				.map((companyInfo) => {
-					const newStockInfo = companyInfo.stock_info.filter(
-						(e) => !curDatabaseStockInfo.some((stockInfo) => e.stock_code === stockInfo.stock_code),
-					);
-					if (newStockInfo.length === 0) return null;
-					return { ...companyInfo, stock_info: newStockInfo };
-				})
-				.filter((companyInfo) => companyInfo !== null);
-
-			const finalJsonData = [];
+			// const thirdJsonData = secondJsonData
+			// 	.map((companyInfo) => {
+			// 		const newStockInfo = companyInfo.stock_info.filter(
+			// 			(e) => !curDatabaseStockInfo.some((stockInfo) => e.stock_code === stockInfo.stock_code),
+			// 		);
+			// 		if (newStockInfo.length === 0) return null;
+			// 		return { ...companyInfo, stock_info: newStockInfo };
+			// 	})
+			// 	.filter((companyInfo) => companyInfo !== null);
+			const thirdJsonData = secondJsonData.filter((companyInfo) => {
+				return companyInfo.stock_info.every((e) => {
+					return !curDatabaseStockInfo.some((stockInfo) => {
+						return e.stock_code === stockInfo.stock_code;
+					});
+				});
+			});
 
 			/**
 			 * 4. 해당 회사(종목) 데이터 가져오기
 			 */
+
+			const finalJsonData = [];
 			for (let i = 0; i < thirdJsonData.length; i++) {
 				const urlForWebsiteFoundedDate = `https://comp.fnguide.com/SVO2/ASP/SVD_Corp.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=102&stkGb=701`;
 				const urlForDescription = `https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701`;
@@ -907,14 +914,12 @@ export class UtilsService {
 				finalJsonData.push(thirdJsonData[i]);
 			}
 
-			fs.writeFile(`${jsonFilePath}/third.json`, JSON.stringify(finalJsonData), (err) => {
-				if (err) throw err;
-				console.log("세번째 JSON 파일이 생성되었습니다.");
-			});
+			await fs.promises.writeFile(`${jsonFilePath}/third.json`, JSON.stringify(finalJsonData));
+			console.log("세번째 JSON 파일이 생성되었습니다.");
 
 			// 4. DB에 저장
 
-			return new ApiResponse(null, "Successfully download CSV file");
+			return new ApiResponse(null, "Successfully Update Database");
 		} catch (error) {
 			throw error;
 		}
