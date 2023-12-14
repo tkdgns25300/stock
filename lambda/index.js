@@ -187,6 +187,22 @@ export const handler = async (event, context) => {
 
 		await fs.promises.writeFile(`${jsonFilePath}/second.json`, JSON.stringify(convertedCompanyStockInfo));
 		console.log("두번째 JSON 파일이 생성되었습니다.");
+
+		/**
+		 * 3. 없는 회사(종목) 구분
+		 */
+
+		const companyStockJsonData = await fs.promises.readFile(`${jsonFilePath}/second.json`, "utf-8");
+		const secondJsonData = JSON.parse(companyStockJsonData);
+		const curDatabaseStockInfo = await this.stockInfoRepository.find();
+
+		const thirdJsonData = secondJsonData.filter((companyInfo) => {
+			return companyInfo.stock_info.every((e) => {
+				return !curDatabaseStockInfo.some((stockInfo) => {
+					return e.stock_code === stockInfo.stock_code;
+				});
+			});
+		});
 	} catch (error) {
 		throw error;
 	}
