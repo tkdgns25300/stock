@@ -191,7 +191,6 @@ export const handler = async (event, context) => {
 		/**
 		 * 3. 없는 회사(종목) 구분
 		 */
-
 		const companyStockJsonData = await fs.promises.readFile(`${jsonFilePath}/second.json`, "utf-8");
 		const secondJsonData = JSON.parse(companyStockJsonData);
 		const curDatabaseStockInfo = await this.stockInfoRepository.find();
@@ -203,6 +202,46 @@ export const handler = async (event, context) => {
 				});
 			});
 		});
+
+		/**
+		 * 4. 해당 회사(종목) 데이터 가져오기
+		 */
+		const finalJsonData = [];
+		for (let i = 0; i < thirdJsonData.length; i++) {
+			const urlForWebsiteFoundedDate = `https://comp.fnguide.com/SVO2/ASP/SVD_Corp.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=102&stkGb=701`;
+			const urlForDescription = `https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701`;
+
+			const browser = await puppeteer.launch();
+			const page1 = await browser.newPage();
+			const page2 = await browser.newPage();
+
+			await page1.goto(urlForWebsiteFoundedDate);
+			await page2.goto(urlForDescription);
+
+			const websiteElement = await page1.$("#corpGeneralInfo > table > tbody > tr:nth-child(2) > td:nth-child(2) > a");
+			const website = websiteElement ? await page1.evaluate((el) => el.innerText, websiteElement) : "";
+
+			const foundedDateElement = await page1.$("#corpGeneralInfo > table > tbody > tr:nth-child(5) > td:nth-child(2)");
+			const founded_date = foundedDateElement
+				? await page1.evaluate((el) => el.textContent.trim(), foundedDateElement)
+				: "";
+
+			const descriptionElement = await page2.$("#bizSummaryContent > li:nth-child(1)");
+			const description = descriptionElement
+				? await page2.evaluate((el) => el.textContent.trim(), descriptionElement)
+				: "";
+
+			await browser.close();
+
+			thirdJsonData[i].website = website === " " ? "" : website;
+			thirdJsonData[i].founded_date = founded_date;
+			thirdJsonData[i].description = description === "관련 데이터가 없습니다." ? "" : description;
+
+			finalJsonData.push(thirdJsonData[i]);
+		}
+
+		await fs.promises.writeFile(`${jsonFilePath}/third.json`, JSON.stringify(finalJsonData));
+		console.log("세번째 JSON 파일이 생성되었습니다.");
 	} catch (error) {
 		throw error;
 	}
