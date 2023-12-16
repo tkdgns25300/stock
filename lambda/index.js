@@ -242,6 +242,57 @@ export const handler = async (event, context) => {
 
 		await fs.promises.writeFile(`${jsonFilePath}/third.json`, JSON.stringify(finalJsonData));
 		console.log("세번째 JSON 파일이 생성되었습니다.");
+
+		/**
+		 * 5. DB에 저장
+		 */
+		for (const companyInfoData of finalJsonData) {
+			await this.companyInfoRepository.delete({ detailed_name: companyInfoData.detailed_name });
+
+			// Company Info 작성
+			const companyInfo = new CompanyInfo();
+			companyInfo.name = companyInfoData.name;
+			companyInfo.detailed_name = companyInfoData.detailed_name;
+			companyInfo.english_name = companyInfoData.english_name;
+			companyInfo.description = companyInfoData.description || null;
+			companyInfo.industry_name = companyInfoData.industry_name;
+			companyInfo.industry_code = companyInfoData.industry_code;
+			companyInfo.capital = Number(companyInfoData.capital);
+			companyInfo.currency = companyInfoData.currency;
+			companyInfo.fiscal_month = Number(companyInfoData.fiscal_month);
+			companyInfo.ceo = companyInfoData.ceo;
+			companyInfo.main_phone = companyInfoData.main_phone;
+			companyInfo.address = companyInfoData.address;
+			companyInfo.website = companyInfoData.website || null;
+			companyInfo.founded_date = new Date(companyInfoData.founded_date) || null;
+			companyInfo.stock_infos = companyInfoData.stock_info;
+
+			const stockInfoDataArr = [];
+			for (const stockInfoData of companyInfoData.stock_info) {
+				await this.stockInfoRepository.delete({ standard_code: stockInfoData.standard_code });
+
+				// Stock Info 작성
+				const stockInfo = new StockInfo();
+				stockInfo.standard_code = stockInfoData.standard_code;
+				stockInfo.stock_code = stockInfoData.stock_code;
+				stockInfo.listing_date = new Date(stockInfoData.listing_date);
+				stockInfo.face_value = stockInfoData.face_value;
+				stockInfo.listed_shares = Number(stockInfoData.listed_shares);
+				stockInfo.market_type = stockInfoData.market_type;
+				stockInfo.stock_type = stockInfoData.stock_type;
+				stockInfo.affiliation = stockInfoData.affiliation || null;
+				stockInfo.security_type = stockInfoData.security_type;
+				stockInfo.company_info = companyInfo;
+
+				await this.stockInfoRepository.save(stockInfo);
+				stockInfoDataArr.push(stockInfo);
+			}
+
+			companyInfo.stock_infos = stockInfoDataArr;
+			await this.companyInfoRepository.save(companyInfo);
+		}
+
+		console.log("Successfully Update Database");
 	} catch (error) {
 		throw error;
 	}
