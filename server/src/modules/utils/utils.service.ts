@@ -951,6 +951,91 @@ export class UtilsService {
 
 					await this.stockInfoRepository.save(stockInfo);
 					stockInfoDataArr.push(stockInfo);
+
+					// Financial Data
+					const token = await getToken();
+					const headers = {
+						"Content-Type": "application/json; charset=utf-8",
+						appkey: process.env.KIS_APP_KEY,
+						appsecret: process.env.KIS_APP_SECRET,
+						Authorization: `Bearer ${token}`,
+						custtype: "P",
+					};
+					const query = `fid_div_cls_code=1&fid_cond_mrkt_div_code=J&fid_input_iscd=${stockInfoData.stock_code}`;
+
+					const balanceSheetResponse = await fetch(
+						`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+						{
+							method: "GET",
+							headers: { ...headers, tr_id: "FHKST66430100" },
+						},
+					).then((res) => res.json());
+					const balanceSheetDataArray = await balanceSheetResponse.output;
+
+					const incomeStatementResponse = await fetch(
+						`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+						{
+							method: "GET",
+							headers: { ...headers, tr_id: "FHKST66430200" },
+						},
+					).then((res) => res.json());
+					const incomeStatementDataArray = await incomeStatementResponse.output;
+
+					const financialRatioResponse = await fetch(
+						`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+						{
+							method: "GET",
+							headers: { ...headers, tr_id: "FHKST66430300" },
+						},
+					).then((res) => res.json());
+					const financialRatioDataArray = await financialRatioResponse.output;
+
+					const profitRatioResponse = await fetch(
+						`https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/finance/balance-sheet?${query}`,
+						{
+							method: "GET",
+							headers: { ...headers, tr_id: "FHKST66430400" },
+						},
+					).then((res) => res.json());
+					const ProfitRatioDataArray = await profitRatioResponse.output;
+
+					// Store Financial Information into DB
+					if (balanceSheetDataArray && balanceSheetDataArray.length !== 0) {
+						for (const balanceSheetData of balanceSheetDataArray) {
+							const balanceSheet = this.balanceSheetRepository.create({
+								...balanceSheetData,
+								stock_info: stockInfoData,
+							});
+							await this.balanceSheetRepository.save(balanceSheet);
+						}
+					}
+
+					if (incomeStatementDataArray && incomeStatementDataArray.length !== 0) {
+						for (const incomeStatementData of incomeStatementDataArray) {
+							const incomeStatement = this.incomeStatementRepository.create({
+								...incomeStatementData,
+								stock_info: stockInfoData,
+							});
+							await this.incomeStatementRepository.save(incomeStatement);
+						}
+					}
+
+					if (financialRatioDataArray && financialRatioDataArray.length !== 0) {
+						for (const financialRatioData of financialRatioDataArray) {
+							const financialRatio = this.financialRatioRepository.create({
+								...financialRatioData,
+								stock_info: stockInfoData,
+							});
+							await this.financialRatioRepository.save(financialRatio);
+						}
+					}
+
+					if (ProfitRatioDataArray && ProfitRatioDataArray.length !== 0) {
+						for (const ProfitRatioData of ProfitRatioDataArray) {
+							const profitRatio = this.profitRatioRepository.create({ ...ProfitRatioData, stock_info: stockInfoData });
+							await this.profitRatioRepository.save(profitRatio);
+						}
+					}
 				}
 
 				companyInfo.stock_infos = stockInfoDataArr;
