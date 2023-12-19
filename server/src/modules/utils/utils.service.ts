@@ -3,6 +3,7 @@ import puppeteer from "puppeteer";
 import * as fs from "fs";
 import csvtojson from "csvtojson";
 import * as iconv from "iconv-lite";
+import * as dotenv from "dotenv";
 import { Injectable } from "@nestjs/common";
 import { writeFile } from "fs/promises";
 import { CompanyInfo } from "src/entities/CompanyInfo.entity";
@@ -649,10 +650,13 @@ export class UtilsService {
 			/**
 			 * 1. CSV 파일 다운로드
 			 */
-			const browser = await puppeteer.launch({
-				// headless: false,
+
+			const puppeteerConfig = {
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
-			});
+			};
+			if (process.env.NODE_ENV === "production") puppeteerConfig["executablePath"] = "/opt/google/chrome/google-chrome";
+
+			const browser = await puppeteer.launch(puppeteerConfig);
 			const page = await browser.newPage();
 			await page.setUserAgent(
 				"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36",
