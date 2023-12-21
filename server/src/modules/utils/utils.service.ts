@@ -877,7 +877,7 @@ export class UtilsService {
 				const urlForWebsiteFoundedDate = `https://comp.fnguide.com/SVO2/ASP/SVD_Corp.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=102&stkGb=701`;
 				const urlForDescription = `https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A${thirdJsonData[i].stock_info[0].stock_code}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701`;
 
-				const browser = await puppeteer.launch();
+				const browser = await puppeteer.launch(puppeteerConfig);
 				const page1 = await browser.newPage();
 				const page2 = await browser.newPage();
 
