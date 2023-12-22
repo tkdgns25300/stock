@@ -17,6 +17,7 @@ async function bootstrap() {
 			"https://d1dpk80jpvij81.cloudfront.net",
 			"https://stockpedia.online",
 			"https://www.stockpedia.online",
+			"*",
 		], // 허용할 Origin
 		methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // 허용할 HTTP 메서드
 		allowedHeaders: "Content-Type, Accept", // 허용할 헤더
