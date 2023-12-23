@@ -27,7 +27,7 @@ async function bootstrap() {
 	// Interceptors
 	app.useGlobalInterceptors(new ApiResponseInterceptor());
 
-	const port = 80;
+	const port = 3000;
 	await app.listen(port);
 	logger.log(`API Server listening on port ${port}`);
 }
