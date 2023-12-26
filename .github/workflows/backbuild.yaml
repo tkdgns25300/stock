@@ -25,6 +25,6 @@ jobs:
             git checkout master
             git pull origin master --no-edit
             npm i --legacy-peer-deps
-            sudo pm2 delete server
-            sudo pm2 start npm --name "server" -- run start:prod
+            pm2 delete server
+            pm2 start npm --name "server" -- run start:prod
             echo 'code deploy end!'
