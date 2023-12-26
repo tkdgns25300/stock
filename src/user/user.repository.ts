@@ -15,5 +15,15 @@ export class UserRepository extends Repository<User> {
 		const hashedPassword = await bcrypt.hash(password, salt);
 
 		const user = this.create({ email, password: hashedPassword, firstName, lastName, profilePicture });
+
+		try {
+			await this.save(user);
+		} catch (error) {
+			if (error instanceof QueryFailedError) {
+				return new PageResObj({}, error.message, true);
+			}
+			return new PageResObj({}, error.message, true);
+		}
+		return new PageResObj({}, "Sign Up Success");
 	}
 }
