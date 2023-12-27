@@ -10,3 +10,7 @@
 
 # token
 /src/util/token/token.json
+
+# database update
+/src/modules/utils/csvFolder
+/src/modules/utils/jsonFolder
