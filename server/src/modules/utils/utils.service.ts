@@ -677,7 +677,7 @@ export class UtilsService {
 
 			// 회사 정보 다운로드
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020501", {
-				waitUntil: "load",
+				waitUntil: "networkidle2",
 			});
 			await new Promise((resolve) => setTimeout(resolve, 5000));
 			await downloadFile(
@@ -689,7 +689,7 @@ export class UtilsService {
 
 			// 종목 정보 다운로드
 			await page.goto("http://data.krx.co.kr/contents/MDC/MDI/mdiLoader/index.cmd?menuId=MDC0201020201", {
-				waitUntil: "load",
+				waitUntil: "networkidle2",
 			});
 			await new Promise((resolve) => setTimeout(resolve, 5000));
 			await downloadFile(
