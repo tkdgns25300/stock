@@ -655,7 +655,7 @@ export class UtilsService {
 				headless: true,
 				args: ["--disable-dev-shm-usage", "--no-sandbox"],
 			};
-			if (process.env.NODE_ENV === "production") puppeteerConfig["executablePath"] = "/opt/google/chrome/google-chrome";
+			if (process.env.NODE_ENV === "production") puppeteerConfig["executablePath"] = "/usr/bin/google-chrome-stable";
 
 			const browser = await puppeteer.launch(puppeteerConfig);
 			const page = await browser.newPage();
