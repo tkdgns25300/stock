@@ -4,9 +4,11 @@ const axios = require("axios");
 
 exports.handler = async (event) => {
 	const apiUrl = "https://server.stockpedia.online/api-server/v1/utils/database-update";
+	const apiUrl1 = "https://server.stockpedia.online/api-server/v1/company/search?name=삼성전자";
 
 	try {
-		const response = await axios.post(apiUrl);
+		// const response = await axios.post(apiUrl);
+		const response = await axios.get(apiUrl1);
 
 		console.log("API 호출 성공:", response.data);
 		return {
