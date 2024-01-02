@@ -8,9 +8,11 @@ import { BalanceSheet } from "src/entities/BalanceSheet.entity";
 import { IncomeStatement } from "src/entities/IncomeStatement.entity";
 import { ProfitRatio } from "src/entities/ProfitRatio.entity";
 import { FinancialRatio } from "src/entities/FinancialRatio.entity";
+import { CacheModule } from "@nestjs/cache-manager";
 
 @Module({
 	imports: [
+		CacheModule.register(),
 		TypeOrmModule.forFeature([CompanyInfo, StockInfo, BalanceSheet, IncomeStatement, FinancialRatio, ProfitRatio]),
 	],
 	controllers: [CompanyController],

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Query, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Controller, Get, Inject, Param, Query, UsePipes, ValidationPipe } from "@nestjs/common";
 import { CompanyService } from "./company.service";
 import { ApiResponse } from "src/dtos/ApiResponse.dto";
 import { StockInfo } from "src/entities/StockInfo.entity";
@@ -9,10 +9,24 @@ import { StockPriceInfoData } from "src/types/StockPriceInfoData";
 import { StockPriceByPeriodData } from "src/types/StockPriceByPeriodData";
 import { FinancialInfoData } from "src/types/FinancialInfoData";
 import { InvestmentOpinionData } from "src/types/InvestmentOpinionData";
+import { CACHE_MANAGER } from "@nestjs/cache-manager";
+import { Cache } from "cache-manager";
 
 @Controller("company")
 export class CompanyController {
-	constructor(private companyService: CompanyService) {}
+	constructor(private companyService: CompanyService, @Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+
+	// Cache Test
+	@Get("/cache")
+	async getCache(): Promise<string> {
+		const savedTime = await this.cacheManager.get<number>("time");
+		if (savedTime) {
+			return "saved time : " + savedTime;
+		}
+		const now = new Date().getTime();
+		await this.cacheManager.set("time", now);
+		return "save new time : " + now;
+	}
 
 	// get all stock code & Stock's company name
 	@Get("/stock-list")

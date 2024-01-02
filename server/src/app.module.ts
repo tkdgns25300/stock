@@ -16,12 +16,12 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 		CompanyModule,
 		UtilsModule,
 		HealthModule,
-		RedisModule.forRoot({
-			config: {
-				host: process.env.REDIS_ENDPOINT,
-				port: 6379,
-			},
-		}),
+		// RedisModule.forRoot({
+		// 	config: {
+		// 		host: process.env.REDIS_ENDPOINT,
+		// 		port: 6379,
+		// 	},
+		// }),
 	],
 	controllers: [],
 	providers: [],

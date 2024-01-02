@@ -2,6 +2,9 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { Logger } from "@nestjs/common";
 import { ApiResponseInterceptor } from "./interceptors/apiResponse.intercepters";
+import * as dotenv from "dotenv";
+
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 async function bootstrap() {
 	const logger = new Logger();
@@ -27,7 +30,7 @@ async function bootstrap() {
 	// Interceptors
 	app.useGlobalInterceptors(new ApiResponseInterceptor());
 
-	const port = 80;
+	const port = process.env.SERVER_PORT;
 	await app.listen(port);
 	logger.log(`API Server listening on port ${port}`);
 }
