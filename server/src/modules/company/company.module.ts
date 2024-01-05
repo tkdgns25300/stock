@@ -16,11 +16,11 @@ dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 
 @Module({
 	imports: [
-		CacheModule.register({
-			store: redisStore,
-			host: process.env.REDIS_ENDPOINT,
-			port: 6379,
-		}),
+		// CacheModule.register({
+		// 	store: redisStore,
+		// 	host: process.env.REDIS_ENDPOINT,
+		// 	port: 6379,
+		// }),
 		TypeOrmModule.forFeature([CompanyInfo, StockInfo, BalanceSheet, IncomeStatement, FinancialRatio, ProfitRatio]),
 	],
 	controllers: [CompanyController],
