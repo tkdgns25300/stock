@@ -44,4 +44,11 @@ export class AuthService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async refreshAccessToken(refreshToken: string): Promise<PageResObj<{ accessToken: string }> | PageResObj<{}>> {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

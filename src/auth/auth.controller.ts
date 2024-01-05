@@ -19,4 +19,11 @@ export class AuthController {
 	): Promise<PageResObj<{ accessToken: string; refreshToken: string }> | PageResObj<{}>> {
 		return this.authService.signIn(authCredentialsDto);
 	}
+
+	@Post("/refresh-token")
+	refreshAccessToken(
+		@Body("refreshToken") refreshToken: string,
+	): Promise<PageResObj<{ accessToken: string }> | PageResObj<{}>> {
+		return this.authService.refreshAccessToken(refreshToken);
+	}
 }
