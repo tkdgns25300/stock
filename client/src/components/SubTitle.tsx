@@ -8,8 +8,8 @@ interface SubTitleProps {
 const SubTitle: React.FC<SubTitleProps> = ({ englishName, foundedDate }) => {
 	return (
 		<div className="flex my-3 text-3xl">
-			<span className="italic text-blue-600/75">{englishName}</span>
-			<span className="italic ml-3 text-blue-600/75">({foundedDate}~)</span>
+			<span className="italic text-green-600">{englishName}</span>
+			<span className="italic ml-3 text-green-600">({foundedDate}~)</span>
 		</div>
 	);
 };
