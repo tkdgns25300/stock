@@ -47,6 +47,17 @@ export class AuthService {
 
 	async refreshAccessToken(refreshToken: string): Promise<PageResObj<{ accessToken: string }> | PageResObj<{}>> {
 		try {
+			const { email, isAccessToken } = await this.jwtService.verify(refreshToken);
+
+			if (!email || isAccessToken) {
+				return new PageResObj({}, "Invalid Refresh Token", true);
+			}
+
+			// Access Token 생성
+			const AccessTokenPayload = { email, isAccessToken: true };
+			const accessToken = this.jwtService.sign(AccessTokenPayload, { expiresIn: "1h" }); // Access Token 유효시간 1시간
+
+			return new PageResObj({ accessToken }, "Refresh Access Token Success");
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
