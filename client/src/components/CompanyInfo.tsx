@@ -35,7 +35,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 
 	return (
 		<div className="text-white font-doHyeon px-28">
-			<div className="w-full">
+			<div className="w-full flex flex-col justify-center items-center">
 				<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
 				<SubTitle
 					englishName={companyData.english_name}
