@@ -19,26 +19,66 @@ interface CompanyDetailTableProps {
 
 const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) => {
 	return (
-		<div className="relative mt-24 shadow-xl w-auto text-black" style={{ borderRadius: "2rem" }}>
-			<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
-				Detail
-			</div>
-			<div className="w-full bg-slate-100 relative rounded-3xl border-current p-6 z-20">
-				<p className="my-2">한글명(상세): {companyData.detailed_name}</p>
-				<p className="my-2">주소: {companyData.address}</p>
-				<p className="my-2">자본금: {companyData.capital}</p>
-				<p className="my-2">대표: {companyData.ceo}</p>
-				<p className="my-2">통화구분: {companyData.currency}</p>
-				<p className="my-2">결산월: {companyData.fiscal_month}</p>
-				<p className="my-2">업종코드: {companyData.industry_code}</p>
-				<p className="my-2">업종명: {companyData.industry_name}</p>
-				<p className="my-2">대표번호: {companyData.main_phone}</p>
-				<p className="my-2">
-					웹사이트:{" "}
-					<a href={companyData.website} target="_blank" rel="noopener noreferrer">
-						{companyData.website}
-					</a>{" "}
-				</p>
+		<div className="w-full flex justify-center relative mt-24 shadow-xl text-black" style={{ borderRadius: "2rem" }}>
+			<div className="w-3/4">
+				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
+					Detail
+				</div>
+				<div className="bg-slate-100 relative rounded-3xl border-current text-lg p-6 z-20">
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">한글명(상세) :</span>
+						<span className="text-right">{companyData.detailed_name}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">주소 :</span>
+						<span className="text-right">{companyData.address}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">대표 :</span>
+						<span className="text-right">{companyData.ceo}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">대표번호 :</span>
+						<span className="text-right">{companyData.main_phone}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">웹사이트:</span>
+						<span className="text-right">
+							<a className="underline" href={companyData.website} target="_blank" rel="noopener noreferrer">
+								{companyData.website}
+							</a>
+						</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">자본금 :</span>
+						<span className="text-right">{companyData.capital}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">통화구분 :</span>
+						<span className="text-right">{companyData.currency}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">결산월 :</span>
+						<span className="text-right">{companyData.fiscal_month}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">업종코드 :</span>
+						<span className="text-right">{companyData.industry_code}</span>
+					</p>
+					<div className="border-b border-gray w-full mx-auto my-4"></div>
+					<p className="flex justify-between items-center my-2">
+						<span className="text-left">업종명 :</span>
+						<span className="text-right">{companyData.industry_name}</span>
+					</p>
+				</div>
 			</div>
 		</div>
 	);
