@@ -33,7 +33,7 @@ const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode, stockTy
 	return (
 		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
 			<Search />
-			<div className="w-auto flex flex-col justify-center items-center mt-32">
+			<div className="w-auto flex flex-col justify-center items-center mt-20">
 				<CompanyInfo companyData={companyData} stockCode={stockCode} stockType={stockType} />
 			</div>
 		</div>
