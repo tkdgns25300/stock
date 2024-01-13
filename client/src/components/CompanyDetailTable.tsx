@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface CompanyTableData {
 	address: string;
@@ -24,7 +24,16 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
 					Detail
 				</div>
-				<div className="bg-slate-100 relative rounded-3xl border-current text-lg p-6 z-20">
+				<div
+					className="bg-slate-100 relative rounded-3xl border-current text-lg p-6 z-20"
+					style={{
+						maxHeight: "450px",
+						overflowY: "auto",
+						scrollbarWidth: "thin" /* Firefox */,
+						WebkitOverflowScrolling: "touch",
+						scrollbarColor: "rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.1)" /* Safari and Chrome */,
+					}}
+				>
 					<p className="flex justify-between items-center my-2">
 						<span className="text-left">한글명(상세) :</span>
 						<span className="text-right">{companyData.detailed_name}</span>
