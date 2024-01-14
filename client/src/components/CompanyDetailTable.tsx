@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface CompanyTableData {
 	address: string;
@@ -20,7 +20,7 @@ interface CompanyDetailTableProps {
 const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) => {
 	return (
 		<div className="w-full flex justify-center relative mt-24 shadow-xl text-black" style={{ borderRadius: "2rem" }}>
-			<div className="w-3/4">
+			<div className="w-full">
 				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
 					Detail
 				</div>
