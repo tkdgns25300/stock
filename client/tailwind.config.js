@@ -9,6 +9,8 @@ module.exports = {
 				mono: ["Menlo", "monospace"],
 				doHyeon: ["Do Hyeon", "sans-serif"],
 				"gothic-a1": ["Gothic A1", "sans-serif"],
+				Rubik: ["Rubik", "sans-serif"],
+				"Nanum-Gothic": ["Nanum Gothic", "sans-serif"],
 				"font-awesome": ["FontAwesome", "sans-serif"],
 			},
 		},
