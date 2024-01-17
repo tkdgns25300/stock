@@ -22,4 +22,12 @@ export class UserService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async getMyProfile(user: User): Promise<PageResObj<User> | PageResObj<{}>> {
+		try {
+			return new PageResObj(user, "Find Current User Profile Success");
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }

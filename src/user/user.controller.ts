@@ -13,4 +13,10 @@ export class UserController {
 	getAllUsers(@GetUser() user: User): Promise<PageResObj<User[]> | PageResObj<{}>> {
 		return this.userService.getAllUsers(user);
 	}
+
+	// 자기 프로필 조회
+	@Get("/mine")
+	getMyProfile(@GetUser() user: User): Promise<PageResObj<User> | PageResObj<{}>> {
+		return this.userService.getMyProfile(user);
+	}
 }
