@@ -1,8 +1,9 @@
-import { Controller, Get } from "@nestjs/common";
+import { Body, Controller, Get, Patch, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { User } from "./entity/user.entity";
 import { GetUser } from "./get-user.decorator";
 import { PageResObj } from "src/api/response/page-res-obj";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Controller("user")
 export class UserController {
@@ -18,5 +19,15 @@ export class UserController {
 	@Get("/mine")
 	getMyProfile(@GetUser() user: User): Promise<PageResObj<User> | PageResObj<{}>> {
 		return this.userService.getMyProfile(user);
+	}
+
+	// 자기 프로필 수정 (ID, 이메일 X)
+	@Patch("/update")
+	@UsePipes(ValidationPipe)
+	updateMyProfile(
+		@Body() updateUserDto: UpdateUserDto,
+		@GetUser() user: User,
+	): Promise<PageResObj<User> | PageResObj<{}>> {
+		return this.userService.updateMyProfile(updateUserDto, user);
 	}
 }

@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { UserRepository } from "./user.repository";
 import { User } from "./entity/user.entity";
 import { PageResObj } from "src/api/response/page-res-obj";
+import { UpdateUserDto } from "./dto/update-user.dto";
 
 @Injectable()
 export class UserService {
@@ -26,6 +27,13 @@ export class UserService {
 	async getMyProfile(user: User): Promise<PageResObj<User> | PageResObj<{}>> {
 		try {
 			return new PageResObj(user, "Find Current User Profile Success");
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
+
+	async updateMyProfile(updateUserDto: UpdateUserDto, user: User): Promise<PageResObj<User> | PageResObj<{}>> {
+		try {
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
