@@ -4,7 +4,7 @@ import HomeRight from "../components/HomeRight";
 
 const HomePage: React.FC = () => {
 	return (
-		<div className="flex">
+		<div className="desktop:flex">
 			<HomeLeft />
 			<HomeRight />
 		</div>
