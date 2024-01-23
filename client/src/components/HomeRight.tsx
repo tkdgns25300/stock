@@ -3,7 +3,7 @@ import InfoMessage from "./InfoMessage";
 
 const HomeRight: React.FC = () => {
 	return (
-		<div className="bg-white text-black w-1/2 h-screen flex flex-col justify-center items-center">
+		<div className="w-screen desktop:w-1/2 h-screen bg-white text-black flex flex-col justify-center items-center">
 			<InfoMessage
 				title="About STOCKPEDIA."
 				description={`Stockpedia는 한국 시장(KOSPI/KOSDAQ/NONEX)에 상장된 모든 종목에 대한 종합 정보를 제공합니다.<br /><br />
