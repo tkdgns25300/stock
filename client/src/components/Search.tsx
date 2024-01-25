@@ -55,7 +55,7 @@ const Search: React.FC = () => {
 						textItem.company_name.toLowerCase().includes(inputValue.toLowerCase()) ||
 						textItem.stock_code.includes(inputValue),
 				)
-				.slice(0, 10);
+				.slice(0, 8);
 			setDropDownList(choosenStockList);
 		}
 	}, [inputValue, wholeStockList]);
@@ -96,7 +96,10 @@ const Search: React.FC = () => {
 		}
 	};
 	return (
-		<div className="relative w-1/2 mx-auto z-10" ref={dropDownRef}>
+		<div
+			className="relative large:w-1/2 mobile:w-2/3 w-3/4 xl:pb-0 large:pb-24 desktop:pb-36 pb-0 mx-auto z-10"
+			ref={dropDownRef}
+		>
 			<form onSubmit={handleSubmit}>
 				<div
 					className={`bg-neutral-900 px-3 py-2 flex items-center justify-between ${
