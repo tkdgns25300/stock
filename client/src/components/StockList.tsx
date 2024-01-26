@@ -8,9 +8,9 @@ export interface StockItemType {
 
 const StockItem: React.FC<StockItemType> = ({ companyName, stockCode, stockType }) => {
 	return (
-		<div className="flex justify-between">
+		<div className="flex justify-between desktop:text-lg tablet:text-base text-sm">
 			<div>
-				<span className="text-gray-200 text-lg">{companyName}</span>
+				<span className="text-gray-200">{companyName}</span>
 				<span className="text-gray-500"> {stockType}</span>
 			</div>
 			<div>
