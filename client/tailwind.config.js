@@ -21,6 +21,8 @@ module.exports = {
 				large: "1280px",
 				xl: "1440px",
 				"2xl": "1920px",
+				"3xl": "2560px",
+				"4k": "3840px",
 			},
 		},
 	},
