@@ -10,7 +10,7 @@ const ResultPage: React.FC = () => {
 	const stockType = new URLSearchParams(location.search).get("stockType") || "";
 
 	return (
-		<div className="flex">
+		<div className="desktop:flex">
 			<ResultLeft companyName={companyName} stockCode={stockCode} stockType={stockType} />
 			<ResultRight companyName={companyName} stockCode={stockCode} stockType={stockType} />
 		</div>
