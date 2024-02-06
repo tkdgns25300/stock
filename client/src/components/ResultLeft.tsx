@@ -31,9 +31,11 @@ const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode, stockTy
 	}, [companyName]);
 
 	return (
-		<div className="bg-black w-1/2 h-screen flex flex-col justify-center items-center">
-			<Search />
-			<div className="w-auto flex flex-col justify-center items-center mt-20">
+		<div className="w-screen desktop:w-1/2 h-screen bg-black flex flex-col justify-start items-center overflow-y-auto">
+			<div className="w-full mt-24">
+				<Search />
+			</div>
+			<div className="w-full mt-8">
 				<CompanyInfo companyData={companyData} stockCode={stockCode} stockType={stockType} />
 			</div>
 		</div>
