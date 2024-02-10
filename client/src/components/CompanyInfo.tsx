@@ -34,7 +34,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 	}
 
 	return (
-		<div className="text-white font-doHyeon px-28">
+		<div className="text-white font-doHyeon px-16">
 			<div className="w-full flex flex-col justify-center items-center">
 				<Title name={companyData.name} stockCode={stockCode} stockType={stockType} />
 				<SubTitle
@@ -42,7 +42,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 					foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
 				/>
 				<Description description={companyData.description} />
-				<div className="border-b-2 border-white border-opacity-25 w-full mx-auto my-10"></div>
+				<div className="3xl:my-16 w-full border-b-2 border-white border-opacity-25 mx-auto mt-8"></div>
 				<CompanyDetailTable companyData={companyData} />
 			</div>
 		</div>
