@@ -87,4 +87,11 @@ export class PostService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async getAllPost(user: User, spaceId: number): Promise<PageResObj<Post[]> | PageResObj<{}>> {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
