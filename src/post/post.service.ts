@@ -90,6 +90,49 @@ export class PostService {
 
 	async getAllPost(user: User, spaceId: number): Promise<PageResObj<Post[]> | PageResObj<{}>> {
 		try {
+			// 존재하는 space인지 확인
+			const space = await this.spaceRepository.findOne({
+				where: {
+					id: spaceId,
+				},
+			});
+			if (!space) {
+				return new PageResObj({}, "Invalid Space Id", true);
+			}
+
+			// 해당 space의 전체 게시글 조회
+			const allPost = await this.postRepository.find({
+				where: {
+					space: { id: spaceId },
+					isDeleted: false,
+				},
+			});
+
+			// /**
+			//  * 유저의 권한 확인
+			//  * 관리자인가 소유자인가
+			//  */
+			// let isOwner: boolean;
+			// let isAdmin: boolean = false;
+
+			// const spaceMember = await this.spaceMemberRepository.findOne({
+			// 	where: {
+			// 		space: { id: spaceId },
+			// 		user: { id: user.id },
+			// 	},
+			// });
+			// // 참여자가 아닐 경우
+			// if (!spaceMember) {
+			// 	return new PageResObj({}, "Not Participant", true);
+			// }
+
+			// const currentUserAuth: SpaceRoleType = spaceMember.memberRoleType;
+			// if (currentUserAuth === SpaceRoleType.ADMIN) isAdmin = true;
+			// if (post.authorEmail === user.email) isOwner = true;
+
+			// if (!isAdmin && !isOwner) {
+			// 	return new PageResObj({}, "Not Authorized: Neither Admin Nor Owner", true);
+			// }
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
