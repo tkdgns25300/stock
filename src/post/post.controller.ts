@@ -1,4 +1,4 @@
-import { Body, Controller, Param, ParseIntPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseIntPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { PostService } from "./post.service";
 import { GetUser } from "src/user/get-user.decorator";
 import { User } from "src/user/entity/user.entity";
@@ -19,5 +19,14 @@ export class PostController {
 		@Body() createPostDto: CreatePostDto,
 	): Promise<PageResObj<PostEntity> | PageResObj<{}>> {
 		return this.postService.createPost(user, spaceId, createPostDto);
+	}
+
+	// 게시글 조회
+	@Get("/:spaceId")
+	getAllPost(
+		@GetUser() user: User,
+		@Param("spaceId", ParseIntPipe) spaceId: number,
+	): Promise<PageResObj<PostEntity[]> | PageResObj<{}>> {
+		return this.postService.getAllPost(user, spaceId);
 	}
 }
