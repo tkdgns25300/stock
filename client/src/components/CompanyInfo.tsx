@@ -42,7 +42,7 @@ const CompanyInfo: React.FC<CompanyInfoProps> = ({ companyData, stockCode, stock
 					foundedDate={new Date(companyData.founded_date).toLocaleDateString()}
 				/>
 				<Description description={companyData.description} />
-				<div className="3xl:my-16 w-full border-b-2 border-white border-opacity-25 mx-auto mt-8"></div>
+				<div className="3xl:my-10 w-full border-b-2 border-white border-opacity-25 mx-auto mt-8"></div>
 				<CompanyDetailTable companyData={companyData} />
 			</div>
 		</div>
