@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, UsePipes, ValidationPipe } from "@nestjs/common";
 import { PostService } from "./post.service";
 import { GetUser } from "src/user/get-user.decorator";
 import { User } from "src/user/entity/user.entity";
@@ -28,5 +28,15 @@ export class PostController {
 		@Param("spaceId", ParseIntPipe) spaceId: number,
 	): Promise<PageResObj<PostEntity[]> | PageResObj<{}>> {
 		return this.postService.getAllPost(user, spaceId);
+	}
+
+	// 게시글 삭제(soft-delete)
+	@Delete("/:spaceId/:postId")
+	deletePost(
+		@GetUser() user: User,
+		@Param("spaceId", ParseIntPipe) spaceId: number,
+		@Param("postId", ParseIntPipe) postId: number,
+	): Promise<PageResObj<{}>> {
+		return this.postService.deletePost(user, spaceId, postId);
 	}
 }

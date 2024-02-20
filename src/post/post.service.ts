@@ -133,4 +133,11 @@ export class PostService {
 			return new PageResObj({}, error.message, true);
 		}
 	}
+
+	async deletePost(user: User, spaceId: number, postId: number): Promise<PageResObj<{}>> {
+		try {
+		} catch (error) {
+			return new PageResObj({}, error.message, true);
+		}
+	}
 }
