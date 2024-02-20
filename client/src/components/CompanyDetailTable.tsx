@@ -31,7 +31,7 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 			} else if (window.innerWidth >= 1024) {
 				setMaxHeight("250px");
 			} else {
-				setMaxHeight("400px");
+				setMaxHeight("250px");
 			}
 		};
 
@@ -43,7 +43,7 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 	}, []);
 	return (
 		<div
-			className="2xl:w-3/4 w-full flex justify-center relative mt-20 shadow-xl text-black"
+			className="2xl:w-3/4 w-full mb-16 flex justify-center relative mt-20 shadow-xl text-black"
 			style={{ borderRadius: "2rem" }}
 		>
 			<div className="w-full">
