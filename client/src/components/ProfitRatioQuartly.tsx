@@ -22,14 +22,14 @@ const ProfitRatioQuartly: React.FC<ProfitRatioQuartlyProps> = ({ curProfitRatioD
 
 	return (
 		<div className="relative w-auto m-10 font-gothic-a1">
-			<div className="mb-2 flex justify-between font-semibold text-sm text-gray-500">
+			<div className="mb-2 flex justify-between font-semibold tablet:text-sm text-xs text-gray-500">
 				<span>(KRW)</span>
 				<span>{formatDate(curProfitRatioData.stacYymm)}</span>
 			</div>
 			<div className="border-b border-gray w-full mx-auto my-4"></div>
 			{dataItems.map((item) => (
 				<Fragment key={item.key}>
-					<div className="mb-2 flex justify-between font-medium text-base">
+					<div className="mb-2 flex justify-between font-medium tablet:text-base text-xs">
 						<span>{item.label}</span>
 						<span>{formatValue(Number(curProfitRatioData[item.key]), item.unit)}</span>
 					</div>
