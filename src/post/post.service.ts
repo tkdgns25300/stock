@@ -201,6 +201,29 @@ export class PostService {
 			// 		}
 			// 	}
 			// }
+
+			if (!isAdmin && !isOwner) {
+				return new PageResObj({}, "Not Authorized: Neither Admin Nor Owner", true);
+			}
+
+			// 삭제(soft-delete)
+			post.isDeleted = true;
+			await this.postRepository.save(post);
+
+			return new PageResObj({}, "Delete Post Success");
+
+			let { password, firstName, lastName, profilePicture } = updateUserDto;
+			// if (password) {
+			// 	const salt = await bcrypt.genSalt();
+			// 	password = await bcrypt.hash(password, salt);
+			// }
+			// await this.userRepository.update(user.id, { password, firstName, lastName, profilePicture });
+			// const updatedUser = this.userRepository.findOne({
+			// 	where: {
+			// 		id: user.id,
+			// 	},
+			// });
+			// return new PageResObj(updatedUser, "Update User Profile Success");
 		} catch (error) {
 			return new PageResObj({}, error.message, true);
 		}
