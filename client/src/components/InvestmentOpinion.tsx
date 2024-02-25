@@ -32,21 +32,21 @@ const InvestmentOpinion: React.FC<InvestmentOpinionProps> = ({ stockCode }) => {
 	};
 
 	return (
-		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1">
+		<div className="font-doHyeon desktop:text-base tablet:text-sm text-xs font-semibold relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1">
 			{loading ? (
 				<div>Loading...</div>
 			) : (
-				<table className="min-w-full bg-white border border-gray-300">
+				<table className=" bg-white border border-gray-300">
 					<thead className="bg-gray-100">
 						<tr>
-							<th className="px-4 py-2 border border-gray-300">발표일</th>
-							<th className="px-4 py-2 border border-gray-300">투자 의견</th>
-							<th className="px-4 py-2 border border-gray-300">목표가</th>
-							<th className="px-4 py-2 border border-gray-300">괴리율</th>
-							<th className="px-4 py-2 border border-gray-300">증권사명</th>
+							<th className="tablet:px-4 p-auto py-2 border border-gray-300">발표일</th>
+							<th className="hidden tablet:table-cell tablet:px-4 p-auto py-2 border border-gray-300">투자 의견</th>
+							<th className="tablet:px-4 p-auto py-2 border border-gray-300">목표가</th>
+							<th className="hidden tablet:table-cell tablet:px-4 p-auto py-2 border border-gray-300">괴리율</th>
+							<th className="tablet:px-4 p-auto py-2 border border-gray-300">증권사명</th>
 						</tr>
 					</thead>
-					<tbody className="font-doHyeon font-2xl">
+					<tbody className="">
 						{opinions.slice(0, page * 5).map((opinion, index) => (
 							<InvestmentOpinionItem
 								key={index}
