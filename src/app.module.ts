@@ -12,9 +12,10 @@ import { EsgModule } from "./esg/esg.module";
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
+import { SpaceModule } from './space/space.module';
 
 @Module({
-	imports: [StockModule, IndexModule, EtfModule, BondModule, DerivativesModule, GeneralProductModule, EsgModule, AuthModule, UserModule, PostModule],
+	imports: [StockModule, IndexModule, EtfModule, BondModule, DerivativesModule, GeneralProductModule, EsgModule, AuthModule, UserModule, PostModule, SpaceModule],
 })
 export class AppModule implements NestModule {
 	configure(consumer: MiddlewareConsumer) {
