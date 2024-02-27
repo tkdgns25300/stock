@@ -18,11 +18,13 @@ const InvestmentOpinionItem: React.FC<InvestmentOpinionItemProps> = ({
 
 	return (
 		<tr>
-			<td className="px-4 py-2 border border-gray-300">{stckBsopDate}</td>
-			<td className={`px-4 py-2 border border-gray-300 ${textColorClass}`}>{invtOpnn}</td>
-			<td className={`px-4 py-2 border border-gray-300 ${textColorClass}`}>{htsGoalPrcNum.toLocaleString()}</td>
-			<td className={`px-4 py-2 border border-gray-300 ${textColorClass}`}>{disparityRate.toFixed(2)}%</td>
-			<td className="px-4 py-2 border border-gray-300">{mbcrName}</td>
+			<td className="px-4 py-2 border border-gray-200">{stckBsopDate}</td>
+			<td className={`tablet:table-cell hidden px-4 py-2 border border-gray-200 ${textColorClass}`}>{invtOpnn}</td>
+			<td className={`px-4 py-2 border border-gray-200 ${textColorClass}`}>{htsGoalPrcNum.toLocaleString()}</td>
+			<td className={`tablet:table-cell hidden px-4 py-2 border border-gray-200 ${textColorClass}`}>
+				{disparityRate.toFixed(2)}%
+			</td>
+			<td className="px-4 py-2 border border-gray-200">{mbcrName}</td>
 		</tr>
 	);
 };
