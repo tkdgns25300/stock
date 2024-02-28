@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from "typeorm";
 import { User } from "src/user/entity/user.entity";
 import { PostType } from "../enum/post-type.enum";
+import { Space } from "src/space/entity/space.entity";
 
 @Entity()
 export class Post {
@@ -58,4 +59,7 @@ export class Post {
 
 	@ManyToOne(() => User, (author) => author.posts)
 	author: User;
+
+	@ManyToOne(() => Space, (space) => space.posts)
+	space: Space;
 }
