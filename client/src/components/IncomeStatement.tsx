@@ -56,7 +56,7 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ incomeStatementData }
 
 	return (
 		<div className="w-full">
-			<div className="w-full mx-4 my-8">
+			<div className="tablet:block hidden w-full mx-4 my-8">
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={fiveIncomeStatementData} margin={{ top: 20, right: 30, left: 20, bottom: 50 }}>
 						<CartesianGrid strokeDasharray="10 0" vertical={false} />
@@ -76,7 +76,7 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ incomeStatementData }
 									>
 										{isSelected && <rect x={-50} y={-10} width={100} height={40} fill="#dceff7" rx={3} ry={3} />}
 										<text
-											className="font-gothic-a1 font-bold text-base"
+											className="xl:text-base desktop:text-sm text-xs font-gothic-a1 font-bold"
 											fill={isSelected ? "#0447c4" : "black"}
 											x={0}
 											y={0}
