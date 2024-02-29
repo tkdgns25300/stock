@@ -1,4 +1,5 @@
 import { Post } from "src/post/entity/post.entity";
+import { SpaceMember } from "src/space/entity/space-member.entity";
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 
 @Entity()
@@ -42,4 +43,7 @@ export class User {
 
 	@OneToMany(() => Post, (post) => post.author)
 	posts: Post[];
+
+	@OneToMany(() => SpaceMember, (membership) => membership.user)
+	spaceMembers: SpaceMember[];
 }
