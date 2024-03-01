@@ -46,17 +46,21 @@ const IncomeStatementQuartly: React.FC<IncomeStatementQuartlyProps> = ({
 
 	return (
 		<div className="relative w-auto m-10 font-gothic-a1">
-			<div className="mb-2 flex justify-between font-semibold text-sm text-gray-500">
+			<div className="mb-2 flex justify-between font-semibold tablet:text-sm text-xs text-gray-500">
 				<span>(KRW)</span>
-				<span className="absolute right-56">{formatDate(curIncomeStatementData.stacYymm)}</span>
+				<span className="mobile:block hidden absolute xl:right-56 desktop:right-40 tablet:right-56 right-32">
+					{formatDate(curIncomeStatementData.stacYymm)}
+				</span>
 				<span>지난분기 대비 변동</span>
 			</div>
 			<div className="border-b border-gray w-full mx-auto my-4"></div>
 			{dataItems.map((item) => (
 				<Fragment key={item.key}>
-					<div className="mb-2 flex justify-between font-medium text-base">
+					<div className="mb-2 flex justify-between font-medium tablet:text-base text-xs">
 						<span className="">{item.label}</span>
-						<span className="absolute right-56 pl-12">{formatValue(Number(curIncomeStatementData[item.key]))}</span>
+						<span className="mobile:block hidden absolute xl:right-56 desktop:right-40 tablet:right-56 right-32 pl-12">
+							{formatValue(Number(curIncomeStatementData[item.key]))}
+						</span>
 						<span
 							className={`ml-2 font-bold ${getColorForChange(
 								calculatePercentageChange(
