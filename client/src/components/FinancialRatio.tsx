@@ -56,7 +56,7 @@ const FinancialRatio: React.FC<FinancialRatioProps> = ({ financialRatioData }) =
 
 	return (
 		<div className="w-full">
-			<div className="w-full mx-4 my-8">
+			<div className="tablet:block hidden w-full mx-4 my-8">
 				<ResponsiveContainer width="100%" height={400}>
 					<BarChart data={fiveFinancialRatioData} margin={{ top: 20, right: 30, left: 20, bottom: 50 }}>
 						<CartesianGrid strokeDasharray="10 0" vertical={false} />
