@@ -51,7 +51,7 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 					Detail
 				</div>
 				<div
-					className="2xl:text-lg large:text-base bg-slate-100 relative rounded-3xl border-current p-6 z-20"
+					className="2xl:text-lg large:text-base tablet:text-sm text-xs bg-slate-100 relative rounded-3xl border-current p-6 z-20"
 					style={{
 						maxHeight: maxHeight,
 						overflowY: "auto",
