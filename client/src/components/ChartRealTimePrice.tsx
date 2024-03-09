@@ -14,9 +14,9 @@ const ChartRealTimePrice: React.FC<ChartRealTimePriceProps> = ({ stockCode, real
 
 	return (
 		<div className="w-auto flex justify-center items-end my-5 font-doHyeon">
-			<div className="m-2 text-7xl">₩{currentPrice}</div>
+			<div className="3xl:text-7xl 2xl:text-6xl desktop:text-5xl mobile:text-6xl text-5xl m-2">₩{currentPrice}</div>
 			<div
-				className={`m-2 p-2 rounded-md text-3xl ${
+				className={`3xl:text-3xl 2xl:text-2xl desktop:text-xl mobile:text-2xl text-xl m-2 p-2 rounded-md ${
 					realTimePriceData.prdyVrssSign === 3
 						? "bg-gray-300 text-gray-700"
 						: realTimePriceData.prdyVrssSign > 3
