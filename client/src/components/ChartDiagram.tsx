@@ -54,7 +54,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 			<div className="flex justify-start my-2">
 				<div className="relative mx-2">
 					<button
-						className={`px-4 py-2 rounded-md hover:bg-gray-200 ${
+						className={`tablet:text-base mobile:text-sm text-xs px-4 py-2 rounded-md hover:bg-gray-200 ${
 							selectedPeriod === PeriodDiv.DAILY ? "text-green-600" : "text-gray-700"
 						}`}
 						onClick={() => handleButtonClick(PeriodDiv.DAILY)}
@@ -65,7 +65,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 				</div>
 				<div className="relative mx-2">
 					<button
-						className={`px-4 py-2 rounded-md hover:bg-gray-200 ${
+						className={`tablet:text-base mobile:text-sm text-xs  px-4 py-2 rounded-md hover:bg-gray-200 ${
 							selectedPeriod === PeriodDiv.WEEKLY ? "text-green-600" : "text-gray-700"
 						}`}
 						onClick={() => handleButtonClick(PeriodDiv.WEEKLY)}
@@ -76,7 +76,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 				</div>
 				<div className="relative mx-2">
 					<button
-						className={`px-4 py-2 rounded-md hover:bg-gray-200 ${
+						className={`tablet:text-base mobile:text-sm text-xs  px-4 py-2 rounded-md hover:bg-gray-200 ${
 							selectedPeriod === PeriodDiv.MONTHLY ? "text-green-600" : "text-gray-700"
 						}`}
 						onClick={() => handleButtonClick(PeriodDiv.MONTHLY)}
@@ -87,7 +87,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 				</div>
 				<div className="relative mx-2">
 					<button
-						className={`px-4 py-2 rounded-md hover:bg-gray-200 ${
+						className={`tablet:text-base mobile:text-sm text-xs  px-4 py-2 rounded-md hover:bg-gray-200 ${
 							selectedPeriod === PeriodDiv.YEARLY ? "text-green-600" : "text-gray-700"
 						}`}
 						onClick={() => handleButtonClick(PeriodDiv.YEARLY)}
