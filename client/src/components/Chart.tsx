@@ -128,11 +128,13 @@ const Chart: React.FC<ChartProps> = ({ stockCode }) => {
 	}
 
 	return (
-		<div className="w-full flex bg-white relative rounded-3xl p-6 z-20">
-			<div className="w-2/3">
+		<div className="flex flex-col-reverse xl:flex-row w-full bg-white relative rounded-3xl p-6 z-20">
+			<div className="xl:w-2/3 w-full">
 				<ChartDiagram chartDiagramData={chartDiagramData} handlePeriodDivChange={handlePeriodDivChange} />
 			</div>
-			<div className="w-1/3 flex flex-col items-center">
+
+			<div className="xl:hidden block border-b border-gray w-full mx-auto mt-6 mb-4"></div>
+			<div className="xl:w-1/3 w-full flex flex-col items-center">
 				<ChartRealTimePrice stockCode={stockCode} realTimePriceData={realTimePriceData} />
 				<ChartSummary priceInfoData={priceInfoData} />
 			</div>
