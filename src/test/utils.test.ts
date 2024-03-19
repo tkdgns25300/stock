@@ -1,5 +1,5 @@
 // utils.test.js
-const { multiply, divide } = require("./utils.ts");
+const { multiply, divide } = require("./utils");
 
 describe("multiply 함수", () => {
 	test("두 숫자를 곱합니다.", () => {
