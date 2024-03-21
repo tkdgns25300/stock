@@ -97,7 +97,7 @@ const ChartDiagram: React.FC<ChartDiagramProps> = ({ chartDiagramData, handlePer
 					{selectedPeriod === PeriodDiv.YEARLY && <div className="absolute bottom-0 left-0 w-full h-1 bg-green-600" />}
 				</div>
 			</div>
-			<ResponsiveContainer width="100%" height={window.innerHeight / 4}>
+			<ResponsiveContainer width="100%" height={330}>
 				<AreaChart
 					width={1000}
 					height={400}
