@@ -1,73 +1,55 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# InvestStats - 투자 통계 정보 조회 서비스
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+InvestStats는 주식, 채권 등 투자를 위해 필요한 다양한 자료들을 손쉽게 조회할 수 있는 통계 정보 조회 서비스입니다. 이 서비스는 Nest.js를 기반으로 구축되었으며, 주식 시장과 채권 시장의 다양한 통계 정보를 API 형태로 제공합니다.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 기능
 
-## Description
+### 지수
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+KRX 시리즈 일별시세정보 : KRX 시리즈 지수의 시세정보 제공
+KOSPI 시리즈 일별시세정보 : KOSPI 시리즈 지수의 시세정보 제공
+KOSDAQ 시리즈 일별시세정보 : KOSDAQ 시리즈 지수의 시세정보 제공
+채권지수 시세정보 : 채권지수의 시세정보 제공
+파생상품지수 시세정보 : 파생상품지수의 시세정보를 제공
 
-## Installation
+### 주식
 
-```bash
-$ npm install
-```
+유가증권 일별매매정보 : 유가증권시장에 상장되어 있는 주권의 매매정보 제공
+코스닥 일별매매정보 : 코스닥시장에 상장되어 있는 주권의 매매정보 제공
+코넥스 일별매매정보 : 코넥스시장에 상장되어 있는 주권의 매매정보 제공
+신주인수권증권 일별매매정보 : 유가증권/코스닥시장에 상장되어 있는 신주인수권증권의 매매정보 제공
+신주인수권증서 일별매매정보 : 유가증권/코스닥시장에 상장되어 있는 신주인수권증서의 매매정보 제공
+유가증권 종목기본정보 : 유가증권 종목기본정보
+코스닥 종목기본정보 : 코스닥 종목기본정보
+코넥스 종목기본정보 : 코넥스 종목기본정보
 
-## Running the app
+### 증권상품
 
-```bash
-# development
-$ npm run start
+ETF 일별매매정보 : ETF(상장지수펀드)의 매매정보 제공
+ETN 일별매매정보 : ETN(상장지수증권)의 매매정보 제공
+ELW 일별매매정보 : ELW(주식위런트증권)의 매매정보 제공
 
-# watch mode
-$ npm run start:dev
+### 채권
 
-# production mode
-$ npm run start:prod
-```
+국채전문유통시장 일별매매정보 : 국채전문유통시장에 상장되어있는 채권의 매매정보 제공
+일반채권시장 일별매매정보 : 일반채권시장에 상장되어있는 채권의 매매정보 제공
+소액채권시장 일별매매정보 : 소액채권시장에 상장되어있는 채권의 매매정보 제공
 
-## Test
+### 파생상품
 
-```bash
-# unit tests
-$ npm run test
+선물 일별매매정보 (주식선물外) : 파생상품시장의 선물 중 주식선물을 제외한 선물의 매매정보 제공
+주식선물(유가) 일별매매정보 : 파생상품시장의 주식선물 중 기초자산이 유가증권시장에 속하는 주식선물의 거래정보 제공
+주식선물(코스닥) 일별매매정보 : 파생상품시장의 주식선물 중 기초자산이 코스닥시장에 속하는 주식선물의 거래정보 제공
+옵션 일별매매정보 (주식옵션外) : 파생상품시장의 옵션 중 주식옵션을 제외한 옵션의 매매정보 제공
+주식옵션(유가) 일별매매정보 : 파생상품시장의 주식옵션 중 기초자산이 유가증권시장에 속하는 주식옵션의 거래정보 제공
+주식옵션(코스닥) 일별매매정보 : 파생상품시장의 주식옵션 중 기초자산이 코스닥시장에 속하는 주식옵션의 거래정보 제공
 
-# e2e tests
-$ npm run test:e2e
+### 일반상품
 
-# test coverage
-$ npm run test:cov
-```
+석유시장 일별매매정보 : KRX 석유시장의 매매정보 제공
+금시장 일별매매정보 : KRX 금시장 매매정보 제공
+배출권 시장 일별매매정보 : KRX 탄소배출권 시장의 매매정보 제공
 
-## Support
+### ESG
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+사회책임투자채권정보 : 사회책임투자채권 정보를 제공 (‘19년 데이터부터 제공)
