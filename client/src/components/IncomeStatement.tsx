@@ -76,7 +76,7 @@ const IncomeStatement: React.FC<IncomeStatementProps> = ({ incomeStatementData }
 									>
 										{isSelected && <rect x={-50} y={-10} width={100} height={40} fill="#dceff7" rx={3} ry={3} />}
 										<text
-											className="xl:text-base desktop:text-sm text-xs font-gothic-a1 font-bold"
+											className="desktop:text-sm text-xs font-gothic-a1 font-bold"
 											fill={isSelected ? "#0447c4" : "black"}
 											x={0}
 											y={0}
