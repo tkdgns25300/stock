@@ -47,7 +47,7 @@ const CompanyDetailTable: React.FC<CompanyDetailTableProps> = ({ companyData }) 
 			style={{ borderRadius: "2rem" }}
 		>
 			<div className="w-full">
-				<div className="2xl:text-2xl large:text-xl absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl font-doHyeon z-10">
+				<div className="tablet:text-2xl mobile:text-xl text-lg absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl font-doHyeon z-10">
 					Detail
 				</div>
 				<div
