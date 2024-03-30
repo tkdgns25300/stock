@@ -20,7 +20,8 @@ const Search: React.FC = () => {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
 				const data = await response.json();
-				setWholeStockList(data.result);
+				const filteredData = data.result.filter((stock: any) => stock.stock_type === "보통주");
+				setWholeStockList(filteredData);
 			} catch (error) {
 				console.error("Error fetching data:", error);
 			}
