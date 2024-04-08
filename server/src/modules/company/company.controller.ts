@@ -18,18 +18,6 @@ export class CompanyController {
 		private companyService: CompanyService, //  @Inject(CACHE_MANAGER) private cacheManager: Cache
 	) {}
 
-	// Cache Test
-	// @Get("/cache")
-	// async getCache(): Promise<ApiResponse<string>> {
-	// 	const savedTime = await this.cacheManager.get<number>("time");
-	// 	if (savedTime) {
-	// 		return new ApiResponse<string>("saved time : " + savedTime, "Successfully get cache data");
-	// 	}
-	// 	const now = new Date().getTime();
-	// 	await this.cacheManager.set("time", now);
-	// 	return new ApiResponse<string>("save new time : " + now, "Successfully set cache data");
-	// }
-
 	// get all stock code & Stock's company name
 	@Get("/stock-list")
 	async getStockList(): Promise<ApiResponse<StockInfo[]>> {
@@ -72,4 +60,16 @@ export class CompanyController {
 	async getInvestOpinion(@Param("stockCode") stockCode: string): Promise<ApiResponse<InvestmentOpinionData[]>> {
 		return await this.companyService.getInvestmentOpinion(stockCode);
 	}
+
+	// Cache Test
+	// @Get("/cache")
+	// async getCache(): Promise<ApiResponse<string>> {
+	// 	const savedTime = await this.cacheManager.get<number>("time");
+	// 	if (savedTime) {
+	// 		return new ApiResponse<string>("saved time : " + savedTime, "Successfully get cache data");
+	// 	}
+	// 	const now = new Date().getTime();
+	// 	await this.cacheManager.set("time", now);
+	// 	return new ApiResponse<string>("save new time : " + now, "Successfully set cache data");
+	// }
 }
