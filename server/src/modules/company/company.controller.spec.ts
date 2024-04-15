@@ -82,6 +82,27 @@ describe("CompanyController", () => {
 								founded_date: new Date("2000-02-10T00:00:00.000Z"),
 							} as CompanyInfo,
 						}),
+						getChartData: jest.fn().mockResolvedValue({
+							success: true,
+							data: [
+								{
+									stckBsopDate: "2024-01-01",
+									stckClpr: 150,
+									stckOprc: 148,
+									stckHgpr: 155,
+									stckLwpr: 145,
+									acmlVol: 10000,
+								} as StockPriceByPeriodData,
+								{
+									stckBsopDate: "2024-01-02",
+									stckClpr: 155,
+									stckOprc: 152,
+									stckHgpr: 160,
+									stckLwpr: 150,
+									acmlVol: 12000,
+								} as StockPriceByPeriodData,
+							],
+						}),
 					},
 				},
 			],
