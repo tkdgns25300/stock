@@ -230,6 +230,10 @@ describe("CompanyController", () => {
 								],
 							} as FinancialInfoData,
 						}),
+						getNews: jest.fn().mockResolvedValue({
+							success: true,
+							data: [{ title: "Apple News", content: "Some content" }],
+						}),
 					},
 				},
 			],
