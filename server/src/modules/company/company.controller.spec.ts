@@ -234,6 +234,25 @@ describe("CompanyController", () => {
 							success: true,
 							data: [{ title: "Apple News", content: "Some content" }],
 						}),
+						getInvestmentOpinion: jest.fn().mockResolvedValue({
+							success: true,
+							data: [
+								{
+									stckBsopDate: "2024-01-01", // 주어진 형식에 맞는 날짜 문자열
+									invtOpnn: "Buy", // 투자 의견
+									stckPrpr: "Strong growth potential", // 주가 전망
+									mbcrName: "John Doe", // 분석가 이름
+									htsGoalPrc: "150", // 목표 주가
+								} as InvestmentOpinionData,
+								{
+									stckBsopDate: "2024-01-02",
+									invtOpnn: "Hold",
+									stckPrpr: "Steady performance",
+									mbcrName: "Jane Smith",
+									htsGoalPrc: "155",
+								} as InvestmentOpinionData,
+							],
+						}),
 					},
 				},
 			],
