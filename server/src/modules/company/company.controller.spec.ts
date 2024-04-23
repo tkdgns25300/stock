@@ -263,6 +263,44 @@ describe("CompanyController", () => {
 		companyService = module.get<CompanyService>(CompanyService);
 	});
 
+	it("/company/stock-list (GET)", async () => {
+		const response = await request(app.getHttpServer()).get("/company/stock-list").expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: [
+				{
+					standard_code: "HK0000057197",
+					stock_code: "900110",
+					listing_date: "2010-04-23T00:00:00.000Z", // 문자열로 변경
+					face_value: "무액면",
+					listed_shares: 431932050,
+					market_type: "KOSDAQ",
+					stock_type: "보통주",
+					affiliation: "외국기업(소속부없음)",
+					security_type: "외국주권",
+					company_info: {
+						id: 2020,
+					},
+				},
+				{
+					standard_code: "HK0000214814",
+					stock_code: "900270",
+					listing_date: "2016-08-18T00:00:00.000Z",
+					face_value: "무액면",
+					listed_shares: 125535084,
+					market_type: "KOSDAQ",
+					stock_type: "보통주",
+					affiliation: "외국기업(소속부없음)",
+					security_type: "외국주권",
+					company_info: {
+						id: 2526,
+					},
+				},
+			],
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
