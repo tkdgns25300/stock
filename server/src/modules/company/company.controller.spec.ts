@@ -328,6 +328,40 @@ describe("CompanyController", () => {
 		});
 	});
 
+	it("/company/chart-data (GET)", async () => {
+		const query: ChartDataQueryDto = {
+			fidCondMrktDivCode: "KOSDAQ", // 시장 구분 코드 예시
+			fidInputIscd: "AAPL", // 입력 종목 코드
+			fidInputDate1: "2024-01-01", // 시작 날짜 (형식: YYYY-MM-DD)
+			fidInputDate2: "2024-01-31", // 종료 날짜 (형식: YYYY-MM-DD)
+			fidPeriodDivCode: "1d", // 기간 구분 코드 (예: 1일)
+			fidOrgAdjPrc: "Y", // 가격 조정 여부 (예: Y 또는 N)
+		};
+		const response = await request(app.getHttpServer()).get("/company/chart-data").query(query).expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: [
+				{
+					stckBsopDate: "2024-01-01",
+					stckClpr: 150,
+					stckOprc: 148,
+					stckHgpr: 155,
+					stckLwpr: 145,
+					acmlVol: 10000,
+				} as StockPriceByPeriodData,
+				{
+					stckBsopDate: "2024-01-02",
+					stckClpr: 155,
+					stckOprc: 152,
+					stckHgpr: 160,
+					stckLwpr: 150,
+					acmlVol: 12000,
+				} as StockPriceByPeriodData,
+			],
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
