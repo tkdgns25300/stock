@@ -362,6 +362,25 @@ describe("CompanyController", () => {
 		});
 	});
 
+	it("/company/price-info/:stockCode (GET)", async () => {
+		const stockCode = "AAPL";
+		const response = await request(app.getHttpServer()).get(`/company/price-info/${stockCode}`).expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: {
+				stckPrpr: 150, // 현재 주가
+				prdyVrss: 5, // 전일 대비 주가 변동
+				prdyVrssSign: 1, // 전일 대비 주가 상승 (1: 상승, -1: 하락)
+				stckHgpr: 155, // 현재 고가
+				stckLwpr: 145, // 현재 저가
+				w52Hgpr: 180, // 52주 최고가
+				w52Lwpr: 130, // 52주 최저가
+				htsAvls: 10000, // HTS에서의 거래 가능 수량
+			} as StockPriceInfoData,
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
