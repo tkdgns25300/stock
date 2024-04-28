@@ -381,6 +381,126 @@ describe("CompanyController", () => {
 		});
 	});
 
+	it("/company/finance-info/:stockCode (GET)", async () => {
+		const stockCode = "AAPL";
+		const response = await request(app.getHttpServer()).get(`/company/finance-info/${stockCode}`).expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: {
+				balanceSheet: [
+					{
+						id: 1,
+						stac_yymm: "2024-03-01T00:00:00.000Z",
+						cras: 2477,
+						fxas: 583,
+						total_aset: 3060,
+						flow_lblt: 95,
+						fix_lblt: 84,
+						total_lblt: 179,
+						cpfn: 1562,
+						total_cptl: 2882,
+						stock_info: {
+							standard_code: "HK0000214814",
+							stock_code: "900270",
+							listing_date: "2016-08-18T00:00:00.000Z",
+							face_value: "무액면",
+							listed_shares: 125535084,
+							market_type: "KOSDAQ",
+							stock_type: "보통주",
+							affiliation: "외국기업(소속부없음)",
+							security_type: "외국주권",
+							company_info: {
+								id: 2526,
+							},
+						},
+					},
+				],
+				incomeStatement: [
+					{
+						id: 1,
+						stac_yymm: "2024-03-01T00:00:00.000Z",
+						sale_account: 122,
+						sale_cost: 82,
+						sale_totl_prfi: 40,
+						bsop_prti: 1,
+						op_prfi: 6,
+						spec_prfi: 100,
+						spec_loss: 100,
+						thtr_ntin: 3,
+						stock_info: {
+							standard_code: "HK0000214814",
+							stock_code: "900270",
+							listing_date: "2016-08-18T00:00:00.000Z",
+							face_value: "무액면",
+							listed_shares: 125535084,
+							market_type: "KOSDAQ",
+							stock_type: "보통주",
+							affiliation: "외국기업(소속부없음)",
+							security_type: "외국주권",
+							company_info: {
+								id: 2526,
+							},
+						},
+					},
+				],
+				financialRatio: [
+					{
+						id: 1,
+						stac_yymm: "2024-03-01T00:00:00.000Z",
+						grs: 38,
+						bsop_prfi_inrt: 128,
+						ntin_inrt: 19,
+						roe_val: 0,
+						eps: 1,
+						sps: 113,
+						bps: 666,
+						rsrv_rate: 84,
+						lblt_rate: 6,
+						stock_info: {
+							standard_code: "HK0000214814",
+							stock_code: "900270",
+							listing_date: "2016-08-18T00:00:00.000Z",
+							face_value: "무액면",
+							listed_shares: 125535084,
+							market_type: "KOSDAQ",
+							stock_type: "보통주",
+							affiliation: "외국기업(소속부없음)",
+							security_type: "외국주권",
+							company_info: {
+								id: 2526,
+							},
+						},
+					},
+				],
+				profitRatio: [
+					{
+						id: 1,
+						stac_yymm: "2024-03-01T00:00:00.000Z",
+						cptl_ntin_rate: 0,
+						self_cptl_ntin_inrt: 0,
+						sale_ntin_rate: 2,
+						sale_totl_rate: 33,
+						stock_info: {
+							standard_code: "HK0000214814",
+							stock_code: "900270",
+							listing_date: "2016-08-18T00:00:00.000Z",
+							face_value: "무액면",
+							listed_shares: 125535084,
+							market_type: "KOSDAQ",
+							stock_type: "보통주",
+							affiliation: "외국기업(소속부없음)",
+							security_type: "외국주권",
+							company_info: {
+								id: 2526,
+							},
+						},
+					},
+				],
+			},
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
