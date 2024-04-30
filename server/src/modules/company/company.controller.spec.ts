@@ -501,6 +501,16 @@ describe("CompanyController", () => {
 		});
 	});
 
+	it("/company/news/:companyName (GET)", async () => {
+		const companyName = "Apple";
+		const response = await request(app.getHttpServer()).get(`/company/news/${companyName}`).expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: [{ title: "Apple News", content: "Some content" }],
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
