@@ -511,6 +511,31 @@ describe("CompanyController", () => {
 		});
 	});
 
+	it("/company/investOpinion/:stockCode (GET)", async () => {
+		const stockCode = "AAPL";
+		const response = await request(app.getHttpServer()).get(`/company/investOpinion/${stockCode}`).expect(200);
+
+		expect(response.body).toEqual({
+			success: true,
+			data: [
+				{
+					stckBsopDate: "2024-01-01", // 주어진 형식에 맞는 날짜 문자열
+					invtOpnn: "Buy", // 투자 의견
+					stckPrpr: "Strong growth potential", // 주가 전망
+					mbcrName: "John Doe", // 분석가 이름
+					htsGoalPrc: "150", // 목표 주가
+				} as InvestmentOpinionData,
+				{
+					stckBsopDate: "2024-01-02",
+					invtOpnn: "Hold",
+					stckPrpr: "Steady performance",
+					mbcrName: "Jane Smith",
+					htsGoalPrc: "155",
+				} as InvestmentOpinionData,
+			],
+		});
+	});
+
 	afterAll(async () => {
 		await app.close();
 	});
