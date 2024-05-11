@@ -13,4 +13,19 @@ const setup = (search) => {
 	);
 };
 
-describe("ResultPage Component", () => {});
+describe("ResultPage Component", () => {
+	test("renders ResultLeft and ResultRight components with query parameters", () => {
+		setup("?companyName=TestCompany&stockCode=12345&stockType=typeA");
+
+		expect(screen.getByTestId("result-left")).toBeInTheDocument();
+		expect(screen.getByTestId("result-right")).toBeInTheDocument();
+
+		expect(screen.getByTestId("result-left")).toHaveTextContent("TestCompany");
+		expect(screen.getByTestId("result-left")).toHaveTextContent("12345");
+		expect(screen.getByTestId("result-left")).toHaveTextContent("typeA");
+
+		expect(screen.getByTestId("result-right")).toHaveTextContent("TestCompany");
+		expect(screen.getByTestId("result-right")).toHaveTextContent("12345");
+		expect(screen.getByTestId("result-right")).toHaveTextContent("typeA");
+	});
+});
