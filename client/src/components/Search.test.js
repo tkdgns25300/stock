@@ -47,4 +47,39 @@ describe("Search Component", () => {
 		expect(screen.getByText("Test Company A")).toBeInTheDocument();
 		expect(screen.getByText("Test Company B")).toBeInTheDocument();
 	});
+
+	test("handles dropdown item click", async () => {
+		render(<Search />);
+
+		const input = screen.getByPlaceholderText("회사명/종목 코드를 입력해주세요");
+
+		// Simulate typing in the input field
+		fireEvent.change(input, { target: { value: "Test" } });
+
+		// Wait for the dropdown list to appear
+		await waitFor(() => screen.getByText("Test Company A"));
+
+		// Simulate clicking on the dropdown item
+		fireEvent.click(screen.getByText("Test Company A"));
+
+		// Check if the input value has changed to the selected company name
+		expect(input).toHaveValue("Test Company A");
+	});
+
+	test("clears input field when clear button is clicked", async () => {
+		render(<Search />);
+
+		const input = screen.getByPlaceholderText("회사명/종목 코드를 입력해주세요");
+
+		// Simulate typing in the input field
+		fireEvent.change(input, { target: { value: "Test" } });
+
+		// Wait for the dropdown list to appear
+		await waitFor(() => screen.getByText("Test Company A"));
+
+		// Simulate clicking on the clear button
+		fireEvent.click(screen.getByRole("img", { name: /clear/i }));
+
+		expect(input).toHaveValue("");
+	});
 });
