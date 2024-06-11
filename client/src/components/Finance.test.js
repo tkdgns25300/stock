@@ -66,5 +66,43 @@ describe("Finance Component", () => {
 				],
 			},
 		};
+
+		fetch.mockImplementation(() =>
+			Promise.resolve({
+				ok: true,
+				json: () => Promise.resolve(mockData),
+			}),
+		);
+
+		render(<Finance stockCode={mockStockCode} />);
+
+		expect(screen.getByText("손익계산서")).toBeInTheDocument();
+		expect(screen.getByText("대차대조표")).toBeInTheDocument();
+		expect(screen.getByText("재무비율")).toBeInTheDocument();
+		expect(screen.getByText("수익성비율")).toBeInTheDocument();
+
+		await waitFor(() => {
+			expect(screen.queryByText("손익계산서")).toBeInTheDocument();
+		});
+
+		fireEvent.click(screen.getByText("손익계산서"));
+		await waitFor(() => {
+			expect(screen.getByText("2023-12")).toBeInTheDocument();
+		});
+
+		fireEvent.click(screen.getByText("대차대조표"));
+		await waitFor(() => {
+			expect(screen.getByText("2023-12")).toBeInTheDocument();
+		});
+
+		fireEvent.click(screen.getByText("재무비율"));
+		await waitFor(() => {
+			expect(screen.getByText("2023-12")).toBeInTheDocument();
+		});
+
+		fireEvent.click(screen.getByText("수익성비율"));
+		await waitFor(() => {
+			expect(screen.getByText("2023-12")).toBeInTheDocument();
+		});
 	});
 });
