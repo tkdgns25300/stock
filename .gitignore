@@ -1,6 +1,2 @@
-node_modules
-.vscode
-.DS_Store
-.env.dev
-.env.beta
-.env.production
+# VS code
+.vscode/

@@ -1,0 +1,3627 @@
+[
+	{
+		"name": "EMB",
+		"detailed_name": "이엠비",
+		"english_name": "EMB",
+		"description": null,
+		"industry_name": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+		"industry_code": "032801",
+		"capital": "2400790500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "홍지태",
+		"main_phone": "031-463-8983",
+		"address": "경기도 안양시 만안구 전파로 24번길 934층 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7278990007",
+				"stock_code": "278990",
+				"listing_date": "2017/10/31",
+				"face_value": "500",
+				"listed_shares": "4801581",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "HLB사이언스",
+		"detailed_name": "에이치엘비사이언스",
+		"english_name": "HLB SCIENCE",
+		"description": null,
+		"industry_name": "의료용품 및 기타 의약 관련제품 제조업",
+		"industry_code": "032103",
+		"capital": "8220203500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "윤종선",
+		"main_phone": "02-6925-0379",
+		"address": "서울특별시 성동구 아차산로 66 6층(성수동2가)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7343090007",
+				"stock_code": "343090",
+				"listing_date": "2020/04/24",
+				"face_value": "500",
+				"listed_shares": "16440407",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "KC산업",
+		"detailed_name": "케이씨산업",
+		"english_name": "KC INDUSTRY",
+		"description": null,
+		"industry_name": "시멘트, 석회, 플라스터 및 그 제품 제조업",
+		"industry_code": "032303",
+		"capital": "3562626500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이홍재, 최경침(각자대표)",
+		"main_phone": "031-883-8684",
+		"address": "경기도 여주시 가남읍 가남로 465 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7112190004",
+				"stock_code": "112190",
+				"listing_date": "2016/05/31",
+				"face_value": "500",
+				"listed_shares": "7125253",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "SK시그넷",
+		"detailed_name": "SK시그넷",
+		"english_name": "SK Signet",
+		"description": null,
+		"industry_name": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+		"industry_code": "032801",
+		"capital": "3064105000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "신정호",
+		"main_phone": "031-994-6115",
+		"address": "전라남도 영광군 대마면 전기차로 49 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7260870001",
+				"stock_code": "260870",
+				"listing_date": "2017/08/30",
+				"face_value": "500",
+				"listed_shares": "6128210",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "가이아코퍼레이션",
+		"detailed_name": "가이아코퍼레이션",
+		"english_name": "GAIA CORPORATION",
+		"description": null,
+		"industry_name": "생활용품 도매업",
+		"industry_code": "074604",
+		"capital": "2333504000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "나원석",
+		"main_phone": "031-921-2532",
+		"address": "경기도 고양시 일산동구 정발산로 24 9층 티4-901호 내지 909호(장항동, 웨스턴돔2)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7296520000",
+				"stock_code": "296520",
+				"listing_date": "2023/06/20",
+				"face_value": "500",
+				"listed_shares": "4667008",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "관악산업",
+		"detailed_name": "관악산업",
+		"english_name": "GWANAK CONSTRUCTION AND EQUIPMENT SERVICE",
+		"description": null,
+		"industry_name": "기반조성 및 시설물 축조관련 전문공사업",
+		"industry_code": "064201",
+		"capital": "2435730000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이규항",
+		"main_phone": "02-2240-7900",
+		"address": "서울특별시 송파구 올림픽로 293-19 (신천동, 현대타워빌딩 2층)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7076340009",
+				"stock_code": "076340",
+				"listing_date": "2015/05/18",
+				"face_value": "500",
+				"listed_shares": "4871460",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "광동헬스바이오",
+		"detailed_name": "광동헬스바이오",
+		"english_name": "KwangdongHealthbio",
+		"description": null,
+		"industry_name": "기타 식품 제조업",
+		"industry_code": "031007",
+		"capital": "5286932500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "정 화 영",
+		"main_phone": "043-211-1056",
+		"address": "충청북도 청원군 오창읍 양청송대길 39(송대리) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7086220001",
+				"stock_code": "086220",
+				"listing_date": "2015/07/09",
+				"face_value": "500",
+				"listed_shares": "10573865",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "굿센",
+		"detailed_name": "굿센",
+		"english_name": "Goodcen",
+		"description": null,
+		"industry_name": "컴퓨터 프로그래밍, 시스템 통합 및 관리업",
+		"industry_code": "106201",
+		"capital": "1446315500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박연정",
+		"main_phone": "02-368-8055",
+		"address": "서울시 서초구 반포대로 13 아이티센 빌딩 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7243870003",
+				"stock_code": "243870",
+				"listing_date": "2016/10/31",
+				"face_value": "500",
+				"listed_shares": "2892631",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "길교이앤씨",
+		"detailed_name": "길교이앤씨",
+		"english_name": "GILGYO E&C",
+		"description": null,
+		"industry_name": "건축기술, 엔지니어링 및 관련 기술 서비스업",
+		"industry_code": "137201",
+		"capital": "450000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김선동",
+		"main_phone": "054-284-1235",
+		"address": "경상북도 포항시 남구 철강로 306 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7456700004",
+				"stock_code": "456700",
+				"listing_date": "2023/07/26",
+				"face_value": "500",
+				"listed_shares": "900000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "나눔테크",
+		"detailed_name": "나눔테크",
+		"english_name": "NANOOM",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "2510000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최무진",
+		"main_phone": "062-955-8588",
+		"address": "광주광역시 북구 첨단벤처소로 57(월출동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7244880001",
+				"stock_code": "244880",
+				"listing_date": "2016/06/01",
+				"face_value": "500",
+				"listed_shares": "5020000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "나라소프트",
+		"detailed_name": "나라소프트",
+		"english_name": "NARASOFT",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "5241473200",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김호상",
+		"main_phone": "02-3487-7988",
+		"address": "서울특별시 서초구 논현로 131 라닉스빌딩 3층(양재동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7288490006",
+				"stock_code": "288490",
+				"listing_date": "2018/11/23",
+				"face_value": "100",
+				"listed_shares": "52414732",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "나우코스",
+		"detailed_name": "나우코스",
+		"english_name": "NOWCOS",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "2941946000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김태원 (단독대표이사)",
+		"main_phone": "044-862-2791",
+		"address": "세종특별자치시 전의면 산단길 220 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7257990002",
+				"stock_code": "257990",
+				"listing_date": "2020/12/30",
+				"face_value": "500",
+				"listed_shares": "5883892",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "노드메이슨",
+		"detailed_name": "노드메이슨",
+		"english_name": "Nordmason",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "2214857500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "구자풍",
+		"main_phone": "070-7123-0077",
+		"address": "서울특별시 마포구 토정로 119 노드메이슨 빌딩",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7317860005",
+				"stock_code": "317860",
+				"listing_date": "2019/12/06",
+				"face_value": "500",
+				"listed_shares": "4429715",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "노보믹스",
+		"detailed_name": "노보믹스",
+		"english_name": "Novomics",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "3282449500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "허용민",
+		"main_phone": "02-2068-3700",
+		"address": "서울특별시 영등포구 당산로 171, 304호, 305호, 306호, 306-1호 (당산동4가, 금강펜테리움아이티타워)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7283100006",
+				"stock_code": "283100",
+				"listing_date": "2023/04/19",
+				"face_value": "500",
+				"listed_shares": "6564899",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "노브메타파마",
+		"detailed_name": "노브메타파마",
+		"english_name": "NOVMETAPHARMA",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5545224000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "황선욱, 정회윤 \n(각자 대표)",
+		"main_phone": "02-538-1893",
+		"address": "서울특별시 강남구 언주로 727 13층 (논현동, 트리스빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7229500004",
+				"stock_code": "229500",
+				"listing_date": "2015/10/28",
+				"face_value": "500",
+				"listed_shares": "11090448",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "다원넥스뷰",
+		"detailed_name": "다원넥스뷰",
+		"english_name": "DAWON NEXVIEW",
+		"description": null,
+		"industry_name": "사진장비 및 광학기기 제조업",
+		"industry_code": "032703",
+		"capital": "631250000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "남기중",
+		"main_phone": "031-8085-7850",
+		"address": "경기도 안산시 단원구 시화호수로 485 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7323350009",
+				"stock_code": "323350",
+				"listing_date": "2019/05/21",
+				"face_value": "100",
+				"listed_shares": "6312500",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "대동고려삼",
+		"detailed_name": "대동고려삼 주식회사",
+		"english_name": "DAEDONG KOREA GINSENG CO.,LTD.",
+		"description": null,
+		"industry_name": "기타 식품 제조업",
+		"industry_code": "031007",
+		"capital": "2224800000",
+		"currency": "원(KRW)",
+		"fiscal_month": "06",
+		"ceo": "최 성 근",
+		"main_phone": "041-753-8803",
+		"address": "충청남도 금산군  군북면 군북로 586 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7178600003",
+				"stock_code": "178600",
+				"listing_date": "2013/12/20",
+				"face_value": "500",
+				"listed_shares": "4449600",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "대주이엔티",
+		"detailed_name": "대주이엔티 주식회사",
+		"english_name": "Daejoo Energy INnovation Technology Co.,Ltd",
+		"description": null,
+		"industry_name": "1차 철강 제조업",
+		"industry_code": "032401",
+		"capital": "1734750000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "황광수, 박주봉",
+		"main_phone": "070-7015-1337",
+		"address": "인천광역시 중구 신포로 4 (사동) 4층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7114920002",
+				"stock_code": "114920",
+				"listing_date": "2013/07/01",
+				"face_value": "500",
+				"listed_shares": "3469500",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "더콘텐츠온",
+		"detailed_name": "더콘텐츠온",
+		"english_name": "TCO",
+		"description": null,
+		"industry_name": "영화, 비디오물, 방송프로그램 제작 및 배급업",
+		"industry_code": "105901",
+		"capital": "2276179500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김상윤",
+		"main_phone": "02-2183-1930",
+		"address": "서울특별시 강남구 테헤란로 322 동관 601호, 602호, 603호, 604호, 605호(역삼동, 한신인터밸리24)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7302920004",
+				"stock_code": "302920",
+				"listing_date": "2018/08/13",
+				"face_value": "500",
+				"listed_shares": "4552359",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "데이터스트림즈",
+		"detailed_name": "데이터스트림즈",
+		"english_name": "Data Streams Corp.",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "2134306500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이영상",
+		"main_phone": "02-3473-9077",
+		"address": "서울특별시 서초구 사임당로 28 6층 (서초동, 청호나이스)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7199150004",
+				"stock_code": "199150",
+				"listing_date": "2014/06/25",
+				"face_value": "500",
+				"listed_shares": "4268613",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "도부마스크",
+		"detailed_name": "도부마스크",
+		"english_name": "DOBU MASK",
+		"description": null,
+		"industry_name": "기타 전문 도매업",
+		"industry_code": "074607",
+		"capital": "8222255000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김일순",
+		"main_phone": "02-553-5638",
+		"address": "경기도 안산시 단원구 해안로 332(초지동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7227420007",
+				"stock_code": "227420",
+				"listing_date": "2016/12/28",
+				"face_value": "500",
+				"listed_shares": "16444510",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "듀켐바이오",
+		"detailed_name": "듀켐바이오",
+		"english_name": "DuChemBio Co.,LTD.",
+		"description": null,
+		"industry_name": "의약품 제조업",
+		"industry_code": "032102",
+		"capital": "13512610000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김상우",
+		"main_phone": "023324868",
+		"address": "서울특별시 마포구 와우산로 816층,7층(서교동, 서봉갤러리)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7176750008",
+				"stock_code": "176750",
+				"listing_date": "2014/12/29",
+				"face_value": "500",
+				"listed_shares": "27025220",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "디피코",
+		"detailed_name": "디피코",
+		"english_name": "DPECO",
+		"description": null,
+		"industry_name": "자동차 차체 및 트레일러 제조업",
+		"industry_code": "033002",
+		"capital": "4914776500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "송신근",
+		"main_phone": "033-340-4800",
+		"address": "강원도 횡성군 우천면 우천산업단지로 60-44 2층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7163430002",
+				"stock_code": "163430",
+				"listing_date": "2018/05/16",
+				"face_value": "500",
+				"listed_shares": "9829553",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "라피치",
+		"detailed_name": "라피치",
+		"english_name": "RAPEECH",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "1452000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "어범석",
+		"main_phone": "02-3420-9114",
+		"address": "서울특별시 강남구 도곡로8길 6, 3층(도곡동, 지호빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7403360001",
+				"stock_code": "403360",
+				"listing_date": "2021/12/14",
+				"face_value": "500",
+				"listed_shares": "2904000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "럭스피아",
+		"detailed_name": "럭스피아",
+		"english_name": "Luxpia",
+		"description": null,
+		"industry_name": "반도체 제조업",
+		"industry_code": "032601",
+		"capital": "3645549000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "성석종",
+		"main_phone": "070-8671-2500",
+		"address": "경기도 수원시 영통구 광교로 109 10층(이의동, 나노소자특화팹센터)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7092590009",
+				"stock_code": "092590",
+				"listing_date": "2015/10/30",
+				"face_value": "500",
+				"listed_shares": "7291098",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "로보쓰리에이아이",
+		"detailed_name": "로보쓰리에이아이",
+		"english_name": "Robo3 Ai",
+		"description": null,
+		"industry_name": "그외 기타 전문, 과학 및 기술 서비스업",
+		"industry_code": "137309",
+		"capital": "7614697600",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "황용운",
+		"main_phone": "02-544-9145",
+		"address": "서울특별시 강남구 학동로42길 3 -",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7238500003",
+				"stock_code": "238500",
+				"listing_date": "2016/04/20",
+				"face_value": "200",
+				"listed_shares": "38073488",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "로지스몬",
+		"detailed_name": "로지스몬",
+		"english_name": "Logis Mon",
+		"description": null,
+		"industry_name": "기타 운송관련 서비스업",
+		"industry_code": "085209",
+		"capital": "4605117600",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이석준",
+		"main_phone": "02-1600-9727",
+		"address": "서울특별시 동대문구 황물로 60 4층 406호 (답십리동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7223220005",
+				"stock_code": "223220",
+				"listing_date": "2015/07/09",
+				"face_value": "100",
+				"listed_shares": "46051176",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "루켄테크놀러지스",
+		"detailed_name": "루켄테크놀러지스",
+		"english_name": "LUKEN Technologies",
+		"description": null,
+		"industry_name": "기타 전기장비 제조업",
+		"industry_code": "032809",
+		"capital": "5494968000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안윤태",
+		"main_phone": "070-8633-8009",
+		"address": "경기도 용인시 처인구 양지면 중부대로2670번길 53-8(추계리) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7162120000",
+				"stock_code": "162120",
+				"listing_date": "2017/07/25",
+				"face_value": "500",
+				"listed_shares": "10989936",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "루트락",
+		"detailed_name": "루트락",
+		"english_name": "Rootloc",
+		"description": null,
+		"industry_name": "기타 전문 도매업",
+		"industry_code": "074607",
+		"capital": "5052152500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박종진",
+		"main_phone": "02-6941-4300",
+		"address": "서울특별시 금천구 디지털로9길 68B125호 (가산동,대륭포스트타워5차)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7253610000",
+				"stock_code": "253610",
+				"listing_date": "2020/12/24",
+				"face_value": "500",
+				"listed_shares": "10104305",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "마이크로엔엑스",
+		"detailed_name": "마이크로엔엑스",
+		"english_name": "MicroNX",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "1338840000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이종건/정재경",
+		"main_phone": "053-650-1000",
+		"address": "대구광역시 동구 매여로1길 22 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7448780007",
+				"stock_code": "448780",
+				"listing_date": "2022/12/21",
+				"face_value": "500",
+				"listed_shares": "2677680",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "머니무브",
+		"detailed_name": "머니무브",
+		"english_name": "MoneyMove",
+		"description": null,
+		"industry_name": "기타 금융업",
+		"industry_code": "116409",
+		"capital": "1029523500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이상규",
+		"main_phone": "02-6207-2400",
+		"address": "서울특별시 강남구 논현로150길 23 3층 (논현동, 연호빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7179720008",
+				"stock_code": "179720",
+				"listing_date": "2013/07/01",
+				"face_value": "500",
+				"listed_shares": "2059047",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "메디쎄이",
+		"detailed_name": "메디쎄이",
+		"english_name": "MEDYSSEY",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "1863039500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "하재성, 성경수 (각자대표이사)",
+		"main_phone": "043-716-1014",
+		"address": "충청북도 제천시 한방엑스포로 129 (제천시 왕암동 1389)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7200580009",
+				"stock_code": "200580",
+				"listing_date": "2015/10/20",
+				"face_value": "500",
+				"listed_shares": "3726079",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "메디안디노스틱",
+		"detailed_name": "메디안디노스틱",
+		"english_name": "Median Diagnostics",
+		"description": null,
+		"industry_name": "의료용품 및 기타 의약 관련제품 제조업",
+		"industry_code": "032103",
+		"capital": "1083767000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "오진식",
+		"main_phone": "033-244-0100",
+		"address": "강원도 춘천시 동내면 순환대로 878 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7233250000",
+				"stock_code": "233250",
+				"listing_date": "2017/06/26",
+				"face_value": "500",
+				"listed_shares": "1746534",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "메디젠휴먼케어",
+		"detailed_name": "메디젠휴먼케어",
+		"english_name": "Medizen Humancare",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "1507323500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "신동직",
+		"main_phone": "02-555-9808",
+		"address": "서울특별시 송파구 정의로7길 6 PNS홈즈타워 6층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7236340006",
+				"stock_code": "236340",
+				"listing_date": "2016/01/26",
+				"face_value": "500",
+				"listed_shares": "3014647",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "무진메디",
+		"detailed_name": "무진메디",
+		"english_name": "Moogene Medi",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5025989000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "윤태종",
+		"main_phone": "031-8027-6150",
+		"address": "경기도 하남시 미사강변중앙로7번안길 25씨동 10층(풍산동,유-테크밸리씨타워)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7322970005",
+				"stock_code": "322970",
+				"listing_date": "2020/06/24",
+				"face_value": "500",
+				"listed_shares": "10051978",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "미래엔에듀파트너",
+		"detailed_name": "미래엔에듀파트너",
+		"english_name": "MiraeN Edupartner Co., Ltd.",
+		"description": null,
+		"industry_name": "교육지원 서비스업",
+		"industry_code": "168507",
+		"capital": "4005520000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최용섭, 강윤구",
+		"main_phone": "02-6337-5500",
+		"address": "서울특별시 용산구 한남대로11길 12 고뫄스빌딩 6층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7208890004",
+				"stock_code": "208890",
+				"listing_date": "2014/12/18",
+				"face_value": "1000",
+				"listed_shares": "4005520",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "미쥬",
+		"detailed_name": "미쥬",
+		"english_name": "MIJU",
+		"description": null,
+		"industry_name": "봉제의복 제조업",
+		"industry_code": "031401",
+		"capital": "250000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "황승주",
+		"main_phone": "02-2038-3999",
+		"address": "서울특별시 금천구 가산디지털1로 70, 1212호 (가산동, 호서대벤처타워)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7351020003",
+				"stock_code": "351020",
+				"listing_date": "2023/10/26",
+				"face_value": "100",
+				"listed_shares": "2075000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "바스칸바이오제약",
+		"detailed_name": "바스칸바이오제약",
+		"english_name": "BASKHANBIO",
+		"description": null,
+		"industry_name": "의약품 제조업",
+		"industry_code": "032102",
+		"capital": "17545617500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이법표",
+		"main_phone": "031-692-2900",
+		"address": "경기도 안성시 원곡면 원당로 354 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7354390007",
+				"stock_code": "354390",
+				"listing_date": "2022/07/20",
+				"face_value": "2500",
+				"listed_shares": "7018247",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "바이오인프라생명과학",
+		"detailed_name": "바이오인프라생명과학",
+		"english_name": "BioInfra Life Science",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "7053423500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이덕윤",
+		"main_phone": "02-6271-0102",
+		"address": "서울특별시 종로구 대학로 49 7층(연건동, SGI빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7266470004",
+				"stock_code": "266470",
+				"listing_date": "2020/07/22",
+				"face_value": "500",
+				"listed_shares": "14106847",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "바이오텐",
+		"detailed_name": "바이오텐",
+		"english_name": "Bioten",
+		"description": null,
+		"industry_name": "기타 식품 제조업",
+		"industry_code": "031007",
+		"capital": "1755754500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김영철",
+		"main_phone": "063-538-2300",
+		"address": "전라북도 정읍시 북면 3산단4길 107 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7289170003",
+				"stock_code": "289170",
+				"listing_date": "2023/10/13",
+				"face_value": "500",
+				"listed_shares": "3511509",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "바이오프로테크",
+		"detailed_name": "바이오프로테크",
+		"english_name": "BIOPROTECH",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "8162596000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박익로,김병전 (공동대표이사)",
+		"main_phone": "033-735-7720",
+		"address": "강원도 원주시 문막읍 동화공단로 151-3(동화첨단의료기기산업단지) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7199290008",
+				"stock_code": "199290",
+				"listing_date": "2016/12/08",
+				"face_value": "500",
+				"listed_shares": "16325192",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "볼빅",
+		"detailed_name": "볼빅",
+		"english_name": "Volvik",
+		"description": null,
+		"industry_name": "운동 및 경기용구 제조업",
+		"industry_code": "033303",
+		"capital": "7038632500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "홍승석",
+		"main_phone": "",
+		"address": "충청북도 음성군 대소면 대금로 628 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7206950008",
+				"stock_code": "206950",
+				"listing_date": "2015/12/30",
+				"face_value": "500",
+				"listed_shares": "14077265",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "블루탑",
+		"detailed_name": "블루탑",
+		"english_name": "BLUETOP",
+		"description": null,
+		"industry_name": "전자부품 제조업",
+		"industry_code": "032602",
+		"capital": "1425000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김상봉",
+		"main_phone": "",
+		"address": "인천광역시 남동구 남동서로269번길 4 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7191600006",
+				"stock_code": "191600",
+				"listing_date": "2016/08/05",
+				"face_value": "500",
+				"listed_shares": "2850000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "뿌리깊은나무들",
+		"detailed_name": "뿌리깊은나무들",
+		"english_name": "Redwoods",
+		"description": null,
+		"industry_name": "영화, 비디오물, 방송프로그램 제작 및 배급업",
+		"industry_code": "105901",
+		"capital": "3296133500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이재원",
+		"main_phone": "02-565-1676",
+		"address": "서울특별시 송파구 법원로 128 C동 1103-9호(문정동, 문정역SKV1)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7266170000",
+				"stock_code": "266170",
+				"listing_date": "2017/06/09",
+				"face_value": "500",
+				"listed_shares": "6592267",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "삼미금속",
+		"detailed_name": "삼미금속",
+		"english_name": "SMP",
+		"description": null,
+		"industry_name": "기타 금속 가공제품 제조업",
+		"industry_code": "032509",
+		"capital": "17799942500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이남영",
+		"main_phone": "055-269-0845",
+		"address": "경상남도 창원시 성산구 공단로 589 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7012210001",
+				"stock_code": "012210",
+				"listing_date": "2023/05/16",
+				"face_value": "500",
+				"listed_shares": "35599885",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "세븐브로이맥주",
+		"detailed_name": "세븐브로이맥주",
+		"english_name": "Sevenbrau",
+		"description": null,
+		"industry_name": "알코올음료 제조업",
+		"industry_code": "031101",
+		"capital": "5935704000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김강삼",
+		"main_phone": "02-2659-1950",
+		"address": "강원특별자치도 횡성군 공근면 경강로초원6길 60 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7267080000",
+				"stock_code": "267080",
+				"listing_date": "2024/01/17",
+				"face_value": "500",
+				"listed_shares": "11871408",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "셀젠텍",
+		"detailed_name": "셀젠텍",
+		"english_name": "CELLGENTEK",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "2494687500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김회율",
+		"main_phone": "043-232-9482",
+		"address": "충청북도 청주시 흥덕구 오송읍 오송생명2로 110-6 셀젠텍",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7258250000",
+				"stock_code": "258250",
+				"listing_date": "2016/12/13",
+				"face_value": "500",
+				"listed_shares": "4989375",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "수프로",
+		"detailed_name": "주식회사 수프로",
+		"english_name": "Suppro Co.,Ltd",
+		"description": null,
+		"industry_name": "산업용 농·축산물 및 동·식물 도매업",
+		"industry_code": "074602",
+		"capital": "1847725000",
+		"currency": "원(KRW)",
+		"fiscal_month": "03",
+		"ceo": "채일",
+		"main_phone": "02-6300-2444",
+		"address": "서울특별시 서초구  강남대로 27 (양재동) aT센터 1301호",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7185190006",
+				"stock_code": "185190",
+				"listing_date": "2013/10/29",
+				"face_value": "200",
+				"listed_shares": "9238625",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "썬테크",
+		"detailed_name": "썬테크",
+		"english_name": "SUNTECH",
+		"description": null,
+		"industry_name": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+		"industry_code": "032801",
+		"capital": "525000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이선휴",
+		"main_phone": "061-721-2222",
+		"address": "전라남도 순천시 해룡면 율촌산단4로 101 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7217320001",
+				"stock_code": "217320",
+				"listing_date": "2015/04/29",
+				"face_value": "500",
+				"listed_shares": "1050000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "씨알푸드",
+		"detailed_name": "씨알푸드",
+		"english_name": "SSIAL FOOD",
+		"description": null,
+		"industry_name": "곡물가공품, 전분 및 전분제품 제조업",
+		"industry_code": "031006",
+		"capital": "1016666000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이상범",
+		"main_phone": "043-645-4100",
+		"address": "충청북도 제천시 바이오밸리1로 85 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7236030003",
+				"stock_code": "236030",
+				"listing_date": "2017/12/14",
+				"face_value": "500",
+				"listed_shares": "2033332",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "씨앗",
+		"detailed_name": "씨앗",
+		"english_name": "CIAAT",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "3008735500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김환기",
+		"main_phone": "062-940-7200",
+		"address": "광주광역시 광산구 평동산단로169번길 40(월전동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7103660007",
+				"stock_code": "103660",
+				"listing_date": "2015/06/22",
+				"face_value": "500",
+				"listed_shares": "6017471",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "씨앤에스링크",
+		"detailed_name": "씨앤에스링크",
+		"english_name": "CNSLINK",
+		"description": null,
+		"industry_name": "통신 및 방송 장비 제조업",
+		"industry_code": "032604",
+		"capital": "789980000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안상태",
+		"main_phone": "070-8786-6458",
+		"address": "경기도 성남시 중원구 갈마치로288번길 1412층 1206호(상대원동, 성남에스케이브이1타워)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7245450002",
+				"stock_code": "245450",
+				"listing_date": "2016/06/24",
+				"face_value": "500",
+				"listed_shares": "1579960",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "씨엔티드림",
+		"detailed_name": "씨엔티드림",
+		"english_name": "CNT Dream",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "2369711000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안태우",
+		"main_phone": "0415208946",
+		"address": "충청남도 천안시 서북구 백석공단7로 60 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7286000005",
+				"stock_code": "286000",
+				"listing_date": "2020/12/11",
+				"face_value": "500",
+				"listed_shares": "4739422",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "아이엠지티",
+		"detailed_name": "아이엠지티",
+		"english_name": "IMGT",
+		"description": null,
+		"industry_name": "의료용품 및 기타 의약 관련제품 제조업",
+		"industry_code": "032103",
+		"capital": "2469242500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이학종",
+		"main_phone": "031-994-7077",
+		"address": "경기도 성남시 분당구 돌마로 172 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7456570001",
+				"stock_code": "456570",
+				"listing_date": "2023/07/19",
+				"face_value": "500",
+				"listed_shares": "4938485",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "아이오바이오",
+		"detailed_name": "아이오바이오",
+		"english_name": "AIOBIO",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "1282033500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "윤홍철",
+		"main_phone": "02-561-5101",
+		"address": "서울특별시 강남구 테헤란로4길 38, 8층 &nbsp",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7447690009",
+				"stock_code": "447690",
+				"listing_date": "2022/12/28",
+				"face_value": "500",
+				"listed_shares": "2564067",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "아이케이세미콘",
+		"detailed_name": "아이케이세미콘",
+		"english_name": "IK Semicon Co., Ltd",
+		"description": null,
+		"industry_name": "반도체 제조업",
+		"industry_code": "032601",
+		"capital": "1560000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "윤경덕",
+		"main_phone": "02-3153-7090",
+		"address": "서울특별시 마포구 성암로 179 8층 (상암동,한샘상암)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7149010001",
+				"stock_code": "149010",
+				"listing_date": "2014/11/14",
+				"face_value": "500",
+				"listed_shares": "3120000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "아퓨어스",
+		"detailed_name": "아퓨어스",
+		"english_name": "APURES",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "21743126000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최선덕",
+		"main_phone": "031-683-0643",
+		"address": "경기도 평택시 청북읍 한산길 44 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7149300006",
+				"stock_code": "149300",
+				"listing_date": "2019/09/03",
+				"face_value": "500",
+				"listed_shares": "43486252",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "아하",
+		"detailed_name": "아하",
+		"english_name": "AHA",
+		"description": null,
+		"industry_name": "전자부품 제조업",
+		"industry_code": "032602",
+		"capital": "6923823000",
+		"currency": "원(KRW)",
+		"fiscal_month": "03",
+		"ceo": "구기도, 엄창옥",
+		"main_phone": "031-8048-7100",
+		"address": "경기도 김포시 양촌읍 황금로109번길 67 &nbsp",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7102950003",
+				"stock_code": "102950",
+				"listing_date": "2022/11/30",
+				"face_value": "500",
+				"listed_shares": "13121903",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "안지오랩",
+		"detailed_name": "안지오랩",
+		"english_name": "AngioLab",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "1494839000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김민영",
+		"main_phone": "042-867-5785",
+		"address": "대전광역시 유성구 테크노3로 65 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7251280004",
+				"stock_code": "251280",
+				"listing_date": "2016/10/25",
+				"face_value": "500",
+				"listed_shares": "2989678",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "애니메디솔루션",
+		"detailed_name": "애니메디솔루션",
+		"english_name": "Anymedi",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "4543648500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김국배",
+		"main_phone": "02-6951-1311",
+		"address": "경기도 하남시 하남대로 947 하남테크노밸리유원센터 B동 1504호",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7390110005",
+				"stock_code": "390110",
+				"listing_date": "2022/12/21",
+				"face_value": "500",
+				"listed_shares": "9087297",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엄지하우스",
+		"detailed_name": "엄지하우스",
+		"english_name": "EOMJIHOUSE",
+		"description": null,
+		"industry_name": "실내건축 및 건축마무리 공사업",
+		"industry_code": "064204",
+		"capital": "2100000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "정재호, 정석환(각자대표)",
+		"main_phone": "02-550-7840",
+		"address": "서울특별시 강남구 테헤란로28길 25- ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7224810002",
+				"stock_code": "224810",
+				"listing_date": "2015/10/21",
+				"face_value": "500",
+				"listed_shares": "4200000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에스알바이오텍",
+		"detailed_name": "에스알바이오텍",
+		"english_name": "SR biotek",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "621352500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이소형",
+		"main_phone": "031-726-3134",
+		"address": "경기도 성남시 중원구 둔촌대로 484 시콕스타워 B101호 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7270210008",
+				"stock_code": "270210",
+				"listing_date": "2017/06/15",
+				"face_value": "500",
+				"listed_shares": "1242705",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에스엘테라퓨틱스",
+		"detailed_name": "에스엘테라퓨틱스",
+		"english_name": "SL Therapeutics",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5189059500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최종성",
+		"main_phone": "02-2070-1177",
+		"address": "서울특별시 성북구 안암로 145산학관 602-4호(안암동5가(고려대학교 자연계캠퍼스) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7258540004",
+				"stock_code": "258540",
+				"listing_date": "2016/11/29",
+				"face_value": "500",
+				"listed_shares": "10378119",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에스엠비나",
+		"detailed_name": "에스엠비나",
+		"english_name": "SMVINA",
+		"description": null,
+		"industry_name": "봉제의복 제조업",
+		"industry_code": "031401",
+		"capital": "545000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "민상식",
+		"main_phone": "02-6953-7020",
+		"address": "서울특별시 마포구 마포대로 38 6층 601호(도화동, 일신빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7299670000",
+				"stock_code": "299670",
+				"listing_date": "2018/06/25",
+				"face_value": "100",
+				"listed_shares": "5450000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에스제이켐",
+		"detailed_name": "에스제이켐",
+		"english_name": "SJ-CHEM",
+		"description": null,
+		"industry_name": "기초 화학물질 제조업",
+		"industry_code": "032001",
+		"capital": "1299052200",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "배동수",
+		"main_phone": "041-881-9454",
+		"address": "전라북도 익산시 왕궁면 무왕로 2243-23 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7217910009",
+				"stock_code": "217910",
+				"listing_date": "2018/04/27",
+				"face_value": "100",
+				"listed_shares": "12990522",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에이아이더뉴트리진",
+		"detailed_name": "에이아이더뉴트리진",
+		"english_name": "AltheNutrigene",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "1531332000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김 수 화",
+		"main_phone": "16665950",
+		"address": "경기도 성남시 수정구 창업로 42 630호(시흥동, 판교제2테크노밸리경기기업성장센터)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7311960009",
+				"stock_code": "311960",
+				"listing_date": "2022/11/29",
+				"face_value": "500",
+				"listed_shares": "3062664",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에이원알폼",
+		"detailed_name": "에이원알폼",
+		"english_name": "A ONE ALFORM",
+		"description": null,
+		"industry_name": "산업용 기계 및 장비 임대업",
+		"industry_code": "147603",
+		"capital": "3469241000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안호중",
+		"main_phone": "031-8017-5305",
+		"address": "충청북도 괴산군 괴산읍 대제산단3길 46 -",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7234070001",
+				"stock_code": "234070",
+				"listing_date": "2015/12/21",
+				"face_value": "500",
+				"listed_shares": "6938482",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에이치엔에스하이텍",
+		"detailed_name": "에이치엔에스하이텍",
+		"english_name": "H&S",
+		"description": null,
+		"industry_name": "전자부품 제조업",
+		"industry_code": "032602",
+		"capital": "3755532000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김정희",
+		"main_phone": "042-866-1300",
+		"address": "대전광역시 유성구 테크노1로 62-7(관평동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7044990000",
+				"stock_code": "044990",
+				"listing_date": "2015/12/10",
+				"face_value": "500",
+				"listed_shares": "7511064",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에이펙스인텍",
+		"detailed_name": "에이펙스인텍",
+		"english_name": "APEX INTEC",
+		"description": null,
+		"industry_name": "전구 및 조명장치 제조업",
+		"industry_code": "032804",
+		"capital": "1800000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김권진",
+		"main_phone": "054-976-7667",
+		"address": "경상북도 칠곡군 가산면 인동가산로 619-9 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7207490004",
+				"stock_code": "207490",
+				"listing_date": "2018/11/28",
+				"face_value": "500",
+				"listed_shares": "3600000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "에피바이오텍",
+		"detailed_name": "에피바이오텍",
+		"english_name": "Epi Biotech",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "1148752000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "성종혁",
+		"main_phone": "070-4209-0556",
+		"address": "인천광역시 연수구 송도과학로 32 엠동 15층 1903호, 1904호",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7446440000",
+				"stock_code": "446440",
+				"listing_date": "2023/07/31",
+				"face_value": "500",
+				"listed_shares": "2297504",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엔솔바이오사이언스",
+		"detailed_name": "엔솔바이오사이언스",
+		"english_name": "Ensol Biosciences",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5413907000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김해진",
+		"main_phone": "042-939-4500",
+		"address": "대전광역시 유성구 테크노10로 51(탑립동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7140610007",
+				"stock_code": "140610",
+				"listing_date": "2018/09/10",
+				"face_value": "500",
+				"listed_shares": "10827814",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엔에스엠",
+		"detailed_name": "엔에스엠",
+		"english_name": "NSM",
+		"description": null,
+		"industry_name": "합성고무 및 플라스틱 물질 제조업",
+		"industry_code": "032002",
+		"capital": "10387342000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "여건수",
+		"main_phone": "031-351-9422",
+		"address": "경기도 화성시 장안면 무봉길 166-67 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7238170005",
+				"stock_code": "238170",
+				"listing_date": "2019/12/26",
+				"face_value": "500",
+				"listed_shares": "20774684",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엔에스컴퍼니",
+		"detailed_name": "엔에스컴퍼니",
+		"english_name": "NSCOMPANY",
+		"description": null,
+		"industry_name": "토목 건설업",
+		"industry_code": "064102",
+		"capital": "1969850000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이종화",
+		"main_phone": "052-289-2888",
+		"address": "경상북도 경주시 외동읍 구어2산단로 127 -",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7224760009",
+				"stock_code": "224760",
+				"listing_date": "2015/07/31",
+				"face_value": "500",
+				"listed_shares": "3939700",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엔지브이아이",
+		"detailed_name": "엔지브이아이",
+		"english_name": "NGVI",
+		"description": null,
+		"industry_name": "자동차 신품 부품 제조업",
+		"industry_code": "033003",
+		"capital": "3010000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이여연",
+		"main_phone": "033-260-3400",
+		"address": "강원도 춘천시 남산면 보매기길 56 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7093510006",
+				"stock_code": "093510",
+				"listing_date": "2019/09/30",
+				"face_value": "500",
+				"listed_shares": "6020000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엘리비젼",
+		"detailed_name": "엘리비젼",
+		"english_name": "Elivision",
+		"description": null,
+		"industry_name": "영상 및 음향기기 제조업",
+		"industry_code": "032605",
+		"capital": "5206569000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안덕근",
+		"main_phone": "032-576-3050",
+		"address": "인천광역시 연수구 하모니로 230정호ENC 3층 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7276240009",
+				"stock_code": "276240",
+				"listing_date": "2018/07/05",
+				"face_value": "500",
+				"listed_shares": "10413138",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "엘에이티",
+		"detailed_name": "엘에이티",
+		"english_name": "LAT",
+		"description": null,
+		"industry_name": "특수 목적용 기계 제조업",
+		"industry_code": "032902",
+		"capital": "3537067000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박강일",
+		"main_phone": "03180195050",
+		"address": "경기도 수원시 권선구 서부로 1433-100, 수원산업2단지(고색동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7311060008",
+				"stock_code": "311060",
+				"listing_date": "2018/12/28",
+				"face_value": "500",
+				"listed_shares": "7074134",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "오건에코텍",
+		"detailed_name": "오건에코텍",
+		"english_name": "Organ Eco Tech",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "5094801000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박정민,정상국(각자대표)",
+		"main_phone": "031-776-3690",
+		"address": "경기도 성남시 중원구 사기막골로 124, 101~105호(상대원동, 에스케이엔테크노파크 메가센터동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7212310007",
+				"stock_code": "212310",
+				"listing_date": "2016/07/26",
+				"face_value": "500",
+				"listed_shares": "10189602",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "원포유",
+		"detailed_name": "원포유",
+		"english_name": "ONE4U",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "3275198500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "전동호",
+		"main_phone": "02-569-1414",
+		"address": "서울특별시 강남구 도곡로 222, 5층(도곡동, 원포유빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7122830003",
+				"stock_code": "122830",
+				"listing_date": "2020/10/23",
+				"face_value": "100",
+				"listed_shares": "32751985",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "위월드",
+		"detailed_name": "위월드 주식회사",
+		"english_name": "WIWORLD Co.,Ltd",
+		"description": null,
+		"industry_name": "통신 및 방송 장비 제조업",
+		"industry_code": "032604",
+		"capital": "1243626000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박찬구",
+		"main_phone": "042-630-0600",
+		"address": "대전광역시 유성구  테크노7로 32-4 (용산동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7140660002",
+				"stock_code": "140660",
+				"listing_date": "2013/12/26",
+				"face_value": "500",
+				"listed_shares": "2487252",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "유니포인트",
+		"detailed_name": "유니포인트",
+		"english_name": "UNIPOINT Corp.",
+		"description": null,
+		"industry_name": "컴퓨터 프로그래밍, 시스템 통합 및 관리업",
+		"industry_code": "106201",
+		"capital": "2990835000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "안국필, 정우천(공동대표이사)",
+		"main_phone": "02-6676-5500",
+		"address": "서울특별시 동작구 남부순환로 2049 (사당동 네오티스빌딩 2층) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7121060008",
+				"stock_code": "121060",
+				"listing_date": "2014/10/24",
+				"face_value": "500",
+				"listed_shares": "5981670",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "유엑스엔",
+		"detailed_name": "유엑스엔",
+		"english_name": "UXN",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "1854020500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박세진",
+		"main_phone": "02-858-0931",
+		"address": "경기도 의왕시 오봉산단3로 25 경기도 의왕시 오봉산단3로 25, 1동 505호(삼동, 의왕테크노파크)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7337840003",
+				"stock_code": "337840",
+				"listing_date": "2019/11/28",
+				"face_value": "500",
+				"listed_shares": "3708041",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이노벡스",
+		"detailed_name": "이노벡스",
+		"english_name": "INNOVEX",
+		"description": null,
+		"industry_name": "측정, 시험, 항해, 제어 및 기타 정밀기기 제조업; 광학기기 제외",
+		"industry_code": "032702",
+		"capital": "907507600",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "채균",
+		"main_phone": "070-7707-0932",
+		"address": "경기도 수원시 영통구 청명남로 3 (영통동, 케이티빌딩 3층)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7279060008",
+				"stock_code": "279060",
+				"listing_date": "2019/04/12",
+				"face_value": "100",
+				"listed_shares": "9075076",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이브이파킹서비스",
+		"detailed_name": "이브이파킹서비스",
+		"english_name": "EVPS",
+		"description": null,
+		"industry_name": "기계장비 및 관련 물품 도매업",
+		"industry_code": "074605",
+		"capital": "1626666600",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김정수",
+		"main_phone": "02-6959-0771",
+		"address": "서울특별시 마포구 월드컵로14길 50-11 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7419700000",
+				"stock_code": "419700",
+				"listing_date": "2023/07/05",
+				"face_value": "100",
+				"listed_shares": "16266666",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이비테크",
+		"detailed_name": "이비테크",
+		"english_name": "EB TECH",
+		"description": null,
+		"industry_name": "기타 전기장비 제조업",
+		"industry_code": "032809",
+		"capital": "2820250000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "강원구",
+		"main_phone": "042-930-7501",
+		"address": "대전광역시 유성구 테크노2로 170-9(용산동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7208850008",
+				"stock_code": "208850",
+				"listing_date": "2016/06/22",
+				"face_value": "1000",
+				"listed_shares": "2820250",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이성씨엔아이",
+		"detailed_name": "이성씨엔아이",
+		"english_name": "IHSUNGCNI",
+		"description": null,
+		"industry_name": "건축기술, 엔지니어링 및 관련 기술 서비스업",
+		"industry_code": "137201",
+		"capital": "1420730000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박기선, 이명춘",
+		"main_phone": "051-724-8031",
+		"address": "부산광역시 기장군 장안읍 의과학2로 78 이성씨엔아이(주)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7379390008",
+				"stock_code": "379390",
+				"listing_date": "2021/06/04",
+				"face_value": "500",
+				"listed_shares": "2841460",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이앤에치",
+		"detailed_name": "이앤에치",
+		"english_name": "E&H",
+		"description": null,
+		"industry_name": "기타 섬유제품 제조업",
+		"industry_code": "031309",
+		"capital": "1729340000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김정운, 유병덕(공동 대표이사)",
+		"main_phone": "031-533-0283",
+		"address": "경기도 포천시 화현면 봉화로 975-51 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7341310001",
+				"stock_code": "341310",
+				"listing_date": "2019/12/27",
+				"face_value": "100",
+				"listed_shares": "17293400",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "이엠티",
+		"detailed_name": "이엠티",
+		"english_name": "Energy Material Tech",
+		"description": null,
+		"industry_name": "일차전지 및 축전지 제조업",
+		"industry_code": "032802",
+		"capital": "12807152000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "유상열",
+		"main_phone": "070-7166-0203",
+		"address": "충청북도 충주시 대소원면 첨단산업3로 85-1 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7232530006",
+				"stock_code": "232530",
+				"listing_date": "2015/12/30",
+				"face_value": "500",
+				"listed_shares": "25614304",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "인바이츠바이오코아",
+		"detailed_name": "인바이츠바이오코아",
+		"english_name": "INVITES BIOCORE",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "3855657500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "오수연, 양성우",
+		"main_phone": "02-2027-6200",
+		"address": "서울특별시 금천구 디지털로9길 33 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7216400002",
+				"stock_code": "216400",
+				"listing_date": "2015/06/29",
+				"face_value": "500",
+				"listed_shares": "7711315",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "제노텍",
+		"detailed_name": "제노텍",
+		"english_name": "GENOTECH",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "2833590000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김재종",
+		"main_phone": "042-862-8404",
+		"address": "대전광역시 유성구 가정북로 26-69 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7066830001",
+				"stock_code": "066830",
+				"listing_date": "2016/07/18",
+				"face_value": "500",
+				"listed_shares": "5667180",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "제이엠멀티",
+		"detailed_name": "제이엠멀티",
+		"english_name": "JM-MULTI",
+		"description": null,
+		"industry_name": "제재 및 목재 가공업",
+		"industry_code": "031601",
+		"capital": "2580000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박훈웅",
+		"main_phone": "02-2043-0753",
+		"address": "충청남도 공주시 흑수골길 39 (신관동) 3층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7254160005",
+				"stock_code": "254160",
+				"listing_date": "2021/12/13",
+				"face_value": "500",
+				"listed_shares": "5160000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "지슨",
+		"detailed_name": "지슨",
+		"english_name": "GITSN",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "8664789500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "한동진",
+		"main_phone": "02-852-3565",
+		"address": "서울특별시 구로구 디지털로 288, 601호,602호,604호,605호(구로동, 대륭포스트타워1차)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7289860009",
+				"stock_code": "289860",
+				"listing_date": "2023/01/26",
+				"face_value": "500",
+				"listed_shares": "17329579",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "지앤이헬스케어",
+		"detailed_name": "지앤이헬스케어",
+		"english_name": "G&E Healthcare",
+		"description": null,
+		"industry_name": "기타 섬유제품 제조업",
+		"industry_code": "031309",
+		"capital": "1110074300",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "장영민",
+		"main_phone": "1688-8845",
+		"address": "경기도 하남시 초광산단동로6번길 55(광암동, 지앤이빌딩)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7299480004",
+				"stock_code": "299480",
+				"listing_date": "2018/06/29",
+				"face_value": "100",
+				"listed_shares": "11100743",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "지에프씨생명과학",
+		"detailed_name": "지에프씨생명과학",
+		"english_name": "GFC Life Science",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "1542289000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "강희철 / 표형배",
+		"main_phone": "031-5183-5557",
+		"address": "경기도 화성시 동탄순환대로 823 17층 (영천동, 에이팩시티)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7388610008",
+				"stock_code": "388610",
+				"listing_date": "2022/12/23",
+				"face_value": "500",
+				"listed_shares": "3084578",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "진코스텍",
+		"detailed_name": "진코스텍",
+		"english_name": "JINCOSTECH",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "1294668500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김임준",
+		"main_phone": "031-433-5575",
+		"address": "경기도 시흥시 군자천로237번길, 31 2나 604호 (정왕동)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7250030004",
+				"stock_code": "250030",
+				"listing_date": "2019/11/29",
+				"face_value": "500",
+				"listed_shares": "2589337",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "질경이",
+		"detailed_name": "질경이",
+		"english_name": "JILGYUNGYI",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "1476489800",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최원석",
+		"main_phone": "070-8952-5702",
+		"address": "서울특별시 서초구 반포대로8길 11-8 -",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7233990001",
+				"stock_code": "233990",
+				"listing_date": "2015/12/29",
+				"face_value": "100",
+				"listed_shares": "14764898",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "카이바이오텍",
+		"detailed_name": "카이바이오텍",
+		"english_name": "KaiBioTech",
+		"description": null,
+		"industry_name": "의약품 제조업",
+		"industry_code": "032102",
+		"capital": "4906405000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김영덕",
+		"main_phone": "063-219-5510",
+		"address": "전라북도 전주시 덕진구 백제대로567(금암동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7446600009",
+				"stock_code": "446600",
+				"listing_date": "2022/12/23",
+				"face_value": "5000",
+				"listed_shares": "981281",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "켈스",
+		"detailed_name": "켈스",
+		"english_name": "CALTH",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "1113270000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이동호",
+		"main_phone": "031-754-0320",
+		"address": "경기도 성남시 수정구 창업로 54, 321호(시흥동, 기업성장센터)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7402420004",
+				"stock_code": "402420",
+				"listing_date": "2021/11/30",
+				"face_value": "500",
+				"listed_shares": "2226540",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "코나솔",
+		"detailed_name": "코나솔",
+		"english_name": "KONASOL",
+		"description": null,
+		"industry_name": "특수 목적용 기계 제조업",
+		"industry_code": "032902",
+		"capital": "2911666500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "강윤근",
+		"main_phone": "041-359-6600",
+		"address": "충청남도 당진시 면천면 산업단지길 17-60 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7176590008",
+				"stock_code": "176590",
+				"listing_date": "2022/06/15",
+				"face_value": "500",
+				"listed_shares": "5823333",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "코셋",
+		"detailed_name": "주식회사 코셋",
+		"english_name": "Coset Inc.",
+		"description": null,
+		"industry_name": "통신 및 방송 장비 제조업",
+		"industry_code": "032604",
+		"capital": "2400000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "오치형, 황월연",
+		"main_phone": "062-975-8811",
+		"address": "광주광역시 북구  첨단벤처로60번길 39 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7189350002",
+				"stock_code": "189350",
+				"listing_date": "2013/12/24",
+				"face_value": "500",
+				"listed_shares": "4800000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "코스텍시스템",
+		"detailed_name": "코스텍시스템",
+		"english_name": "Kostek Systems",
+		"description": null,
+		"industry_name": "특수 목적용 기계 제조업",
+		"industry_code": "032902",
+		"capital": "1763050000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "배준호",
+		"main_phone": "031-646-1500",
+		"address": "경기도 평택시 서탄면 방꼬지길 231 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7169670007",
+				"stock_code": "169670",
+				"listing_date": "2022/01/21",
+				"face_value": "500",
+				"listed_shares": "2868401",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "큐라켐",
+		"detailed_name": "큐라켐",
+		"english_name": "CURACHEM",
+		"description": null,
+		"industry_name": "의료용품 및 기타 의약 관련제품 제조업",
+		"industry_code": "032103",
+		"capital": "877143000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "신숙정",
+		"main_phone": "043-236-7387",
+		"address": "충청북도 청주시 흥덕구 오송읍 오송생명1로 207 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7456190008",
+				"stock_code": "456190",
+				"listing_date": "2023/05/18",
+				"face_value": "500",
+				"listed_shares": "1754286",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "큐러블",
+		"detailed_name": "큐러블",
+		"english_name": "Cur",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "1469700000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김승일",
+		"main_phone": "02-3273-1671",
+		"address": "경기도 화성시 동탄대로23길 93 10층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7086460003",
+				"stock_code": "086460",
+				"listing_date": "2013/07/01",
+				"face_value": "500",
+				"listed_shares": "2939400",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "큐엠씨",
+		"detailed_name": "큐엠씨",
+		"english_name": "QMC",
+		"description": null,
+		"industry_name": "특수 목적용 기계 제조업",
+		"industry_code": "032902",
+		"capital": "4721900000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "유병소",
+		"main_phone": "031-427-0710",
+		"address": "경기도 안양시 동안구 부림로170번길 41-8(관양동) ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7136660008",
+				"stock_code": "136660",
+				"listing_date": "2014/07/01",
+				"face_value": "500",
+				"listed_shares": "9443800",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "크로넥스",
+		"detailed_name": "크로넥스",
+		"english_name": "CRONEX",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "2539028500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "손영준",
+		"main_phone": "02-557-3982",
+		"address": "경기도 화성시 팔탄면 주석로778번길 55 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7215570003",
+				"stock_code": "215570",
+				"listing_date": "2015/12/28",
+				"face_value": "500",
+				"listed_shares": "5078057",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "타스컴",
+		"detailed_name": "타스컴",
+		"english_name": "TASCOM",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "2107052500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이인근",
+		"main_phone": "031-433-6620",
+		"address": "경기도 안양시 동안구 학의로 268 824호, (관양동,안양메가벨리)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7336040001",
+				"stock_code": "336040",
+				"listing_date": "2019/12/02",
+				"face_value": "500",
+				"listed_shares": "4214105",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "타이드",
+		"detailed_name": "타이드",
+		"english_name": "TIDE",
+		"description": null,
+		"industry_name": "전자부품 제조업",
+		"industry_code": "032602",
+		"capital": "2430031000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "조경종",
+		"main_phone": "02-6673-0934",
+		"address": "서울특별시 금천구 가산디지털1로 128 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7346010002",
+				"stock_code": "346010",
+				"listing_date": "2022/12/28",
+				"face_value": "500",
+				"listed_shares": "4860062",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "타임기술",
+		"detailed_name": "타임기술",
+		"english_name": "TIME Technical Support",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "1076050500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "주양효",
+		"main_phone": "055-281-6540",
+		"address": "경상남도 창원시 성산구 완암로 50, 메카동 813호 (성산동, SK테크노파크)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7318660008",
+				"stock_code": "318660",
+				"listing_date": "2021/06/24",
+				"face_value": "500",
+				"listed_shares": "2152101",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "탈로스",
+		"detailed_name": "탈로스",
+		"english_name": "Talos",
+		"description": null,
+		"industry_name": "일차전지 및 축전지 제조업",
+		"industry_code": "032802",
+		"capital": "3684717000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "채재호",
+		"main_phone": "0313376500",
+		"address": "경기도 안양시 동안구 학의로 282 금강펜테리움IT타워 1701호~1708호 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7434190005",
+				"stock_code": "434190",
+				"listing_date": "2022/10/24",
+				"face_value": "500",
+				"listed_shares": "7369434",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "탑선",
+		"detailed_name": "탑선",
+		"english_name": "TOPSUN",
+		"description": null,
+		"industry_name": "기타 전기장비 제조업",
+		"industry_code": "032809",
+		"capital": "4673833000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "윤정택",
+		"main_phone": "061-399-1500",
+		"address": "전라남도 장성군 동화면 전자농공단지길 32 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7180060006",
+				"stock_code": "180060",
+				"listing_date": "2017/10/27",
+				"face_value": "500",
+				"listed_shares": "9347666",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "태양3C",
+		"detailed_name": "태양3C",
+		"english_name": "3CTY",
+		"description": null,
+		"industry_name": "자동차 부품 및 내장품 판매업",
+		"industry_code": "074502",
+		"capital": "2443539000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "황창순",
+		"main_phone": "02-788-9361",
+		"address": "강원도 홍천군 홍천읍 농공단지길 23-21 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7052960002",
+				"stock_code": "052960",
+				"listing_date": "2023/01/26",
+				"face_value": "500",
+				"listed_shares": "4887078",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "태양기계",
+		"detailed_name": "태양기계 주식회사",
+		"english_name": "Sun Machinery Co.,LTD",
+		"description": null,
+		"industry_name": "자동차 신품 부품 제조업",
+		"industry_code": "033003",
+		"capital": "3119993000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박창엽",
+		"main_phone": "031-354-9150",
+		"address": "경기도 화성시 팔탄면 푸른들판로 843-24 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7116100009",
+				"stock_code": "116100",
+				"listing_date": "2013/07/01",
+				"face_value": "500",
+				"listed_shares": "6239986",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "테크엔",
+		"detailed_name": "테크엔",
+		"english_name": "TECHEN",
+		"description": null,
+		"industry_name": "전구 및 조명장치 제조업",
+		"industry_code": "032804",
+		"capital": "400000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박철",
+		"main_phone": "053-593-5678",
+		"address": "대구광역시 달성군 구지면 국가산단대로50길 99 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7308700004",
+				"stock_code": "308700",
+				"listing_date": "2018/12/21",
+				"face_value": "100",
+				"listed_shares": "4000000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "테크트랜스",
+		"detailed_name": "테크트랜스",
+		"english_name": "Tech Trans",
+		"description": null,
+		"industry_name": "기타 금속 가공제품 제조업",
+		"industry_code": "032509",
+		"capital": "999424200",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "유재인",
+		"main_phone": "053-815-8830",
+		"address": "경상북도 경산시 원효로 343(주) 테크트랜스 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7258050004",
+				"stock_code": "258050",
+				"listing_date": "2018/07/13",
+				"face_value": "100",
+				"listed_shares": "9994242",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "티엘엔지니어링",
+		"detailed_name": "티엘엔지니어링",
+		"english_name": "TL Engineering",
+		"description": null,
+		"industry_name": "건축기술, 엔지니어링 및 관련 기술 서비스업",
+		"industry_code": "137201",
+		"capital": "652757500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "서충옥",
+		"main_phone": "02-2135-1668",
+		"address": "경기도 광명시 원광명로37번길 32 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7413300005",
+				"stock_code": "413300",
+				"listing_date": "2022/09/27",
+				"face_value": "500",
+				"listed_shares": "1305515",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "틸론",
+		"detailed_name": "틸론",
+		"english_name": "TILON",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "5363645000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "최백준, 최경원(각자 대표이사)",
+		"main_phone": "02-2627-9000",
+		"address": "서울특별시 강서구 마곡중앙14로 22틸론 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7217880004",
+				"stock_code": "217880",
+				"listing_date": "2015/05/28",
+				"face_value": "500",
+				"listed_shares": "10727290",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "파마리서치바이오",
+		"detailed_name": "파마리서치바이오",
+		"english_name": "PHARMARESEARCH BIO",
+		"description": null,
+		"industry_name": "의약품 제조업",
+		"industry_code": "032102",
+		"capital": "2032195500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "백승걸, 원치엽 (각자대표)",
+		"main_phone": "031-8039-1401",
+		"address": "강원도 강릉시 사임당로 641-3 -",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7217950005",
+				"stock_code": "217950",
+				"listing_date": "2015/11/05",
+				"face_value": "500",
+				"listed_shares": "4064391",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "파워풀엑스",
+		"detailed_name": "파워풀엑스",
+		"english_name": "Power Fulx",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "3204340000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "박인철",
+		"main_phone": "02-500-8088",
+		"address": "서울특별시 강남구 논현로115길 13 파워풀엑스빌딩",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7266870005",
+				"stock_code": "266870",
+				"listing_date": "2017/04/24",
+				"face_value": "500",
+				"listed_shares": "6408680",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "판도라티비",
+		"detailed_name": "판도라티비",
+		"english_name": "PANDORA TV CO.,LTD.",
+		"description": null,
+		"industry_name": "소프트웨어 개발 및 공급업",
+		"industry_code": "105802",
+		"capital": "5957791000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김경익",
+		"main_phone": "070-4484-7100",
+		"address": "경기도 성남시 분당구 대왕판교로644번길 49 DTC타워 11층 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7202960001",
+				"stock_code": "202960",
+				"listing_date": "2014/08/11",
+				"face_value": "500",
+				"listed_shares": "11915582",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "펨토바이오메드",
+		"detailed_name": "펨토바이오메드",
+		"english_name": "Femtobiomed",
+		"description": null,
+		"industry_name": "의료용 기기 제조업",
+		"industry_code": "032701",
+		"capital": "4200636000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이상현, 최주현(각자대표)",
+		"main_phone": "031-622-8501",
+		"address": "경기도 성남시 분당구 판교로 700D동 510호(야탑동, 분당테크노파크)",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7327610002",
+				"stock_code": "327610",
+				"listing_date": "2019/07/10",
+				"face_value": "500",
+				"listed_shares": "8401272",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "퓨쳐메디신",
+		"detailed_name": "퓨쳐메디신",
+		"english_name": "Future Medicine",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5266602500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "정낙신/정완석",
+		"main_phone": "02-3429-3473",
+		"address": "경기도 성남시 수정구 창업로 54 617호",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7341170009",
+				"stock_code": "341170",
+				"listing_date": "2022/07/27",
+				"face_value": "500",
+				"listed_shares": "10533205",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "프로젠",
+		"detailed_name": "프로젠",
+		"english_name": "ProGen",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "5777131500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김종균",
+		"main_phone": "02-6098-2800",
+		"address": "서울특별시 강서구 마곡중앙로 172, 6층, 7층",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7296160005",
+				"stock_code": "296160",
+				"listing_date": "2023/11/15",
+				"face_value": "500",
+				"listed_shares": "11554263",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "플럼라인생명과학",
+		"detailed_name": "플럼라인생명과학",
+		"english_name": "Plumbline Life Sciences",
+		"description": null,
+		"industry_name": "자연과학 및 공학 연구개발업",
+		"industry_code": "137001",
+		"capital": "1519945000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김앤토니경태",
+		"main_phone": "02-582-3540",
+		"address": "서울특별시 서초구 반포대로 222성의교정 성의회관 1315호 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7222670002",
+				"stock_code": "222670",
+				"listing_date": "2015/07/28",
+				"face_value": "500",
+				"listed_shares": "3039890",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "한국미라클피플사",
+		"detailed_name": "한국미라클피플사",
+		"english_name": "KOREA MIRACLE PEOPLE COMPANY",
+		"description": null,
+		"industry_name": "기타 화학제품 제조업",
+		"industry_code": "032004",
+		"capital": "550000000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "이호경",
+		"main_phone": "031-544-6781",
+		"address": "경기도 포천시 군내면 용정경제로1길 94-1 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7331660001",
+				"stock_code": "331660",
+				"listing_date": "2019/10/28",
+				"face_value": "500",
+				"listed_shares": "1100000",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "한국피아이엠",
+		"detailed_name": "한국피아이엠",
+		"english_name": "PIM KOREA",
+		"description": null,
+		"industry_name": "자동차 신품 부품 제조업",
+		"industry_code": "033003",
+		"capital": "1983336000",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "송준호",
+		"main_phone": "053-852-2636",
+		"address": "대구광역시 달성군 다사읍 세천로8길 26 ",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7448900001",
+				"stock_code": "448900",
+				"listing_date": "2023/08/30",
+				"face_value": "500",
+				"listed_shares": "3966672",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	},
+	{
+		"name": "한중엔시에스",
+		"detailed_name": "한중엔시에스",
+		"english_name": "HanJung Natural Connectivity System.co.,Ltd",
+		"description": null,
+		"industry_name": "자동차 신품 부품 제조업",
+		"industry_code": "033003",
+		"capital": "3559056500",
+		"currency": "원(KRW)",
+		"fiscal_month": "12",
+		"ceo": "김환식",
+		"main_phone": "054-337-5050",
+		"address": "경북 영천시 채신동 영천일반산업단지 9B 1L",
+		"website": null,
+		"founded_date": null,
+		"stock_info": [
+			{
+				"standard_code": "KR7107640005",
+				"stock_code": "107640",
+				"listing_date": "2013/12/10",
+				"face_value": "500",
+				"listed_shares": "7118113",
+				"market_type": "KONEX",
+				"stock_type": "보통주",
+				"affiliation": "일반기업부",
+				"security_type": "주권"
+			}
+		]
+	}
+]
