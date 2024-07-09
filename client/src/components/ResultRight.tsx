@@ -1,6 +1,7 @@
 import React from "react";
 import Chart from "./Chart";
 import Finance from "./Finance";
+import News from "./News";
 
 interface ResultRightProps {
 	companyName: string;
@@ -27,7 +28,7 @@ const ResultRight: React.FC<ResultRightProps> = ({ companyName, stockCode, stock
 				<div className="absolute bg-green -top-14 bg-green-600 p-12 pt-4 rounded-3xl text-2xl font-doHyeon z-10">
 					News
 				</div>
-				<div>{companyName}</div>
+				<News companyName={companyName} />
 			</div>
 		</div>
 	);
