@@ -24,3 +24,34 @@ const mockProfitRatioData = [
 	{ stacYymm: "2023-03", saleNtinRate: 15, cptlNtinRate: 9.5, selfCptlNtinInrt: 7.5 },
 	{ stacYymm: "2022-12", saleNtinRate: 16, cptlNtinRate: 10, selfCptlNtinInrt: 8 },
 ];
+
+describe("ProfitRatio Component", () => {
+	test("renders the BarChart and ProfitRatioQuartly correctly", () => {
+		render(<ProfitRatio profitRatioData={mockProfitRatioData} />);
+
+		// Check if the ProfitRatioQuartly component is rendered
+		expect(screen.getByText("ProfitRatioQuartly Component")).toBeInTheDocument();
+
+		// Check if the bar chart is rendered (Usually checked by ensuring the chart container is present)
+		expect(screen.getByText("Current Data:")).toBeInTheDocument();
+		expect(screen.getByText("Previous Data:")).toBeInTheDocument();
+	});
+
+	test("handles BarChart bar click event correctly", () => {
+		render(<ProfitRatio profitRatioData={mockProfitRatioData} />);
+
+		// Simulate clicking on the BarChart bars
+		const bars = screen.getAllByRole("presentation");
+		fireEvent.click(bars[0]);
+
+		// Assert that the ProfitRatioQuartly component is updated
+		expect(
+			screen.getByText('Current Data: {"stacYymm":"2023-06","saleNtinRate":14,"cptlNtinRate":9,"selfCptlNtinInrt":7}'),
+		).toBeInTheDocument();
+		expect(
+			screen.getByText(
+				'Previous Data: {"stacYymm":"2023-03","saleNtinRate":15,"cptlNtinRate":9.5,"selfCptlNtinInrt":7.5}',
+			),
+		).toBeInTheDocument();
+	});
+});
