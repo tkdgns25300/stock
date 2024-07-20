@@ -26,3 +26,21 @@ const mockPrevData = {
 	flow_lblt: 21000,
 	fix_lblt: 30000,
 };
+
+test("renders IncomeStatementQuartly with correct values and percentage changes", () => {
+	render(<IncomeStatementQuartly curBalanceSheetData={mockCurData} previousBalanceSheetData={mockPrevData} />);
+
+	const formatValue = (value) => (value >= 10000 ? `${(value / 10000).toFixed(2)}조` : `${value.toFixed(2)}억`);
+	const calculatePercentageChange = (current, previous) =>
+		previous === 0 ? "N/A" : (((current - previous) / previous) * 100).toFixed(2) + "%";
+
+	const labels = ["자산총계", "유동자산", "고정자산", "자본총계", "자본금", "부채총계", "유동부채", "고정부채"];
+	const curValues = [100000, 50000, 50000, 30000, 15000, 50000, 20000, 30000];
+	const prevValues = [95000, 45000, 50000, 29000, 14000, 51000, 21000, 30000];
+
+	labels.forEach((label, index) => {
+		expect(screen.getByText(label)).toBeInTheDocument();
+		expect(screen.getByText(formatValue(curValues[index]))).toBeInTheDocument();
+		expect(screen.getByText(calculatePercentageChange(curValues[index], prevValues[index]))).toBeInTheDocument();
+	});
+});
