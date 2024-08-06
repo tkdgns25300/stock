@@ -8,7 +8,7 @@ const Description: React.FC<DescriptionProps> = ({ description }) => {
 	const splitSentence = (str: string) => {
 		// 기본 문구가 아닌 경우에만 분할하도록 수정
 		if (!str) return [str];
-		console.log(str);
+
 		const normalizedStr = str.replace(/\u00A0/g, " ").split(". ");
 		return normalizedStr.slice(0, normalizedStr.length - 1);
 	};
