@@ -92,10 +92,15 @@ const Search: React.FC = () => {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		if (selectedStock) {
-			const queryString = `?companyName=${selectedStock.company_name}&stockCode=${selectedStock.stock_code}&stockType=${selectedStock.stock_type}`;
+			const encodedCompanyName = encodeURIComponent(selectedStock.company_name);
+			const encodedStockCode = encodeURIComponent(selectedStock.stock_code);
+			const encodedStockType = encodeURIComponent(selectedStock.stock_type);
+
+			const queryString = `?companyName=${encodedCompanyName}&stockCode=${encodedStockCode}&stockType=${encodedStockType}`;
 			navigate(`/result${queryString}`);
 		}
 	};
+
 	return (
 		<div className="relative large:w-1/2 mobile:w-2/3 w-3/4 mx-auto z-10" ref={dropDownRef}>
 			<form onSubmit={handleSubmit}>

@@ -15,7 +15,10 @@ const ResultLeft: React.FC<ResultLeftProps> = ({ companyName, stockCode, stockTy
 	useEffect(() => {
 		const fetchCompanyData = async () => {
 			try {
-				const response = await fetch(`${process.env.REACT_APP_API_SERVER_URI}/company/search?name=${companyName}`);
+				const encodedCompanyName = encodeURIComponent(companyName);
+				const apiUrl = `${process.env.REACT_APP_API_SERVER_URI}/company/search?name=${encodedCompanyName}`;
+
+				const response = await fetch(apiUrl);
 				if (!response.ok) {
 					throw new Error(`HTTP error! status: ${response.status}`);
 				}
