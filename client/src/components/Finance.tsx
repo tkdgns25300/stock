@@ -126,97 +126,124 @@ const Finance: React.FC<FinanceProps> = ({ stockCode }) => {
 		fetchFinanceData();
 	}, [stockCode]);
 
+	// 데이터가 비어있을 때 null 반환
+	if (
+		IncomeStatementData.length === 0 &&
+		BalanceSheetData.length === 0 &&
+		FinancialRatioData.length === 0 &&
+		ProfitRatioData.length === 0
+	) {
+		return null;
+	}
+
 	return (
 		<div className="relative w-full bg-white flex flex-col justify-start rounded-3xl p-6 z-20 font-gothic-a1 font-semibold text-lg">
-			<div>
-				<button
-					className="flex justify-between w-full p-2 focus:outline-none"
-					onClick={() => setShowIncomeStatement(!showIncomeStatement)}
-				>
-					<span>손익계산서</span>
-					<span
-						className={`transform transition-transform duration-300 ${showIncomeStatement ? "rotate-180" : "rotate-0"}`}
+			{IncomeStatementData.length > 0 && (
+				<div>
+					<button
+						className="flex justify-between w-full p-2 focus:outline-none"
+						onClick={() => setShowIncomeStatement(!showIncomeStatement)}
 					>
-						<IoMdArrowDown />
-					</span>
-				</button>
-				<div
-					className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
-						showIncomeStatement ? "max-h-screen" : "max-h-0"
-					}`}
-				>
-					{showIncomeStatement && <IncomeStatement incomeStatementData={IncomeStatementData} />}
-				</div>
-			</div>
-
-			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
-
-			<div>
-				<button
-					className="flex justify-between w-full p-2 focus:outline-none"
-					onClick={() => setShowBalanceSheet(!showBalanceSheet)}
-				>
-					<span>대차대조표</span>
-					<span
-						className={`transform transition-transform duration-300 ${showBalanceSheet ? "rotate-180" : "rotate-0"}`}
+						<span>손익계산서</span>
+						<span
+							className={`transform transition-transform duration-300 ${
+								showIncomeStatement ? "rotate-180" : "rotate-0"
+							}`}
+						>
+							<IoMdArrowDown />
+						</span>
+					</button>
+					<div
+						className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
+							showIncomeStatement ? "max-h-screen" : "max-h-0"
+						}`}
 					>
-						<IoMdArrowDown />
-					</span>
-				</button>
-				<div
-					className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
-						showBalanceSheet ? "max-h-screen" : "max-h-0"
-					}`}
-				>
-					{showBalanceSheet && <BalanceSheet balanceSheetData={BalanceSheetData} />}
+						{showIncomeStatement && <IncomeStatement incomeStatementData={IncomeStatementData} />}
+					</div>
 				</div>
-			</div>
+			)}
 
-			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+			{BalanceSheetData.length > 0 && (
+				<>
+					<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+					<div>
+						<button
+							className="flex justify-between w-full p-2 focus:outline-none"
+							onClick={() => setShowBalanceSheet(!showBalanceSheet)}
+						>
+							<span>대차대조표</span>
+							<span
+								className={`transform transition-transform duration-300 ${
+									showBalanceSheet ? "rotate-180" : "rotate-0"
+								}`}
+							>
+								<IoMdArrowDown />
+							</span>
+						</button>
+						<div
+							className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
+								showBalanceSheet ? "max-h-screen" : "max-h-0"
+							}`}
+						>
+							{showBalanceSheet && <BalanceSheet balanceSheetData={BalanceSheetData} />}
+						</div>
+					</div>
+				</>
+			)}
 
-			<div>
-				<button
-					className="flex justify-between w-full p-2 focus:outline-none"
-					onClick={() => setShowFinancialRatio(!showFinancialRatio)}
-				>
-					<span>재무비율</span>
-					<span
-						className={`transform transition-transform duration-300 ${showFinancialRatio ? "rotate-180" : "rotate-0"}`}
-					>
-						<IoMdArrowDown />
-					</span>
-				</button>
-				<div
-					className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
-						showFinancialRatio ? "max-h-screen" : "max-h-0"
-					}`}
-				>
-					{showFinancialRatio && <FinancialRatio financialRatioData={FinancialRatioData} />}
-				</div>
-			</div>
+			{FinancialRatioData.length > 0 && (
+				<>
+					<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+					<div>
+						<button
+							className="flex justify-between w-full p-2 focus:outline-none"
+							onClick={() => setShowFinancialRatio(!showFinancialRatio)}
+						>
+							<span>재무비율</span>
+							<span
+								className={`transform transition-transform duration-300 ${
+									showFinancialRatio ? "rotate-180" : "rotate-0"
+								}`}
+							>
+								<IoMdArrowDown />
+							</span>
+						</button>
+						<div
+							className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
+								showFinancialRatio ? "max-h-screen" : "max-h-0"
+							}`}
+						>
+							{showFinancialRatio && <FinancialRatio financialRatioData={FinancialRatioData} />}
+						</div>
+					</div>
+				</>
+			)}
 
-			<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
-
-			<div>
-				<button
-					className="flex justify-between w-full p-2 focus:outline-none"
-					onClick={() => setShowProfitRatio(!showProfitRatio)}
-				>
-					<span>수익성비율</span>
-					<span
-						className={`transform transition-transform duration-300 ${showProfitRatio ? "rotate-180" : "rotate-0"}`}
-					>
-						<IoMdArrowDown />
-					</span>
-				</button>
-				<div
-					className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
-						showProfitRatio ? "max-h-screen" : "max-h-0"
-					}`}
-				>
-					{showProfitRatio && <ProfitRatio profitRatioData={ProfitRatioData} />}
-				</div>
-			</div>
+			{ProfitRatioData.length > 0 && (
+				<>
+					<div className="border-b border-gray-300 w-full mx-auto my-4"></div>
+					<div>
+						<button
+							className="flex justify-between w-full p-2 focus:outline-none"
+							onClick={() => setShowProfitRatio(!showProfitRatio)}
+						>
+							<span>수익성비율</span>
+							<span
+								className={`transform transition-transform duration-300 ${showProfitRatio ? "rotate-180" : "rotate-0"}`}
+							>
+								<IoMdArrowDown />
+							</span>
+						</button>
+						<div
+							className={`transition-max-height duration-500 ease-in-out-quint overflow-hidden ${
+								showProfitRatio ? "max-h-screen" : "max-h-0"
+							}`}
+						>
+							{showProfitRatio && <ProfitRatio profitRatioData={ProfitRatioData} />}
+						</div>
+					</div>
+				</>
+			)}
 		</div>
 	);
 };
