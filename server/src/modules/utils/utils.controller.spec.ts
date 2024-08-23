@@ -36,4 +36,18 @@ describe("UtilsController", () => {
 		utilsController = module.get<UtilsController>(UtilsController);
 		utilsService = module.get<UtilsService>(UtilsService);
 	});
+
+	it("should be defined", () => {
+		expect(utilsController).toBeDefined();
+	});
+
+	it("should call csvToJsonFirst method with correct parameters", async () => {
+		const market = "NASDAQ";
+		const date = "2024-08-25";
+		const result = "CSV to JSON First Step";
+		jest.spyOn(utilsService, "csvToJsonFirst").mockResolvedValue(result);
+
+		expect(await utilsController.csvToJsonFirst(market, date)).toBe(result);
+		expect(utilsService.csvToJsonFirst).toHaveBeenCalledWith(market, date);
+	});
 });
