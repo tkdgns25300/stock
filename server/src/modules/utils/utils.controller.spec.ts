@@ -60,4 +60,24 @@ describe("UtilsController", () => {
 		expect(await utilsController.csvToJsonSecond(market, date)).toBe(result);
 		expect(utilsService.csvToJsonSecond).toHaveBeenCalledWith(market, date);
 	});
+
+	it("should call csvToJsonThird method with correct parameters", async () => {
+		const market = "NASDAQ";
+		const date = "2024-08-25";
+		const result = "CSV to JSON Third Step";
+		jest.spyOn(utilsService, "csvToJsonThird").mockResolvedValue(result);
+
+		expect(await utilsController.csvToJsonThird(market, date)).toBe(result);
+		expect(utilsService.csvToJsonThird).toHaveBeenCalledWith(market, date);
+	});
+
+	it("should call jsonToDatabase method with correct parameters", async () => {
+		const market = "NASDAQ";
+		const date = "2024-08-25";
+		const result = "JSON to DB";
+		jest.spyOn(utilsService, "jsonToDatabase").mockResolvedValue(result);
+
+		expect(await utilsController.jsonToDatabase(market, date)).toBe(result);
+		expect(utilsService.jsonToDatabase).toHaveBeenCalledWith(market, date);
+	});
 });
